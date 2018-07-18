@@ -23,9 +23,9 @@
                     *alto(high)
                     * bajo(low) 
         -->
-		<script src="<?php echo base_url(); ?>js/ammap/maps/js/cubaLow.js" type="text/javascript"></script>
+		<script src="<?php echo base_url(); ?>js/ammap/maps/js/worldLow.js" type="text/javascript"></script>
 
-		<script src="<?php echo base_url(); ?>js/mapa1.js" type="text/javascript"></script>
+		<script src="<?php echo base_url(); ?>js/miMapa.js" type="text/javascript"></script>
 
 		<link rel="stylesheet" href="<?php echo base_url(); ?>css/estilo_mapa.css" type="text/css">
 

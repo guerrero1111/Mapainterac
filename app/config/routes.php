@@ -44,8 +44,12 @@ $route['404_override'] 		 = '';
 */
 
 
-$route['default_controller']   = 'main/dashboard_principal';
+$route['default_controller']   = 'main/dashboard_principal'; 
 $route['404_override'] 		   = '';
+
+
+$route['recopilar_datos']   	= 'main/recopilar_datos'; 
+$route['cargar_dependencia']   	= 'main/cargar_dependencia'; 
 
 
 

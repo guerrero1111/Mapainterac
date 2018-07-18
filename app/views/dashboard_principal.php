@@ -28,20 +28,41 @@
 															<option value="es">Spanish</option>
 													</select>					                
 
- 									<select id="inicio">
-					                    <option value="1" selected="selected">1</option>
-					                    <option value="2">2</option>
-					                    <option value="3">3</option>
-					                    <option value="4">4</option>
-					                </select>
+								<div class="col-md-5">			
+
+									<select name="id_estatus" id="id_estatus"  class="form-control" dependencia="pais">				
+											<option value="1" selected="selected">Importación</option>
+											<option value="2">Exportación</option>
+									</select>					                
 
 
- 									<select id="fin">
-					                    <option value="1">1</option>
-					                    <option value="2" selected="selected">2</option>
-					                    <option value="3">3</option>
-					                    <option value="4">4</option>
-					                </select>					                
+									<select name="pais" id="pais" class="form-control" dependencia="inicio">				
+										<?php foreach ( (json_decode(json_encode($paises))) as $pais ){ ?>
+										
+													<option value="<?php echo $pais->id; ?>" ><?php echo $pais->nombre; ?></option>
+										<?php } ?>									
+									</select>
+
+
+									<select name="inicio" id="inicio" class="form-control" dependencia="fin">				
+										<?php foreach ( (json_decode(json_encode($origen))) as $importa ){ ?>
+										
+													<option value="<?php echo $importa->id; ?>" ><?php echo $importa->nombre; ?></option>
+										<?php } ?>									
+									</select>
+
+									<select name="fin" id="fin" class="form-control" dependencia="">				
+										<?php foreach ( (json_decode(json_encode($destino))) as $importa ){ ?>
+										
+													<option value="<?php echo $importa->id; ?>" ><?php echo $importa->nombre; ?></option>
+										<?php } ?>									
+									</select>
+								</div>
+
+
+
+
+
 
 					        </div>
 							
