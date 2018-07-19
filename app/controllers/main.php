@@ -34,25 +34,18 @@ class Main extends CI_Controller {
 		$data['destino'] = $this->modelo->destino_pto($data);
 		
 		$arreglo=array();
-		$arreglo[] = $data['origen'][0];
-		$arreglo[] = $data['destino'][0];
+		if ($data['id_estatus']==1) {  //cambiar el orden
+			$arreglo[] = $data['origen'][0];
+			$arreglo[] = $data['destino'][0];
+		} else {
+			$arreglo[] = $data['destino'][0];
+			$arreglo[] = $data['origen'][0];
+		}
 		echo   json_encode($arreglo);		
 		
 	}
 
 
-/*
-	              //$this->modelo->importaciones_origen();
-	            
-	            //print_r(     (json_decode(json_encode($elementos)))    ); die;
-
-	            foreach ( (json_decode(json_encode($elementos))) as $clave =>$valor ) {
-	            	print_r(     $valor   ); die;
-	            }
-	            //die;
-	            //print_r(     ((json_encode($elementos)))    ); die;
-
-*/
 
 
 	function cargar_dependencia(){
@@ -97,46 +90,7 @@ class Main extends CI_Controller {
      	echo json_encode($variables);
 
 
-	    /*
-
-	    $data['dependencia']        = $this->input->post('dependencia');
-
-	    switch ($data['dependencia']) {
-	        case "producto_catalogo_compra": //nunca será una dependencia
-	            $elementos  = $this->catalogo->listado_productos_unico();
-	            break;
-	        case "color_catalogo_compra":
-	            $elementos  = $this->catalogo->lista_colores($data);
-	            
-	            break;
-
-	        case "composicion_catalogo_compra":
-	            $elementos  = $this->catalogo->lista_composiciones($data);
-	            break;
-	        case "calidad_catalogo_compra":
-	            $elementos  = $this->catalogo->lista_calidad($data);
-	            break;
-
-	        default:
-	    }
-
-
-
-	      $variables = array();
-	    if ($elementos != false)  {     
-	         foreach( (json_decode(json_encode($elementos))) as $clave =>$valor ) {
-	            if ($data['dependencia']=="color_catalogo_compra"){
-	              array_push($variables,array('nombre' => $valor->nombre, 'identificador' => $valor->id, 'hexadecimal_color' => $valor->hexadecimal_color)); 
-	            } else {
-	              array_push($variables,array('nombre' => $valor->nombre, 'identificador' => $valor->id, 'hexadecimal_color' => "FFFFFF"));  
-	            }
-	       }
-	    }  
-		
-     echo json_encode($variables);
-     */
-
-     //echo json_encode($elementos);
+	   
 
   }
 

@@ -1,3 +1,43 @@
+
+documentacion
+  http://docs.amcharts.com/3/javascriptmaps/AmChart
+  https://www.amcharts.com/kbc/javascript-maps/
+  
+
+
+
+http://localhost/ammap_3.21.13.free/samples/_JSON_animationsAlongLines.html
+http://localhost/ammap_3.21.13.free/samples/animationsAlongLines.html
+http://localhost/ammap_3.21.13.free/samples/_JSON_changingProjections.html   //tamaño de los lugares
+
+http://localhost/ammap_3.21.13.free/samples/_exporting_to_multiple_formats.html
+
+http://localhost/ammap_3.21.13.free/samples/_JSON_flightRoutes.html
+http://localhost/ammap_3.21.13.free/samples/_CSS_animations.html
+http://localhost/ammap_3.21.13.free/samples/_JSON_curvedLines.html
+http://localhost/ammap_3.21.13.free/samples/flightRoutes.html
+
+
+///////////////////////////////tamaño de los lugares
+mapWithBubbles
+_JSON_changingProjections.html  
+
+///////////////1 a todos
+http://localhost/mapa_old/samples/flightRoutes.html
+
+_JSON_curvedLines  
+_CSS_animations
+
+
+
+///////////////
+_usingThemes  //colores de tema
+_JSON_groupedCountries //leyenda
+groupedCountries  //leyenda
+
+
+
+/////////////////////////
 insert into mapa_catalogo_pais (pais)
 select pais from 
 	(select pais
