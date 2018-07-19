@@ -1,0 +1,204 @@
+Argentina,Buenos Aires,Veracruz,USD 5,1 cbm,Quincenal,28,Directo,SUDAMERICA
+Argentina,Cordoba,Veracruz,USD 125,1 cbm,Quincenal,45,Montevideo,SUDAMERICA
+Argentina,Rosario,Veracruz,USD 85,1 cbm,Quincenal,45,Montevideo,SUDAMERICA
+Brasil,Santos,Veracruz,USD 5,1 cbm,Quincenal,24,Directo,SUDAMERICA
+Brasil,Rio de Janeiro,Veracruz,USD 50,1 cbm,Quincenal,30,Santos,SUDAMERICA
+Brasil,Vitoria,Veracruz,USD 50,1 cbm,Quincenal,30,Santos,SUDAMERICA
+Brasil,Salvador,Veracruz,USD 80,1 cbm,Quincenal,30,Santos,SUDAMERICA
+Brasil,Curitiba,Veracruz,USD 50,1 cbm,Quincenal,30,Santos,SUDAMERICA
+Brasil,Paranagua,Veracruz,USD 50,1 cbm,Quincenal,30,Santos,SUDAMERICA
+Brasil,Itajai,Veracruz,USD 50,1 cbm,Quincenal,30,Santos,SUDAMERICA
+Brasil,Canoas (Bagergs),Veracruz,USD 50,1 cbm,Quincenal,30,Santos,SUDAMERICA
+Brasil,Rio Grande,Veracruz,USD 50,1 cbm,Quincenal,30,Santos,SUDAMERICA
+Brasil,Novo Hamburgo,Veracruz,USD 50,1 cbm,Quincenal,30,Santos,SUDAMERICA
+Brasil,Suape,Veracruz,USD 110,1 cbm,Quincenal,40,Santos,SUDAMERICA
+Brasil,Varginha,Veracruz,USD 40,1 cbm,Quincenal,30,Santos,SUDAMERICA
+Brasil,Betim – Belo Horizonte,Veracruz,USD 30,1 cbm,Quincenal,30,Santos,SUDAMERICA
+Paraguay,Asunción,Veracruz,USD 85,1 cbm,Quincenal,45,Montevideo,SUDAMERICA
+Uruguay,Montevideo,Veracruz,USD 35,1 cbm,Quincenal,30,Directo,SUDAMERICA
+Bolivia,La Paz,Manzanillo,USD 170,2 cbm,Semanal,25,Arica,SUDAMERICA
+Bolivia,Santa Cruz de la Sierra,Manzanillo,USD 190,2 cbm,Semanal,25,Arica,SUDAMERICA
+Bolivia,Cochabamba,Manzanillo,USD 180,2 cbm,Semanal,29,Arica,SUDAMERICA
+Perú,Callao,Manzanillo,USD 5,1 cbm,Semanal,10,Directo,SUDAMERICA
+Ecuador,Guayaquil,Manzanillo,USD 5,1 cbm,Quincenal,15,Directo,SUDAMERICA
+Chile,Valparaiso,Manzanillo,USD 5,1 cbm,Semanal,12,Directo,SUDAMERICA
+Chile,Santiago(Door),Manzanillo,USD 50,2 cbm,Semanal,14,Valparaiso,SUDAMERICA
+Chile,Arica,Manzanillo,USD 90,1 cbm,Semanal,23,Valparaiso ,SUDAMERICA
+Chile,Iquique,Manzanillo,USD 90,1 cbm,Semanal,23,Valparaiso ,SUDAMERICA
+Chile,Antofagasta,Manzanillo,USD 90,2 cbm,Semanal,22,Valparaiso ,SUDAMERICA
+Chile,San Vicente,Manzanillo,USD 120,2 cbm,Quincenal ,21,Valparaiso ,SUDAMERICA
+Chile,Punta Arenas,Manzanillo,USD 190,USD 200,Semanal,32,Valparaiso,SUDAMERICA
+Colombia,Cartagena,Veracruz,USD 25,1 cbm,Semanal,11,Directo,SUDAMERICA
+Colombia,Buenaventura,Manzanillo,USD 5,1 cbm,Semanal,6,Directo,SUDAMERICA
+Colombia,Bogota,Manzanillo,USD 85,3 cbm,Semanal,9,Buenaventura,SUDAMERICA
+Colombia,Medellin,Manzanillo,USD 90,3 cbm,Semanal,9,Buenaventura,SUDAMERICA
+Panama,Colon,Veracruz,USD 45,1 cbm,Semanal,13,Directo,CENTROAMERICA
+Panama,Manzanillo,Veracruz,USD 45,1 cbm,Semanal,14,Colon,CENTROAMERICA
+Panama,Panama city,Veracruz,USD 55,1 cbm,Semanal,14,Colon,CENTROAMERICA
+Guatemala,Guatemala city,Veracruz,USD 95,1 cbm,Semanal,20,Colon,CENTROAMERICA
+El Salvador,San Salvador,Veracruz,USD 95,1 cbm,Semanal,20,Colon,CENTROAMERICA
+Honduras,San Pedro Sula,Veracruz,USD 90,1 cbm,Semanal,18,Colon,CENTROAMERICA
+Honduras,Tegucigalpa,Veracruz,USD 105,1 cbm,Semanal,20,Sps/Colon,CENTROAMERICA
+Honduras,Puerto Cortes,Veracruz,USD 95,1 cbm,Semanal,15,Colon,CENTROAMERICA
+Nicaragua,Managua,Veracruz,USD 100,1 cbm,Semanal,18,Colon,CENTROAMERICA
+Costa Rica,San Jose,Veracruz,USD 50,1 cbm,Semanal,14,Directo,CENTROAMERICA
+Venezuela,La Guaira,Veracruz,USD 95,1 cbm,Semanal,18,Colon,CENTROAMERICA
+Venezuela,Puerto Cabello,Veracruz,USD 95,1 cbm,Semanal,17,Colon,CENTROAMERICA
+Venezuela,Maracaibo,Veracruz,USD 175,2 cbms,Semanal,18,Colon,CENTROAMERICA
+Cuba,Mariel,Veracruz,USD 85,3 cbms,Semanal,5,Directo,CARIBE
+Jamaica,Kingston,Veracruz,USD 85,1 cbm,Semanal,16,Colon,CARIBE
+Rep Dominicana,Rio Haina,Veracruz,USD 25,1 cbm,Semanal,9,Directo,CARIBE
+Rep Dominicana,Caucedo,Veracruz,USD 25,1 cbm,Semanal,9,Directo,CARIBE
+Rep Dominicana,Sto Domingo,Veracruz,USD 25,1 cbm,Semanal,9,Directo,CARIBE
+Guayana,Georgetown,Veracruz,USD 140,1 cbm,Semanal,28,Colon,CARIBE
+Surinam,Paramaribo,Veracruz,USD 130,1 cbm,Semanal,28,Colon,CARIBE
+Puerto Rico,San Juan,Veracruz,USD 95,1 cbm,Semanal,19,Colon,CARIBE
+Barbados,Bridgetown,Veracruz,USD 120,1 cbm,Semanal,25,Colon,CARIBE
+Trinidad,Point Lisas,Veracruz,USD 105,1 cbm,Semanal,22,Colon,CARIBE
+Trinidad,Port Spain,Veracruz,USD 105,1 cbm,Semanal,22,Colon,CARIBE
+Aruba,Oranjestad,Veracruz,USD 115,1 cbm,Semanal,18,Colon,CARIBE
+Curacao,Willemstad,Veracruz,USD 115,1 cbm,Semanal,17,Colon,CARIBE
+Belgica,Amberes,Veracruz,USD 25,1 cbm,Semanal,22,Directo,EUROPA
+Belgica,Amberes,Altamira,USD 25,1 cbm,Semanal,21,Directo,EUROPA
+Alemania,Hamburgo,Veracruz,USD 35,1 cbm,Semanal,29,Directo,EUROPA
+Alemania,Hamburgo,Altamira,USD 35,1 cbm,Semanal,28,Directo,EUROPA
+España,Barcelona,Veracruz,USD 20,1 cbm,Semanal,29,Directo,EUROPA
+Hong Kong,Hong Kong,Manzanillo,USD 1,1 cbm,Semanal,24,Directo,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+Korea,Busan,Manzanillo,USD 1,1 cbm,Quincenal,17,Directo,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+Korea,Inchon,Manzanillo,USD 20,1 cbm,Semanal,30,Hong Kong,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+Rusia,Vladivostok,Manzanillo,USD 165,1 cbm,Semanal,30,Hong Kong,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+China,Shanghai,Manzanillo,USD 1,1 cbm,Semanal,26,Directo,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+China,Dalian,Manzanillo,USD 20,1 cbm,Semanal,32,Hong Kong,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+China,Dalian,Manzanillo,USD 15,1 cbm,Quincenal,22,Busan,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+China,Fuzhou ,Manzanillo,USD 25,1 cbm,Semanal,29,Hong Kong,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+China,Macau,Manzanillo,USD 35,1 cbm,Semanal,27,Hong Kong,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+China,Xiamen,Manzanillo,USD 35,1 cbm,Semanal,28,Hong Kong,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+China,Xiamen,Manzanillo,USD 30,1 cbm,Quincenal,24,Busan,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+China,Ningbo,Manzanillo,USD 35,1 cbm,Semanal,29,Hong Kong,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+China,Ningbo,Manzanillo,USD 30,1 cbm,Quincenal,25,Busan,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+China,Qingdao,Manzanillo,USD 25,1 cbm,Semanal,31,Hong Kong,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+China,Qingdao,Manzanillo,USD 15,1 cbm,Quincenal,21,Busan,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+China,Xingang,Manzanillo,USD 20,1 cbm,Semanal,31,Hong Kong,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+China,Xingang,Manzanillo,USD 15,1 cbm,Quincenal,21,Busan,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+China,Nanjing,Manzanillo,USD 55,Usd 120,Semanal,36,Hong Kong,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+China,Nanjing,Manzanillo,USD 45,1 cbm,Quincenal,24,Busan,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+China,Shenzhen,Manzanillo,USD 20,1 cbm,Semanal,27,Hong Kong,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+China,Yantai,Manzanillo,USD 40,1 cbm,Quincenal,22,Busan,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+China,Chongqing,Manzanillo,USD 80,1 cbm,Semanal,36,Hong Kong,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+China,Dongguan,Manzanillo,USD 110,Usd 185,Semanal,28,Hong Kong,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+China,Foshan,Manzanillo,USD 75,Usd 125,Semanal,28,Hong Kong,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+China,Huangpu,Manzanillo,USD 50,1 cbm,Semanal,27,Hong Kong,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+China,Beijing,Manzanillo,USD 45,Usd 85,Semanal,35,HKG + Xingang,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+Japón,Hakata,Manzanillo,USD 30,1 cbm,Semanal,34,Hong Kong,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+Japón,Hakata,Manzanillo,USD 10,1 cbm,Quincenal,18,Busan,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+Japón,Kobe,Manzanillo,USD 5,1 cbm,Semanal,30,Hong Kong,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+Japón,Kobe,Manzanillo,USD 5,1 cbm,Quincenal,20,Busan,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+Japón,Moji,Manzanillo,USD 25,1 cbm,Semanal,33,Hong Kong,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+Japón,Moji,Manzanillo,USD 10,1 cbm,Quincenal,18,Busan,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+Japón,Nagoya,Manzanillo,USD 5,1 cbm,Semanal,31,Hong Kong,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+Japón,Nagoya,Manzanillo,USD 5,1 cbm,Quincenal,20,Busan,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+Japón,Osaka,Manzanillo,USD 5,1 cbm,Semanal,29,Hong Kong,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+Japón,Osaka,Manzanillo,USD 5,1 cbm,Quincenal,20,Busan,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+Japón,Shimizu,Manzanillo,USD 30,1 cbm,Semanal,33,Hong Kong,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+Japón,Shimizu,Manzanillo,USD 15,1 cbm,Quincenal,20,Busan,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+Japón,Tokyo,Manzanillo,USD 5,1 cbm,Semanal,29,Hong Kong,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+Japón,Tokyo,Manzanillo,USD 5,1 cbm,Quincenal,20,Busan,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+Japón,Yokohama,Manzanillo,USD 5,1 cbm,Semanal,30,Hong Kong,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+Japón,Yokohama,Manzanillo,USD 5,1 cbm,Quincenal,30,Busan,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+Taiwan,Kaohsiung,Manzanillo,USD 50,1 cbm,Semanal,27,Hong Kong,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+Taiwan,Kaohsiung,Manzanillo,USD 35,1 cbm,Quincenal,20,Busan,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+Taiwan,Keelung,Manzanillo,USD 45,1 cbm,Semanal,27,Hong Kong,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+Taiwan,Keelung,Manzanillo,USD 35,1 cbm,Quincenal,20,Busan,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+Taiwan,Taichung,Manzanillo,USD 50,1 cbm,Semanal,27,Hong Kong,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+Taiwan,Taichung,Manzanillo,USD 50,1 cbm,Quincenal,20,Busan,LEJANO ORIENTE/OCEANIA/MEDIO ORIENTE
+Australia,Brisbane,Manzanillo,USD 1,1 cbm,Semanal,36,Hong Kong,OCEANIA
+Australia,Fremantle,Manzanillo,USD 5,1 cbm,Semanal,39,Hong Kong,OCEANIA
+Australia,Adelaide,Manzanillo,USD 45,1 cbm,Semanal,46,Hong Kong,OCEANIA
+Australia,Melbourne,Manzanillo,USD 1,1 cbm,Semanal,41,Hong Kong,OCEANIA
+Australia,Sydney,Manzanillo,USD 1,1 cbm,Semanal,37,Hong Kong,OCEANIA
+New Zealand,Auckland,Manzanillo,USD 15,1 cbm,Semanal,41,Hong Kong,OCEANIA
+New Zealand,Wellington,Manzanillo,USD 85,1 cbm,Semanal,45,HKG + Auckland,OCEANIA
+New Zealand,Nelson,Manzanillo,USD 150,1 cbm,Semanal,50,HKG + Auckland,OCEANIA
+Bangladesh,Chittagong,Manzanillo,USD 95,1 cbm,Semanal,36,Hong Kong,MEDIO ORIENTE – INDIA
+Bangladesh,Dhaka,Manzanillo,USD 170,1 cbm,Semanal,48,HKG + Chittagong,MEDIO ORIENTE – INDIA
+India,Bangalore,Manzanillo,USD 50,1 cbm,Semanal,48,HKG + Chennai,MEDIO ORIENTE – INDIA
+India,Mumbai,Manzanillo,USD 45,1 cbm,Semanal,53,HKG + Nhava Sheva,MEDIO ORIENTE – INDIA
+India,Calcutta,Manzanillo,USD 45,1 cbm,Semanal,43,Hong Kong,MEDIO ORIENTE – INDIA
+India,Cochin,Manzanillo,USD 90,1 cbm,Semanal,43,HKG + Colombo,MEDIO ORIENTE – INDIA
+India,Chennai ,Manzanillo,USD 25,1 cbm,Semanal,36,Hong Kong,MEDIO ORIENTE – INDIA
+India,Hyderabad,Manzanillo,USD 50,1 cbm,Semanal,48,HKG + Chennai,MEDIO ORIENTE – INDIA
+India,Tuticorin,Manzanillo,USD 110,1 cbm,Semanal,50,HKG + Colombo,MEDIO ORIENTE – INDIA
+India,Baroda,Manzanillo,USD 100,1 cbm,Semanal,55,HKG + Nhava Sheva,MEDIO ORIENTE – INDIA
+India,Madras,Manzanillo,USD 25,1 cbm,Semanal,36,Hong Kong,MEDIO ORIENTE – INDIA
+India,New Delhi,Manzanillo,USD 60,1 cbm,Semanal,50,Hong Kong,MEDIO ORIENTE – INDIA
+India,Nhava Sheva,Manzanillo,USD 25,1 cbm,Semanal,40,Hong Kong,MEDIO ORIENTE – INDIA
+Israel,Ashdod,Manzanillo,USD 75,1 cbm,Semanal,46,Hong Kong,MEDIO ORIENTE – INDIA
+Israel,Haifa,Manzanillo,USD 110,1 cbm,Semanal,54,HKG + Ashdod,MEDIO ORIENTE – INDIA
+Lebanon,Beirut,Manzanillo,USD 90,1 cbm,Semanal,53,Hong Kong,MEDIO ORIENTE – INDIA
+Pakistan,Karachi,Manzanillo,USD 55,1 cbm,Semanal,41,Hong Kong,MEDIO ORIENTE – INDIA
+Pakistan,Lahore,Manzanillo,USD 80,1 cbm,Semanal,56,HKG + Karachi,MEDIO ORIENTE – INDIA
+Arabia Saudita,Jeddah,Manzanillo,USD 80,1 cbm,Semanal,43,Hong Kong,MEDIO ORIENTE – INDIA
+Arabia Saudita,Damman,Manzanillo,USD 85,1 cbm,Semanal,54,HKG + Jeddah,MEDIO ORIENTE – INDIA
+Arabia Saudita,Riyadh,Manzanillo,USD 85,1 cbm,Semanal,59,HKG + Jeddah,MEDIO ORIENTE – INDIA
+Sri Lanka,Colombo,Manzanillo,USD 80,1 cbm,Semanal,37,Hong Kong,MEDIO ORIENTE – INDIA
+U.A.E.,Dubai ,Manzanillo,USD 25,1 cbm,Semanal,42,Hong Kong,MEDIO ORIENTE – INDIA
+U.A.E.,Dubai ,Manzanillo,USD 30,1 cbm,Quincenal,40,Busan,MEDIO ORIENTE – INDIA
+U.A.E.,Jebel Ali,Manzanillo,USD 25,1 cbm,Semanal,42,Hong Kong,MEDIO ORIENTE – INDIA
+U.A.E.,Jebel Ali,Manzanillo,USD 30,1 cbm,Quincenal,40,Busan,MEDIO ORIENTE – INDIA
+U.A.E.,Abu Dhabi,Manzanillo,USD 90,1 cbm,Semanal,47,HKG + Dubai,MEDIO ORIENTE – INDIA
+U.A.E.,Sharjah,Manzanillo,USD 115,1 cbm,Semanal,46,HKG + Dubai,MEDIO ORIENTE – INDIA
+Iran,Bandar Abbas,Manzanillo,USD 110,1 cbm,Semanal,42,Hong Kong,MEDIO ORIENTE – INDIA
+Syria,Lattakia,Manzanillo,USD 75,1 cbm,Quincenal,70,Busan,MEDIO ORIENTE – INDIA
+Iraq,Umm Qasar,Manzanillo,USD 150,1 cbm,Quincenal,52,Busan,MEDIO ORIENTE – INDIA
+Bahrain,Bahrain,Manzanillo,USD 65,1 cbm,Semanal,44,Hong Kong,MEDIO ORIENTE – INDIA
+Jordania,Aqaba,Manzanillo,USD 85,1 cbm,Semanal,50,Hong Kong,MEDIO ORIENTE – INDIA
+Qatar,Doha,Manzanillo,USD 75,1 cbm,Semanal,47,Hong Kong,MEDIO ORIENTE – INDIA
+Tanzania,Dar el Salaam,Manzanillo,USD 160,1 cbm,Semanal,69,HKG + Dubai,MEDIO ORIENTE – INDIA
+Djibouti,Dijbouti,Manzanillo,USD 145,1 cbm,Semanal,69,HKG + Dubai,MEDIO ORIENTE – INDIA
+Kuwait,Kuwait,Manzanillo,USD 55,1 cbm,Semanal,44,Hong Kong,MEDIO ORIENTE – INDIA
+Oman,Sohar,Manzanillo,USD 95,1 cbm,Semanal,45,Hong Kong,MEDIO ORIENTE – INDIA
+Maldives,Male,Manzanillo,USD 150,1 cbm,Semanal,48,HKG + Colombo,MEDIO ORIENTE – INDIA
+Singapore,Singapore,Manzanillo,USD 1,1 cbm,Semanal,29,Hong Kong,SURESTE ASIATICO / PUERTOS BASE
+Cambodia,Sihanoukville,Manzanillo,USD 45,1 cbm,Semanal,29,Hong Kong,SURESTE ASIATICO / PUERTOS BASE
+Cambodia,Phnom Penh,Manzanillo,USD 70,1 cbm,Semanal,35,HKG + Sihanoukville,SURESTE ASIATICO / PUERTOS BASE
+Indonesia,Jakarta,Manzanillo,USD 1,1 cbm,Semanal,31,Hong Kong,SURESTE ASIATICO / PUERTOS BASE
+Indonesia,Surabaya ,Manzanillo,USD 1,1 cbm,Semanal,33,Hong Kong,SURESTE ASIATICO / PUERTOS BASE
+Indonesia,Belawan,Manzanillo,USD 60,1 cbm,Semanal,39,HKG + Singapore,SURESTE ASIATICO / PUERTOS BASE
+Indonesia,Semarang,Manzanillo,USD 1,1 cbm,Semanal,33,Hong Kong,SURESTE ASIATICO / PUERTOS BASE
+Malaysia,Pasir Gudang ,Manzanillo,USD 40,1 cbm,Semanal,34,Hong Kong,SURESTE ASIATICO / PUERTOS BASE
+Malaysia,Johor,Manzanillo,USD 40,1 cbm,Semanal,34,Hong Kong,SURESTE ASIATICO / PUERTOS BASE
+Malaysia,Port Klang,Manzanillo,USD 35,1 cbm,Semanal,31,Hong Kong,SURESTE ASIATICO / PUERTOS BASE
+Malaysia,Port Klang,Manzanillo,USD 35,1 cbm,Quincenal,27,Busan,SURESTE ASIATICO / PUERTOS BASE
+Malaysia,Penang,Manzanillo,USD 45,1 cbm,Semanal,32,Hong Kong,SURESTE ASIATICO / PUERTOS BASE
+Malaysia,Penang,Manzanillo,USD 40,1 cbm,Quincenal,27,Busan,SURESTE ASIATICO / PUERTOS BASE
+Myanmar,Yangon,Manzanillo,USD 65,1 cbm,Semanal,35,Hong Kong,SURESTE ASIATICO / PUERTOS BASE
+Filipinas,Cebu,Manzanillo,USD 45,1 cbm,Semanal,31,Hong Kong,SURESTE ASIATICO / PUERTOS BASE
+Filipinas,Manila,Manzanillo,USD 1,1 cbm,Semanal,29,Hong Kong,SURESTE ASIATICO / PUERTOS BASE
+Tailandia,Laem Chabang,Manzanillo,USD 30,1 cbm,Semanal,31,Hong Kong,SURESTE ASIATICO / PUERTOS BASE
+Tailandia,Lat Kra Bang,Manzanillo,USD 30,1 cbm,Semanal,32,Hong Kong,SURESTE ASIATICO / PUERTOS BASE
+Tailandia,Bangkok,Manzanillo,USD 30,1 cbm,Semanal,31,Hong Kong,SURESTE ASIATICO / PUERTOS BASE
+Vietnam,Danang,Manzanillo,USD 60,1 cbm,Semanal,29,Hong Kong,SURESTE ASIATICO / PUERTOS BASE
+Vietnam,Haiphong,Manzanillo,USD 40,1 cbm,Semanal,28,Hong Kong,SURESTE ASIATICO / PUERTOS BASE
+Vietnam,Haiphong,Manzanillo,USD 35,1 cbm,Quincenal,23,Busan,SURESTE ASIATICO / PUERTOS BASE
+Vietnam,Ho Chi Minh / Cat Lai,Manzanillo,USD 40,1 cbm,Semanal,29,Hong Kong,SURESTE ASIATICO / PUERTOS BASE
+Vietnam,Ho Chi Minh / Cat Lai,Manzanillo,USD 35,1 cbm,Quincenal,23,Busan,SURESTE ASIATICO / PUERTOS BASE
+Vietnam,Hanoi,Manzanillo,USD 80,Usd 180,Semanal,30,HKG + Haiphong,SURESTE ASIATICO / PUERTOS BASE
+Egipto,Alexandria,Manzanillo,USD 55,1 cbm,Semanal,54,Hong Kong,AFRICA  / PUERTOS BASE
+Egipto,Luxour,Manzanillo,USD 90,1 cbm,Semanal,55,HKG + Alexandria,AFRICA  / PUERTOS BASE
+Egipto,Cairo,Manzanillo,USD 70,1 cbm,Semanal,56,HKG + Alexandria,AFRICA  / PUERTOS BASE
+Egipto,Port Said,Manzanillo,USD 55,1 cbm,Semanal,45,Hong Kong,AFRICA  / PUERTOS BASE
+Kenya,Mombassa,Manzanillo,USD 50,1 cbm,Semanal,50,Hong Kong,AFRICA  / PUERTOS BASE
+Kenya,Nairobi,Manzanillo,USD 120,1 cbm,Semanal,70,HKG + Mombassa,AFRICA  / PUERTOS BASE
+Uganda,Kampala,Manzanillo,USD 220,1 cbm,Semanal,65,HKG + Mombassa,AFRICA  / PUERTOS BASE
+Zambia,Kitwe,Manzanillo,USD 300,2 cbm,Semanal,75,HKG + Durban,AFRICA  / PUERTOS BASE
+Rwanda,Kigali,Manzanillo,USD 450,3 cbm,Semanal,70,HKG + Mombassa,AFRICA  / PUERTOS BASE
+Ghana,Accra,Manzanillo,USD 300,1 cbm,Semanal,85,HKG + Durban,AFRICA  / PUERTOS BASE
+Mauritus,Port Louis,Manzanillo,USD 75,1 cbm,Semanal,40,Hong Kong,AFRICA  / PUERTOS BASE
+Morroco,Casablanca,Manzanillo,USD 45,1 cbm,Semanal,58,Hong Kong,AFRICA  / PUERTOS BASE
+Sudafrica,Cape Town,Manzanillo,USD 30,1 cbm,Semanal,52,Hong Kong,AFRICA  / PUERTOS BASE
+Sudafrica,Durban,Manzanillo,USD 30,1 cbm,Semanal,48,Hong Kong,AFRICA  / PUERTOS BASE
+Sudafrica,Johannesburg,Manzanillo,USD 40,1 cbm,Semanal,50,HKG + Durban,AFRICA  / PUERTOS BASE
+Sudafrica,Port Elizabeth,Manzanillo,USD 55,1 cbm,Semanal,51,HKG + Durban,AFRICA  / PUERTOS BASE
+Sudafrica,East London,Manzanillo,USD 100,1 cbm,Semanal,51,HKG + Durban,AFRICA  / PUERTOS BASE
+Nigeria,Apapa,Manzanillo,USD 90,1 cbm,Semanal,57,Hong Kong,AFRICA  / PUERTOS BASE
+Nigeria,Lagos,Manzanillo,USD 90,1 cbm,Semanal,57,Hong Kong,AFRICA  / PUERTOS BASE
