@@ -1,0 +1,14 @@
+Version 1.2
+===========
+
+* Fixed: Multiple typing effects displayed the wrong number of letters.
+
+Version 1.1 – July 4, 2017
+==========================
+
+* Fixed: Better SEO handling
+
+Version 1.0
+===========
+
+* Initial release

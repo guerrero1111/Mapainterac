@@ -1,0 +1,47 @@
+Version 1.2.2 - May 22, 2018
+============================
+
+* [Fonts] Added: Font sizes
+* [Backgrounds] Fixed: Vimeo background videos stopped playing
+
+Version 1.2.1 - April 16, 2018
+==============================
+
+* [Row Separators] Fixed: Custom SVGs not being applied
+* [Isometric] Fixed: Some styles were not being applied
+
+Version 1.2 - March 22, 2018
+============================
+
+* [Shadows] Fixed: Shadows for nested columns are now working.
+* [Carousel Anything] Various updates - most notably Owl Carousel 2.0
+* [Before and After] Various updates
+* [SVG Icons] Major fixes - most notably icon styles
+* [Fonts] Updated Google Font listing & some minor fixes
+* [Hover Animations] Various fixes
+* [Device Mockups] Fixed autoplay for Vimeo videos.
+* [Isometric] Major fixes
+* [Separators] Various fixes
+
+Version 1.1 - November 23, 2017
+===============================
+
+* New: Added Shadows feature for columns, images and buttons.
+* New: Added Text Gradient feature for text elements.
+* Fixed: Removed feature plugin headers
+
+Version 1.0.2 - August 8, 2017
+==============================
+
+* [Hover animations & Fonts] Fixed: Modified VCs that override the vc_shortcodes_css_class hook wp-config won't display a warning, but still won't work.
+
+Version 1.0.1 - August 5, 2017
+==============================
+
+* Fixed: Compatibility with VC 5.1.1 + WC
+* Fixed: Fatal error VC_PAGE_MAIN_SLUG when VC is not activated.
+
+Version 1.0
+===========
+
+* Initial release
