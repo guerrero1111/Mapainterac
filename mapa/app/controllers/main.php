@@ -31,16 +31,57 @@ class Main extends CI_Controller {
 			     $data['fin'] =  (int) $this->input->post('fin');
 
 		$data['origen'] = $this->modelo->origen_pto($data);
+
+		//print_r( $data['origen']  ); die;
 		$data['destino'] = $this->modelo->destino_pto($data);
 		
 		$arreglo=array();
 		if ($data['id_estatus']==1) {  //cambiar el orden
+
 			$arreglo[] = $data['origen'][0];
+			
+			$data['c1'] = 'id_puertoescala';
+			$data['c2'] = 'via';
+			$data['intermedio']= $this->modelo->origen_intermedio($data);	
+			if ($data['intermedio']!=false) {
+				 $arreglo[] = $data['intermedio'][0]; 
+			}
+
+			$data['c1'] = 'id_puertoescala2';
+			$data['c2'] = 'via';
+			$data['intermedio']= $this->modelo->origen_intermedio($data);	
+			if ($data['intermedio']!=false) {
+				 $arreglo[] = $data['intermedio'][0]; 
+			}
+
+
+
 			$arreglo[] = $data['destino'][0];
 		} else {
 			$arreglo[] = $data['destino'][0];
+
+
+			
+			$data['c1'] = 'id_puertoescala';
+			$data['c2'] = 'via';
+			$data['intermedio']= $this->modelo->destino_intermedio($data);	
+			if ($data['intermedio']!=false) {
+				 $arreglo[] = $data['intermedio'][0]; 
+			}
+
+			$data['c1'] = 'id_puertoescala2';
+			$data['c2'] = 'via';
+			$data['intermedio']= $this->modelo->destino_intermedio($data);	
+			if ($data['intermedio']!=false) {
+				 $arreglo[] = $data['intermedio'][0]; 
+			}
+
+
+
+
 			$arreglo[] = $data['origen'][0];
 		}
+
 		echo   json_encode($arreglo);		
 		
 	}
