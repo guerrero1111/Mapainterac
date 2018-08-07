@@ -81,6 +81,7 @@
 									 		 <p>País: <span class="etiq_pais"> <?php echo $paises[0]->nombre; ?></span></p>
 									 		 <p>Puerto: <span class="etiq_puerto"> <?php echo $origen[0]->nombre; ?></span></p>
 									 		 <p>Destino: <span class="etiq_destino"> <?php echo $destino[0]->nombre.' , México'; ?></span></p>
+									 		 <p>Via: <span class="etiq_via"> <?php echo $destino[0]->via; ?></span></p>
 									 		 <p>TT: <span class="etiq_tt"> <?php echo $origen[0]->tt; ?></span>, México </p>
 									 
 									</div>

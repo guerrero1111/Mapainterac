@@ -1,6 +1,6 @@
 <?php if(! defined('BASEPATH')) exit('No tienes permiso para acceder a este archivo');
 
-  class modelo extends CI_Model{ 
+  class modelo extends CI_Model{  
     
     private $key_hash;
     private $timezone;
@@ -31,7 +31,7 @@
          public function pais($data){
             
 
-            $this->db->select('e.id_pais id, e.pais nombre');
+            $this->db->select('e.id_pais id, e.pais nombre, e.via');
 
             if  ($data['id_estatus']==1) {
                 $this->db->from($this->catalogo_importacion.' e');  
@@ -55,7 +55,7 @@
          public function origen($data){
        
 
-             $this->db->select('e.id_puerto id, e.puerto nombre, e.tt');
+             $this->db->select('e.id_puerto id, e.puerto nombre, e.tt, e.via');
 
             if  ($data['id_estatus']==1) {
                 $this->db->from($this->catalogo_importacion.' e');  
@@ -87,7 +87,7 @@
 public function destino($data){
             
           
-            $this->db->select('e.id_destino id, e.pto_destino nombre, e.tt');
+            $this->db->select('e.id_destino id, e.pto_destino nombre, e.tt, e.via');
             
 
             if  ($data['id_estatus']==1) {
@@ -127,7 +127,7 @@ public function destino($data){
             $this->db->select('"#eea638" as color', false);
             $this->db->select('"ppp" as valor', false);
 
-            $this->db->select('e.id_puerto id, e.puerto title, e.pais, e.tt, m.city,  m.lat latitude, m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province');
+            $this->db->select('e.id_puerto id, e.puerto title, e.pais, e.tt, m.city,  m.lat latitude, m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via');
 
             if  ($data['id_estatus']==1) {
                 $this->db->from($this->catalogo_importacion.' e');  
@@ -176,7 +176,7 @@ public function destino($data){
             $this->db->select('"#eea638" as color', false);
             $this->db->select('"ppp" as valor', false);
 
-            $this->db->select('e.'.$data["c1"].' id, e.'.$data["c2"].' title, e.pais, e.tt, m.city,  m.lat latitude, m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province');
+            $this->db->select('e.'.$data["c1"].' id, e.'.$data["c2"].' title, e.pais, e.tt, m.city,  m.lat latitude, m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via');
 
             if  ($data['id_estatus']==1) {
                 $this->db->from($this->catalogo_importacion.' e');  
@@ -223,7 +223,7 @@ public function destino_pto($data){
             $this->db->select('"ppp" as valor', false);
 
             
-            $this->db->select('e.id_destino id, e.pto_destino title, e.pais, e.tt, m.city,  m.lat latitude, m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province');
+            $this->db->select('e.id_destino id, e.pto_destino title, e.pais, e.tt, m.city,  m.lat latitude, m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via');
 
             if  ($data['id_estatus']==1) {
                 $this->db->from($this->catalogo_importacion.' e');  
@@ -274,7 +274,7 @@ public function destino_intermedio($data){
             
             //$this->db->select('e.id_destino id, e.pto_destino title, e.pais, e.tt, m.city,  m.lat latitude, m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province');
 
-            $this->db->select('e.'.$data["c1"].' id, e.'.$data["c2"].' title, e.pais, e.tt, m.city,  m.lat latitude, m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province');
+            $this->db->select('e.'.$data["c1"].' id, e.'.$data["c2"].' title, e.pais, e.tt, m.city,  m.lat latitude, m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via');
 
             if  ($data['id_estatus']==1) {
                 $this->db->from($this->catalogo_importacion.' e');  

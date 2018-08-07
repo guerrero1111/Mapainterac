@@ -219,6 +219,7 @@ function puntos() {
             jQuery('.etiq_pais').text( (jQuery('#id_estatus').val() ==1) ?  mapData[0].pais : 'México' ); 
             jQuery('.etiq_puerto').text( (jQuery('#id_estatus').val() ==1) ?  mapData[0].title : mapData[0].title ); 
             jQuery('.etiq_destino').text( (jQuery('#id_estatus').val() ==1) ?  (mapData[1].title+', México') : (mapData[1].title+' ,'+mapData[0].pais) ); 
+            jQuery('.etiq_via').text( (jQuery('#id_estatus').val() ==1) ?  mapData[0].via : mapData[0].via ); 
             jQuery('.etiq_tt').text( (jQuery('#id_estatus').val() ==1) ?  mapData[0].tt : mapData[0].tt ); 
 
                               
