@@ -1574,8 +1574,6 @@ jQuery('#tabla_cat_litrajes').dataTable( {
             ],
   }); 
 
-
-
 	jQuery('body').on('submit','#form_catalogos', function (e) {	
 
 

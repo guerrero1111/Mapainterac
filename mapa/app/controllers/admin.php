@@ -4,6 +4,7 @@ class Admin extends CI_Controller {
 		parent::__construct();
 
 		$this->load->model('admin/modelo_admin', 'modelo_admin'); 
+		$this->load->model('modelo', 'modelo'); 
 		$this->load->library(array('email')); 
 	}
 
@@ -525,9 +526,204 @@ class Admin extends CI_Controller {
 
 
 
+/////////////////Listado de catalogos/////////////////////////////////////////	
+
+
+  
+  public function listado_catalogos(){
+
+  
+   $id_session = $this->session->userdata('id');
+   if ( $this->session->userdata('session') !== TRUE ) {
+
+        redirect('login');
+    } else {
+        $id_perfil=$this->session->userdata('id_perfil');
+
+
+		$data['id_estatus']=1; //la primera vez son importaciones
+		$data['paises']  = $this->modelo->pais(  $data );
+		$data['id_pais']=$data['paises'][0]->id; //la primera vez es el primer pais
+		//print_r( $data['paises'][0]->id ); die;
+		$data['origen'] = $this->modelo->origen($data);
+		//print_r( $data['origen'][0]->id ); die;
+		$data['inicio']=$data['origen'][0]->id; 
+
+		$data['destino'] = $this->modelo->destino($data);
+
+		//$this->load->view( 'dashboard_principal', $data );
 
 
 
+        $coleccion_id_operaciones= json_decode($this->session->userdata('coleccion_id_operaciones')); 
+        if ( (count($coleccion_id_operaciones)==0) || (!($coleccion_id_operaciones)) ) {
+              $coleccion_id_operaciones = array();
+         }   
+         //print_r($id_perfil); die;
+
+      //$html = $this->load->view( 'catalogos/colores',$data ,true);   
+      switch ($id_perfil) {    
+        case 1:
+            $this->load->view( 'admin/catalogos/catalogos');
+          break;
+        case 2:
+        case 3:
+        case 4:
+             if  ( (in_array(8, $coleccion_id_operaciones))  || (in_array(13, $coleccion_id_operaciones))  )   { 
+                $this->load->view( 'admin/catalogos/catalogos');
+              }  else  {
+                redirect('');
+              } 
+          break;
+
+
+        default:  
+          redirect('');
+          break;
+      }
+
+    }    
+    
+  }
+
+
+  public function procesando_catalogos(){
+
+    $data=$_POST;
+    //$data['id_estatus'] = 1;
+    $busqueda = $this->modelo_admin->buscador_catalogos($data);
+    echo $busqueda;
+  } 
+
+
+function nuevo_catalogo(){
+	if($this->session->userdata('session') === TRUE ){
+		  $id_perfil=$this->session->userdata('id_perfil');
+		  
+		  $data['perfiles']   = $this->modelo_admin->coger_catalogo_perfiles();
+		  
+
+		  switch ($id_perfil) {    
+			case 1:
+				  $this->load->view( 'admin/usuarios/nuevo_catalogo', $data );   
+					
+			  break;
+			case 2:
+			case 3:
+					$this->load->view( 'admin/usuarios/nuevo_catalogo', $data );   
+			  break;
+
+
+			default:  
+			  redirect('');
+			  break;
+		  }
+		}
+		else{ 
+		  redirect('index');
+		}    
+
+	}
+
+//edicion del especialista o el perfil del especialista o administrador activo
+
+
+	//edicion del especialista o el perfil del especialista o administrador activo
+	function editar_catalogo( $uid ,$id_estatus ){
+
+	    $id=$this->session->userdata('id');
+  		$data['id'] = base64_decode($uid);
+  			  $uid  = $data['id'];
+		$id_perfil=$this->session->userdata('id_perfil');
+		
+		$data['id_estatus']= base64_decode($id_estatus); //la primera vez son importaciones
+		$data['paises']  = $this->modelo_admin->paises(  $data );
+
+
+		$data['catalogo'] = $this->modelo_admin->get_catalogo( $data );
+		//print_r($data['catalogo']); die;
+
+		 switch ($id_perfil) {    
+			case 1:
+				  $this->load->view('admin/catalogos/editar_catalogo',$data);  
+					
+			  break;
+			case 2:
+			case 3:
+					$this->load->view('admin/catalogos/editar_catalogo',$data);  
+			  break;
+
+
+			default:  
+			  redirect('');
+			  break;
+		  }
+
+
+	}
+
+
+	
+	function validacion_edicion_catalogo(){
+		
+		if ( $this->session->userdata('session') !== TRUE ) {
+			redirect('');
+		} else {
+			
+			$this->form_validation->set_rules( 'nombre', 'Nombre', 'trim|required|callback_nombre_valido|min_length[3]|max_lenght[180]|xss_clean');
+			$this->form_validation->set_rules( 'apellidos', 'Apellido(s)', 'trim|required|callback_nombre_valido|min_length[3]|max_lenght[180]|xss_clean');
+			$this->form_validation->set_rules( 'email', 'Email', 'trim|required|valid_email|xss_clean');
+			$this->form_validation->set_rules( 'telefono', 'Teléfono', 'trim|numeric|callback_valid_phone|xss_clean');
+			$this->form_validation->set_rules('id_perfil', 'Rol de usuario', 'required|callback_valid_option|xss_clean');
+			$this->form_validation->set_rules( 'pass_1', 'Contraseña', 'required|trim|min_length[8]|xss_clean');
+			$this->form_validation->set_rules( 'pass_2', 'Confirmación de contraseña', 'required|trim|min_length[8]|xss_clean');
+
+	  //si el usuario no es un administrador entonces q sea obligatorio asociarlo a operaciones 
+	  //Esto YA NO HACE FALTA
+	  if ($this->input->post('id_perfil')!=1) {
+		
+		
+	  } 
+
+
+			if ( $this->form_validation->run() === TRUE ){
+				if ($this->input->post( 'pass_1' ) === $this->input->post( 'pass_2' ) ){
+					$uid 				=   $this->input->post( 'id_p' ); 
+					$data['id']							= $uid;
+					$data['email']		=	$this->input->post('email');
+					$data 				= 	$this->security->xss_clean($data);  
+					$login_check = $this->modelo_admin->check_usuario_existente($data);
+					if ( $login_check === TRUE ){
+						$usuario['nombre']   					= $this->input->post( 'nombre' );
+						$usuario['apellidos']   				= $this->input->post( 'apellidos' );
+						$usuario['email']   					= $this->input->post( 'email' );
+						$usuario['contrasena']						= $this->input->post( 'pass_1' );
+						$usuario['telefono']   				= $this->input->post( 'telefono' );
+						$usuario['id_perfil']   				= $this->input->post( 'id_perfil' );
+
+						
+
+						
+						$usuario['id']							= $uid;
+						$usuario 								= $this->security->xss_clean( $usuario );
+						$guardar 									= $this->modelo_admin->edicion_usuario( $usuario );
+						if ( $guardar !== FALSE ){
+							echo TRUE;
+						} else {
+							echo '<span class="error"><b>E02</b> - La información del usuario no puedo ser actualizada no hubo cambios</span>';
+						}
+					} else {
+						echo '<span class="error">El <b>Correo electrónico</b> ya se encuentra asignado a una cuenta.</span>';
+					}
+				} else {
+					echo '<span class="error">La <b>Contraseña</b> y la <b>Confirmación</b> no coinciden, verificalas.</span>';
+				}
+			} else {			
+				echo validation_errors('<span class="error">','</span>');
+			}
+		}
+	}	
+	
 /////////////////validaciones/////////////////////////////////////////	
 
 

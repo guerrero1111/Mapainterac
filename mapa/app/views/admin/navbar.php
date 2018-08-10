@@ -30,6 +30,12 @@
 
 
 							<?php if  ( ($especial!=3) ) { ?>	
+	
+								<li>
+									<a href="<?php echo base_url(); ?>catalogos" class="color-blanco">Clasificador</a> 
+									
+								</li>
+
 							<!--
 								<li>
 									<a href="<?php echo base_url(); ?>participantes" class="color-blanco">Participantes</a> 
