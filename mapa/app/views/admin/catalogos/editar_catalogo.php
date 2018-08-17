@@ -10,6 +10,10 @@
   $attr = array('class' => 'form-horizontal', 'id'=>'form_catalogos','name'=>$retorno,'method'=>'POST','autocomplete'=>'off','role'=>'form');
   echo form_open('validacion_edicion_catalogo', $attr,$hidden);
 ?>
+
+<input value="<?php echo  $id; ?>"   name="id" type="hidden">
+<input value="<?php echo  $id_estatus; ?>"  name="id_estatus" type="hidden">
+
 <div class="container">
 	<div class="row">
 		<div class="col-sm-8 col-md-8"><h4>Edición de catalogo</h4></div>
@@ -112,7 +116,7 @@
 				<div class="col-sm-6 col-md-6">
 					
 					<div class="form-group">
-						<label for="pass_1" class="col-sm-3 col-md-2 control-label">Tarifa</label>
+						<label for="tarifa" class="col-sm-3 col-md-2 control-label">Tarifa</label>
 						<div class="col-sm-9 col-md-10">
 							<?php 
 								$nomb_nom='';
@@ -125,7 +129,7 @@
 					</div>
 
 					<div class="form-group">
-						<label for="pass_1" class="col-sm-3 col-md-2 control-label">Salidas</label>
+						<label for="salidas" class="col-sm-3 col-md-2 control-label">Salidas</label>
 						<div class="col-sm-9 col-md-10">
 							<?php 
 								$nomb_nom='';
@@ -138,7 +142,7 @@
 						
 
 					<div class="form-group">
-						<label for="pass_1" class="col-sm-3 col-md-2 control-label">Minimo</label>
+						<label for="minimo" class="col-sm-3 col-md-2 control-label">Minimo</label>
 						<div class="col-sm-9 col-md-10">
 							<?php 
 								$nomb_nom='';
@@ -150,7 +154,7 @@
 					</div>
 						
 					<div class="form-group">
-						<label for="pass_1" class="col-sm-3 col-md-2 control-label">TT</label>
+						<label for="tt" class="col-sm-3 col-md-2 control-label">TT</label>
 						<div class="col-sm-9 col-md-10">
 							<?php 
 								$nomb_nom='';
@@ -161,6 +165,18 @@
 						</div>
 					</div>
 											
+
+					<div class="form-group">
+						<label for="precio" class="col-sm-3 col-md-2 control-label">Precio</label>
+						<div class="col-sm-9 col-md-10">
+							<?php 
+								$nomb_nom='';
+								if (isset($catalogo->precio)) 
+								 {	$nomb_nom = $catalogo->precio;}
+							?>
+							<input value="<?php echo  set_value('precio',$nomb_nom); ?>"  class="form-control" name="precio" placeholder="0.00">
+						</div>
+					</div>
 
 
 

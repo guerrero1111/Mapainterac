@@ -104,15 +104,6 @@
 		</div>
 		</div>
 		
-		<div class="row">
-
-			<div class="col-sm-8 col-md-9"></div>
-			<div class="col-sm-4 col-md-3">
-				<a href="<?php echo base_url(); ?><?php echo $retorno; ?>" class="btn btn-danger btn-block"><i class="glyphicon glyphicon-backward"></i> Regresar</a>
-			</div>
-
-		</div>
-		<br/>
 	</div>
 
 

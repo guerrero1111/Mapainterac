@@ -104,5 +104,10 @@ $route['validacion_edicion_catalogo']   = 'admin/validacion_edicion_catalogo';
 $route['eliminar_catalogo/(:any)']		= 'admin/eliminar_catalogo/$1';
 $route['validar_eliminar_catalogo']    	= 'admin/validar_eliminar_catalogo';
 
+
+///////////////////////////Catalogos//////////////////////////////////////////////////
+$route['buscador']     			 	= 'admin/listado_buscador';
+
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

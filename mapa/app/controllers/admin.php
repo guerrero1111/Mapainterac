@@ -524,6 +524,31 @@ class Admin extends CI_Controller {
 		redirect('admin');
 	}	
 
+/////////////////Buscador/////////////////////////////////////////	
+
+
+
+public function listado_buscador(){
+
+ 
+
+		$data['id_estatus']=1; //la primera vez son importaciones
+		$data['paises']  = $this->modelo->pais(  $data );
+		$data['id_pais']=$data['paises'][0]->id; //la primera vez es el primer pais
+		//print_r( $data['paises'][0]->id ); die;
+		$data['origen'] = $this->modelo->origen($data);
+		//print_r( $data['origen'][0]->id ); die;
+		$data['inicio']=$data['origen'][0]->id; 
+
+		$data['destino'] = $this->modelo->destino($data);
+
+		//$this->load->view( 'dashboard_principal', $data );
+
+		$this->load->view( 'admin/catalogos/buscador');
+
+        
+    
+  }
 
 
 /////////////////Listado de catalogos/////////////////////////////////////////	
@@ -670,54 +695,63 @@ function nuevo_catalogo(){
 			redirect('');
 		} else {
 			
-			$this->form_validation->set_rules( 'nombre', 'Nombre', 'trim|required|callback_nombre_valido|min_length[3]|max_lenght[180]|xss_clean');
-			$this->form_validation->set_rules( 'apellidos', 'Apellido(s)', 'trim|required|callback_nombre_valido|min_length[3]|max_lenght[180]|xss_clean');
-			$this->form_validation->set_rules( 'email', 'Email', 'trim|required|valid_email|xss_clean');
-			$this->form_validation->set_rules( 'telefono', 'Teléfono', 'trim|numeric|callback_valid_phone|xss_clean');
-			$this->form_validation->set_rules('id_perfil', 'Rol de usuario', 'required|callback_valid_option|xss_clean');
-			$this->form_validation->set_rules( 'pass_1', 'Contraseña', 'required|trim|min_length[8]|xss_clean');
-			$this->form_validation->set_rules( 'pass_2', 'Confirmación de contraseña', 'required|trim|min_length[8]|xss_clean');
+/*
+id_puerto
+id_puertoescala
+id_puertoescala2
+id_destino
+tarifa
+salidas
+minimo
+tt
+precio
+
+callback_nombre_valido|
+*/
+
+			$this->form_validation->set_rules( 'tarifa', 'tarifa', 'trim|required|min_length[3]|max_lenght[180]|xss_clean'); 
+			$this->form_validation->set_rules( 'salidas', 'salidas', 'trim|required|min_length[3]|max_lenght[180]|xss_clean'); 
+			$this->form_validation->set_rules( 'minimo', 'minimo', 'trim|required|min_length[3]|max_lenght[180]|xss_clean'); 
+			$this->form_validation->set_rules( 'tt', 'tt', 'trim|required|min_length[3]|max_lenght[180]|xss_clean'); 
+			$this->form_validation->set_rules( 'precio', 'precio', 'trim|required|min_length[3]|max_lenght[180]|xss_clean'); 
 
 	  //si el usuario no es un administrador entonces q sea obligatorio asociarlo a operaciones 
 	  //Esto YA NO HACE FALTA
-	  if ($this->input->post('id_perfil')!=1) {
-		
-		
-	  } 
 
 
 			if ( $this->form_validation->run() === TRUE ){
-				if ($this->input->post( 'pass_1' ) === $this->input->post( 'pass_2' ) ){
-					$uid 				=   $this->input->post( 'id_p' ); 
-					$data['id']							= $uid;
-					$data['email']		=	$this->input->post('email');
+				
+					$data['id']				=	$this->input->post('id');
+					$data['id_estatus']				=	$this->input->post('id_estatus');
+					$data['id_puerto']		=	$this->input->post('id_puerto');
+					$data['id_puertoescala']		=	$this->input->post('id_puertoescala');
+					$data['id_puertoescala2']		=	$this->input->post('id_puertoescala2');
+					$data['id_destino']		=	$this->input->post('id_destino');
+
+					$data['tarifa']		=	$this->input->post('tarifa');
+					$data['salidas']		=	$this->input->post('salidas');
+					$data['minimo']		=	$this->input->post('minimo');
+					$data['tt']		=	$this->input->post('tt');
+					$data['precio']		=	$this->input->post('precio');
+
+
 					$data 				= 	$this->security->xss_clean($data);  
-					$login_check = $this->modelo_admin->check_usuario_existente($data);
-					if ( $login_check === TRUE ){
-						$usuario['nombre']   					= $this->input->post( 'nombre' );
-						$usuario['apellidos']   				= $this->input->post( 'apellidos' );
-						$usuario['email']   					= $this->input->post( 'email' );
-						$usuario['contrasena']						= $this->input->post( 'pass_1' );
-						$usuario['telefono']   				= $this->input->post( 'telefono' );
-						$usuario['id_perfil']   				= $this->input->post( 'id_perfil' );
+					//$login_check = $this->modelo_admin->check_usuario_existente($data);
+					//if ( $login_check === TRUE ){
+					if ( TRUE ){
 
 						
-
-						
-						$usuario['id']							= $uid;
-						$usuario 								= $this->security->xss_clean( $usuario );
-						$guardar 									= $this->modelo_admin->edicion_usuario( $usuario );
+						$data 										= $this->security->xss_clean( $data );
+						$guardar 									= $this->modelo_admin->edicion_catalogo( $data );
 						if ( $guardar !== FALSE ){
 							echo TRUE;
 						} else {
-							echo '<span class="error"><b>E02</b> - La información del usuario no puedo ser actualizada no hubo cambios</span>';
+							echo '<span class="error"><b>E02</b> - La información  no puedo ser actualizada no hubo cambios</span>';
 						}
 					} else {
-						echo '<span class="error">El <b>Correo electrónico</b> ya se encuentra asignado a una cuenta.</span>';
+						echo '<span class="error">Ya a se encuentra asignado.</span>';
 					}
-				} else {
-					echo '<span class="error">La <b>Contraseña</b> y la <b>Confirmación</b> no coinciden, verificalas.</span>';
-				}
+				
 			} else {			
 				echo validation_errors('<span class="error">','</span>');
 			}

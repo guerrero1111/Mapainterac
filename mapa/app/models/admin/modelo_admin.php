@@ -2270,7 +2270,11 @@ public function buscador_catalogos($data){
           $this->db->select("SQL_CALC_FOUND_ROWS *", FALSE); //
           
           
-          $this->db->select('e.id_puerto, e.id, e.puerto title, e.pais, e.tt, m.city,  m.lat latitude, m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via, pto_destino');
+          $this->db->select('e.id_puerto, e.id,  e.tt, m.city,  m.lat latitude, m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via, pto_destino');
+          
+          $this->db->select('e.id_puerto, e.id, m.puerto title, m.country pais');
+
+          $this->db->select('precio');
 
           
             if  ($data['id_estatus']==1) {
@@ -2281,6 +2285,7 @@ public function buscador_catalogos($data){
 
 
           $this->db->join($this->catalogo_puerto.' m', 'e.id_puerto=m.id');
+          $this->db->join($this->catalogo_puerto.' d', 'e.id_destino=d.id');
 
           
           
@@ -2362,6 +2367,8 @@ public function buscador_catalogos($data){
                                       11=>$row->iso3,
                                       12=>$row->province,
                                       13=>$row->via,
+                                      14=>$data['id_estatus'],
+                                      15=>$row->precio,
 
 
                                       
@@ -2409,7 +2416,7 @@ public function buscador_catalogos($data){
 
              $this->db->select('e.id_puerto, e.id, e.puerto title, e.pais, e.tt, m.city,  m.lat latitude, m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via, pto_destino');
              
-             $this->db->select('e.tarifa,e.salidas,e.minimo,e.id_destino,e.id_puertoescala, e.id_puertoescala2');
+             $this->db->select('e.tarifa,e.salidas,e.minimo,e.id_destino,e.id_puertoescala, e.id_puertoescala2, e.precio');
 
             if  ($data['id_estatus']==1) {
                 $this->db->from($this->catalogo_importacion.' e');  
@@ -2441,6 +2448,8 @@ public function buscador_catalogos($data){
 
 
 
+
+
       public function paises($data){
             
 
@@ -2457,6 +2466,54 @@ public function buscador_catalogos($data){
               $login->free_result();
       }  
 
+
+
+        public function edicion_catalogo( $data ){
+
+            $timestamp = time();
+
+            $id_session = $this->session->userdata('id');
+                  /*
+                  if  ($data['id_estatus']==1) {
+                        $this->db->set( 'id_puerto', $data['id_puerto'] );
+                        $this->db->set( 'id_destino', $data['id_destino'] );
+                  } else { //caso de 2
+                        $this->db->set( 'id_puerto', $data['id_destino'] );
+                        $this->db->set( 'id_destino', $data['id_puerto'] );
+                  }
+                  */
+            
+                  $this->db->set( 'id_puerto', $data['id_puerto'] );
+                  $this->db->set( 'id_destino', $data['id_destino'] );
+
+
+
+            $this->db->set( 'id_puertoescala', $data['id_puertoescala'] );
+            $this->db->set( 'id_puertoescala2', $data['id_puertoescala2'] );
+            
+
+
+
+            $this->db->set( 'tarifa', $data['tarifa'] );
+            $this->db->set( 'salidas', $data['salidas'] );
+            $this->db->set( 'minimo', $data['minimo'] );
+            $this->db->set( 'tt', $data['tt'] );
+            $this->db->set( 'precio', $data['precio'] );
+            $this->db->where('id', $data['id'] );
+
+            if  ($data['id_estatus']==1) {
+              $this->db->update($this->catalogo_importacion );
+                
+            } else { //caso de 2
+                $this->db->update($this->catalogo_exportacion );
+            }
+
+            
+            if ($this->db->affected_rows() > 0) {
+        return TRUE;
+      }  else
+         return FALSE;
+        }   
 
 
 

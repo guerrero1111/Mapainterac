@@ -82,7 +82,7 @@ jQuery("#id_estatus").trigger('change');
 
 
 
-
+var hash_url = window.location.pathname;
 
 
 
@@ -129,7 +129,7 @@ jQuery('#tabla_catalogos').dataTable( {
     },
 
 /*
- 0=>$row->id,
+                                      0=>$row->id,
                                       1=>$row->title,
                                       2=>$row->pais,
                                       3=>$row->tt,
@@ -149,47 +149,60 @@ m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via
 */
 
     "columnDefs": [
-            
-            { 
+               { 
                     "render": function ( data, type, row ) {
-                        return row[2]; //pais
+                        if (row[14]==1) {
+                          return  row[1]+'('+row[2]+')'; //puerto(pais)
+                        }  else {
+                           return row[5]+'(México)'; //destino  
+                        }
+                        
+
                     },
                     "targets": [0] 
                 },
-
-
-            { 
-                    "render": function ( data, type, row ) {
-                        return row[1]; //puerto = title
-                    },
-                    "targets": [1] //
-                },                
-
                 { 
                     "render": function ( data, type, row ) {
-                        return row[5]; //destino
+                        if (row[14]==1) {
+                            return row[5]+'(México)'; //destino  
+                        }  else {
+                           return  row[1]+'('+row[2]+')'; //puerto(pais)
+                        }
                     },
-                    "targets": [2] //
+                    "targets": [1] //
                 },
-
                 { 
                     "render": function ( data, type, row ) {
                         return row[13]; //destino
                     },
+                    "targets": [2] //,via
+                },
+                { 
+                    "render": function ( data, type, row ) {
+                        return row[15]; //destino
+                    },
                     "targets": [3] //,via
                 },
 
-
-
                 {
                     "render": function ( data, type, row ) {
+                      if  ( (hash_url!="/overseas/mapa/buscador") )   {  
 
-                    texto='<td>';
-                      texto+='<a href="/overseas/mapa/editar_catalogo/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode( jQuery('#id_estatus').val()  )+'" type="button"'; 
-                      texto+=' class="btn btn-warning btn-sm btn-block" >';
-                        texto+=' <span class="glyphicon glyphicon-edit"></span>';
-                      texto+=' </a>';
-                    texto+='</td>';
+                          texto='<td>';
+                            texto+='<a href="/overseas/mapa/editar_catalogo/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode( jQuery('#id_estatus').val()  )+'" type="button"'; 
+                            texto+=' class="btn btn-warning btn-sm btn-block" >';
+                              texto+=' <span class="glyphicon glyphicon-edit"></span>';
+                            texto+=' </a>';
+                          texto+='</td>';
+                       } else {
+                        texto=' <fieldset disabled> <td>';                
+                          texto+=' <a href="#"'; 
+                          texto+=' class="btn btn-danger btn-sm btn-block">';
+                            texto+=' <span class="glyphicon glyphicon-edit"></span>';
+                          texto+=' </a>';
+                        texto+=' </td></fieldset>'; 
+                      
+                      }  
 
 
 
@@ -202,20 +215,20 @@ m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via
                 {
                     "render": function ( data, type, row ) {
 
-                      if (true) {  //row[4]==0
-                  texto=' <td>';                
-                  texto+=' <a href="/overseas/mapa/eliminar_catalogo/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode(row[2]+' '+row[3])+ '"'; 
-                  texto+=' class="btn btn-danger btn-sm btn-block" data-toggle="modal" data-target="#modalMessage">';
-                  texto+=' <span class="glyphicon glyphicon-remove"></span>';
-                  texto+=' </a>';
-                texto+=' </td>';  
-                      } else {
-                  texto=' <fieldset disabled> <td>';                
-                  texto+=' <a href="#"'; 
-                  texto+=' class="btn btn-danger btn-sm btn-block">';
-                  texto+=' <span class="glyphicon glyphicon-remove"></span>';
-                  texto+=' </a>';
-                texto+=' </td></fieldset>'; 
+                      if  ( (hash_url!="/overseas/mapa/buscador") )   {  
+                        texto=' <td>';                
+                        texto+=' <a href="/overseas/mapa/eliminar_catalogo/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode(row[2]+' '+row[3])+ '"'; 
+                        texto+=' class="btn btn-danger btn-sm btn-block" data-toggle="modal" data-target="#modalMessage">';
+                        texto+=' <span class="glyphicon glyphicon-remove"></span>';
+                        texto+=' </a>';
+                      texto+=' </td>';  
+                            } else {
+                        texto=' <fieldset disabled> <td>';                
+                        texto+=' <a href="#"'; 
+                        texto+=' class="btn btn-danger btn-sm btn-block">';
+                        texto+=' <span class="glyphicon glyphicon-remove"></span>';
+                        texto+=' </a>';
+                      texto+=' </td></fieldset>'; 
                       
                       }
                   
@@ -228,7 +241,32 @@ m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via
                
                 
             ],
+
+
+"fnHeaderCallback": function( nHead, aData, iStart, iEnd, aiDisplay ) {
+      var api = this.api();
+           api.column(4).visible(true); 
+           api.column(5).visible(true); 
+
+         
+         
+
+        if  ( (hash_url=="/overseas/mapa/buscador") )   {  
+                
+             api.column(4).visible(false); 
+             api.column(5).visible(false); 
+        }   
+
+
+
+  },
+
+
   }); 
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
 
 
 
