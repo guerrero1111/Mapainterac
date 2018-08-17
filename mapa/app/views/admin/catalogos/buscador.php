@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
-<?php $this->load->view('admin/header'); ?>
-<?php $this->load->view( 'admin/navbar' ); ?>
+<?php $this->load->view('admin/headerbuscador'); ?>
+
 
 	<?php
 	 	if (!isset($retorno)) {
@@ -17,7 +17,7 @@
 
 				<div class="col-md-12">
 							 
-							 	<div class="demo-control-title">Proyecciones</div>
+							 
 						        
 
 									<div class="col-md-3">			
@@ -66,7 +66,7 @@
 
 			<br>
 			<div class="col-xs-12 col-sm-12 col-md-12 marginbuttom">
-				<div class="col-xs-12 col-sm-12 col-md-12"><h4>Catálogos</h4></div>
+				
 			</div>	
 			<!--
 			<div class="col-xs-12 col-sm-4 col-md-3 marginbuttom">
