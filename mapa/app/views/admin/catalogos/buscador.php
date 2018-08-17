@@ -79,7 +79,7 @@
 		<br>
 		<div class="container row">
 		<div class="panel panel-primary">
-			<div class="panel-heading">Listado de Catálogos</div>
+			<div class="panel-heading">Puertos</div>
 			<div class="panel-body">
 			<div class="col-md-12">
 				
