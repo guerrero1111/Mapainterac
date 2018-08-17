@@ -1,15 +1,50 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <?php $this->load->view( 'header' ); ?>
+<style>
+.col-md-12{
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+}
+.Elemento{
+	    background-color: #71b943b8;
+    padding: 15px;
+    color: #ffffff;
+    font-size: 18px;
 
-		<div class="container intro" >
+}
+.Elemento p{
+	margin-bottom: 0px;
+}
+.servicios label{
+	font-size: 18px;
 
-					<div class="row">								
+}
+.servicios select{
+	    margin-bottom: 26px !important;
+	display: inline-block;
+}
+.servicios{
+	margin-top: 100px;
+    margin-bottom: 100px;
+}
+.estesi{
+	background: url(img/lPlmARAw.jpeg);
+    background-attachment: fixed;
+    background-position: bottom;
+    background-size: cover;
+}
+
+
+</style>
+		<div>
+
+					<div class="row estesi">								
 				
 
-
-						<div class="col-md-12">
+						<div class="container ">
+						
 						 
-						 	<div class="demo-control-title">Proyecciones</div>
+						 	<!-- <div class="demo-control-title">Proyecciones</div> -->
 					        <div class="select">
 					               <!--
 					                <select id="proyecciones">
@@ -30,8 +65,9 @@
 								</select>					                
 								-->
 
-
-								<div class="col-md-5">			
+								<div class="col-md-3 servicios">	
+								</div>
+								<div class="col-md-6 servicios">			
 									<label>Servicios</label>
 									<select name="id_estatus" id="id_estatus"  class="form-control" dependencia="pais">				
 											<option value="1" selected="selected">Importación</option>
@@ -66,24 +102,19 @@
 									</select>
 								</div>
 
-
-
-
-
-
 					        </div>
-							
+							 </div>
 							<div class="col-md-12" >
 									<!-- d5eff7    222222--> 
 									 <div id="mapdiv" style="width: 100%; background-color:#d5eff7; height: 500px;"></div>
 
-									 <div class="Elemento" style="overflow: hidden; position: absolute; text-align: left; left: 15px; bottom: 15px; width: 350px; height: 100px;">
+									 <div class="Elemento" style="overflow: hidden; position: absolute; text-align: left; left: 50px;top: 15px;">
 									 		 <p>País: <span class="etiq_pais"> <?php echo $paises[0]->nombre; ?></span></p>
 									 		 <p>Puerto: <span class="etiq_puerto"> <?php echo $origen[0]->nombre; ?></span></p>
 									 		 <p>Destino: <span class="etiq_destino"> <?php echo $destino[0]->nombre.' , México'; ?></span></p>
 									 		 <p>Via: <span class="etiq_via"> <?php echo $destino[0]->via; ?></span></p>
 									 		 <p>TT: <span class="etiq_tt"> <?php echo $origen[0]->tt; ?></span>, México </p>
-									 
+									 		<p style="font-size:10px">No incluye tiempos de transbordo</p>
 									</div>
 
 							</div>
