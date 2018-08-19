@@ -8,7 +8,7 @@ jQuery(document).ready(function($) {
             var mapData ;
             var  miMapa;
             jQuery.ajax({ //guardar en la cookie el conteo
-                            url : '/mapa/mapa/recopilar_datos',
+                            url : '/overseas/mapa/recopilar_datos',
                             data : { 
                                   id_estatus: jQuery('#id_estatus').val(),
                                       id_pais: jQuery('#pais').val(),
@@ -57,9 +57,7 @@ jQuery(document).ready(function($) {
 
 
                                     
-
-                                    "zoomLevel": 1,
-
+                                    "zoomLevel": 2,
                                    "areas": [
                                       { "id": "CU-05" , "color": "#CC0000" },   // villa_clara
                                       { "id": "CU-09" , "color": "#00CC00" }, //camaguey
@@ -130,7 +128,7 @@ jQuery(document).ready(function($) {
 
                                           scale: 0.1,  //escala de imagen. Solo funciona para imagenes creadas con svgPath, para el resto usar width/height
                                           positionScale: 1,  //escala que hara en el medio de la animación de la linea. Si establece en 2, la imagen se escalará 2 veces en el medio de la animación
-
+                                         
 
 
                                  
@@ -200,7 +198,7 @@ function puntos() {
 
 
       jQuery.ajax({ //guardar en la cookie el conteo
-                            url : '/mapa/mapa/recopilar_datos',
+                            url : '/overseas/mapa/recopilar_datos',
                             data : { 
                                   id_estatus: jQuery('#id_estatus').val(),
                                       id_pais: jQuery('#pais').val(),
@@ -221,7 +219,7 @@ function puntos() {
                               mapData = data;
 
 
-              jQuery('.etiq_pais').text( (jQuery('#id_estatus').val() ==1) ?  mapData[0].pais : 'México' ); 
+            jQuery('.etiq_pais').text( (jQuery('#id_estatus').val() ==1) ?  mapData[0].pais : 'México' ); 
             jQuery('.etiq_puerto').text( (jQuery('#id_estatus').val() ==1) ?  mapData[0].title : mapData[0].title ); 
             jQuery('.etiq_destino').text( (jQuery('#id_estatus').val() ==1) ?  (mapData[1].title+', México') : (mapData[1].title+' ,'+mapData[0].pais) ); 
              jQuery('.etiq_via').text( (jQuery('#id_estatus').val() ==1) ?  mapData[0].via : mapData[0].via ); 
@@ -287,10 +285,7 @@ function puntos() {
                                       loop: true,  //si debe repetir el ciclo de la animacion o finalizar cuando llegue al final
 
                                       scale: 0.1,  //escala de imagen. Solo funciona para imagenes creadas con svgPath, para el resto usar width/height
-
-                                      positionScale: 1,  //escala que hara en el medio de la animación de la linea. Si establece en 2, la imagen se escalará 2 veces en el medio de la animación
-
-
+                                      positionScale: 3,  //escala que hara en el medio de la animación de la linea. Si establece en 2, la imagen se escalará 2 veces en el medio de la animación
                                       
                              
                               });
@@ -371,7 +366,7 @@ function puntos() {
       
 
       jQuery.ajax({
-              url : '/mapa/mapa/cargar_dependencia',
+              url : '/overseas/mapa/cargar_dependencia',
               data:{
                 dependencia: dependencia,
                 campo:campo,

@@ -51,11 +51,7 @@ $active_record = TRUE;
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
 $db['default']['password'] = '';
-<<<<<<< HEAD
 $db['default']['database'] = 'mapa3';
-=======
-$db['default']['database'] = 'mapas2';
->>>>>>> 65262837ce4a3a1abf9a71529b0275982bfbacb3
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = 'mapa_';
 $db['default']['pconnect'] = TRUE;
