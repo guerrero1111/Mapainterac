@@ -50,8 +50,8 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
-$db['default']['password'] = 'root';
-$db['default']['database'] = 'mapa';
+$db['default']['password'] = '';
+$db['default']['database'] = 'mapas2';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = 'mapa_';
 $db['default']['pconnect'] = TRUE;
