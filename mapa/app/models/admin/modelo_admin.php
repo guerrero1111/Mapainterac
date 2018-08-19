@@ -2368,7 +2368,7 @@ public function buscador_catalogos($data){
                                       12=>$row->province,
                                       13=>$row->via,
                                       14=>$data['id_estatus'],
-                                      15=>$row->precio,
+                                      15=>$row->tarifa,
 
 
                                       
