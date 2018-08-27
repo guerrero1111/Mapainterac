@@ -2354,6 +2354,7 @@ public function buscador_catalogos($data){
                                       5=>$escala,
                                       6=>$row->precio,
                                       7=>$data['id_estatus'],
+
                                       
                                     );
                       }

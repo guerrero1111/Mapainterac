@@ -186,10 +186,10 @@ m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via
 
                 {
                     "render": function ( data, type, row ) {
-                      if  ( (hash_url!="/overseas/mapa/buscador") )   {  
+                      if  ( (hash_url!="/mapa/buscador") )   {  
 
                           texto='<td>';
-                            texto+='<a href="/overseas/mapa/editar_catalogo/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode( jQuery('#id_estatus').val()  )+'" type="button"'; 
+                            texto+='<a href="/mapa/editar_catalogo/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode( jQuery('#id_estatus').val()  )+'" type="button"'; 
                             texto+=' class="btn btn-warning btn-sm btn-block" >';
                               texto+=' <span class="glyphicon glyphicon-edit"></span>';
                             texto+=' </a>';
@@ -215,7 +215,7 @@ m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via
                 {
                     "render": function ( data, type, row ) {
 
-                      if  ( (hash_url!="/overseas/mapa/buscador") )   {  
+                      if  ( (hash_url!="/mapa/buscador") )   {  
                         texto=' <td>';                
                         texto+=' <a href="/overseas/mapa/eliminar_catalogo/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode(row[1]+' '+row[2])+ '"'; 
                         texto+=' class="btn btn-danger btn-sm btn-block" data-toggle="modal" data-target="#modalMessage">';
@@ -251,7 +251,7 @@ m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via
          
          
 
-        if  ( (hash_url=="/overseas/mapa/buscador") )   {  
+        if  ( (hash_url=="/mapa/buscador") )   {  
                 
              api.column(4).visible(false); 
              api.column(5).visible(false); 
