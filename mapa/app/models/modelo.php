@@ -87,7 +87,9 @@
 public function destino($data){
             
           
-            $this->db->select('e.id_destino id, e.pto_destino nombre, e.tt, e.via');
+            $this->db->select('e.id_destino id, e.pto_destino nombre2, e.tt, e.via');
+
+            $this->db->select('CONCAT(e.pto_destino," (",e.via,")") nombre', false);
             
 
             if  ($data['id_estatus']==1) {
@@ -103,7 +105,7 @@ public function destino($data){
                       )
             ) ' ; 
             $this->db->where($where); 
-            $this->db->group_by('m.id');
+            $this->db->group_by('m.id, e.id_puertoescala, e.id_puertoescala2');
             
 
               $result = $this->db->get();
