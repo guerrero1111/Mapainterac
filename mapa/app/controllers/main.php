@@ -23,6 +23,22 @@ class Main extends CI_Controller {
 		$this->load->view( 'dashboard_principal', $data );
 	}
 
+	public function dashboard_principalen(){
+		
+		$data['id_estatus']=1; //la primera vez son importaciones
+		$data['paises']  = $this->modelo->pais(  $data );
+		$data['id_pais']=$data['paises'][0]->id; //la primera vez es el primer pais
+		//print_r( $data['paises'][0]->id ); die;
+		$data['origen'] = $this->modelo->origen($data);
+		//print_r( $data['origen'][0]->id ); die;
+		$data['inicio']=$data['origen'][0]->id; 
+
+		$data['destino'] = $this->modelo->destino($data);
+
+		$this->load->view( 'dashboard_principalen', $data );
+	}
+
+
 
 	public function recopilar_datos(){
 		   $data['id_estatus']= (int)$this->input->post('id_estatus');
