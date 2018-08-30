@@ -28,7 +28,7 @@
 
 //////////////////////dependencias////////////////////////////////
 
-         public function pais($data){
+         public function pais_old($data){
             
 
             $this->db->select('e.id_pais id, e.pais nombre, e.via');
@@ -52,6 +52,64 @@
       }  
 
 
+        public function pais($data){
+            
+
+            $this->db->select('m.country nombre');
+
+            if  ($data['id_estatus']==1) {
+                $this->db->from($this->catalogo_importacion.' e');  
+            } else { //caso de 2
+                $this->db->from($this->catalogo_exportacion.' e');
+            }
+
+           $this->db->join($this->catalogo_puerto.' m', 'e.id_puerto=m.id');
+          
+            $this->db->group_by('m.country');
+            
+
+              $result = $this->db->get();
+              if ($result->num_rows() > 0){
+               return ($result->result());
+              }
+              else 
+                return FALSE;
+              $login->free_result();
+      }  
+
+
+         public function origen_old($data){
+       
+
+             $this->db->select('e.id_puerto id, e.puerto nombre, e.tt, e.via');
+
+            if  ($data['id_estatus']==1) {
+                $this->db->from($this->catalogo_importacion.' e');  
+            } else { //caso de 2
+                $this->db->from($this->catalogo_exportacion.' e');
+            }
+
+            $this->db->join($this->catalogo_puerto.' m', 'e.id_puerto=m.id');
+             $where = '(
+                      (
+                        ( e.id_pais = '.$data['id_pais'].' ) 
+                      )
+            ) ' ; 
+            $this->db->where($where); 
+            $this->db->group_by('m.id');
+            
+
+              $result = $this->db->get();
+              if ($result->num_rows() > 0){
+
+                return ($result->result());
+              }
+              else 
+                return FALSE;
+              $login->free_result();
+      }    
+
+      
          public function origen($data){
        
 
@@ -87,9 +145,7 @@
 public function destino($data){
             
           
-            $this->db->select('e.id_destino id, e.pto_destino nombre2, e.tt, e.via');
-
-            $this->db->select('CONCAT(e.pto_destino," (",e.via,")") nombre', false);
+            $this->db->select('e.id_destino id, e.pto_destino nombre, e.tt, e.via');
             
 
             if  ($data['id_estatus']==1) {
@@ -105,7 +161,7 @@ public function destino($data){
                       )
             ) ' ; 
             $this->db->where($where); 
-            $this->db->group_by('m.id, e.id_puertoescala, e.id_puertoescala2');
+            $this->db->group_by('m.id');
             
 
               $result = $this->db->get();

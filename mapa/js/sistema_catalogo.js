@@ -149,39 +149,39 @@ m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via
 */
 
     "columnDefs": [
-               { 
+               {   //Puerto y pais ("origen"  o destino) 
                     "render": function ( data, type, row ) {
-                        if (row[14]==1) {
-                          return  row[1]+'('+row[2]+')'; //puerto(pais)
+                        if (row[7]==1) {
+                          return  row[1]+'('+row[2]+')'; //puerto_origen(pais_origen)
                         }  else {
-                           return row[5]+'(México)'; //destino  
+                           return  row[3]+'('+row[4]+')'; //puerto_destino(pais_destino)
                         }
-                        
-
                     },
                     "targets": [0] 
                 },
-                { 
+
+               {   //Puerto y pais ("origen"  o destino) 
                     "render": function ( data, type, row ) {
-                        if (row[14]==1) {
-                            return row[5]+'(México)'; //destino  
+                        if (row[7]==1) {
+                            return  row[3]+'('+row[4]+')'; //puerto_destino(pais_destino)
                         }  else {
-                           return  row[1]+'('+row[2]+')'; //puerto(pais)
+                           return  row[1]+'('+row[2]+')'; //puerto_origen(pais_origen)
                         }
                     },
-                    "targets": [1] //
+                    "targets": [1] 
                 },
+
                 { 
                     "render": function ( data, type, row ) {
-                        return row[13]; //destino
+                        return row[5]; //destino
                     },
                     "targets": [2] //,via
                 },
                 { 
                     "render": function ( data, type, row ) {
-                        return row[15]; //destino
+                        return row[6]; //precio
                     },
-                    "targets": [3] //,via
+                    "targets": [3] //precio
                 },
 
                 {
@@ -217,7 +217,7 @@ m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via
 
                       if  ( (hash_url!="/mapa/buscador") )   {  
                         texto=' <td>';                
-                        texto+=' <a href="/mapa/eliminar_catalogo/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode(row[2]+' '+row[3])+ '"'; 
+                        texto+=' <a href="/overseas/mapa/eliminar_catalogo/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode(row[1]+' '+row[2])+ '"'; 
                         texto+=' class="btn btn-danger btn-sm btn-block" data-toggle="modal" data-target="#modalMessage">';
                         texto+=' <span class="glyphicon glyphicon-remove"></span>';
                         texto+=' </a>';
