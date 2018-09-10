@@ -29,6 +29,7 @@ body, #main-menu ul li ul li, .comment-content cite, .entry-content cite, html,p
 .content-wrapper{
 	padding: 0px !important;
 }
+
 .post-password-form{
 	padding: 200px 0px;
 }
@@ -169,16 +170,16 @@ footer span{
     position: fixed;
     z-index: 10000;
     right: -300px;
-    bottom: 250px;
+    bottom: 180px;
        background-color: #dcdcdc;
     border: 2px solid #712f90;
-    border-bottom: 0px;
+   
 }
 #btndivisas{
 	    position: fixed;
     z-index: 10000;
     right: 0px;
-    bottom: 250px;
+    bottom: 180px;
 }
 .wpcf7-submit{
 	background-color: transparent !important;
@@ -540,6 +541,7 @@ footer span{
 }
 #divisas{
 	 bottom: 120px !important;
+	 width: 283px;
 }
 }
 #slide-7-layer-1,#slide-6-layer-1,#slide-5-layer-1,#slide-4-layer-1,#slide-3-layer-1,#slide-2-layer-1{
@@ -552,7 +554,9 @@ footer span{
 /*MENU*/
 
 /* MENU */
-
+.conte1:last-child{
+	border-bottom: 0px !important;
+}
 .bloque_menu {
 	display: block;
     width: 100%;
@@ -645,7 +649,7 @@ footer span{
     padding-left: 13px;
     padding-right: 13px;
 }
-.idioma{
+.edfm-toggle-wrapper.edfm_button_fix > div{
 	    display: inline-block;
     font-weight: bold;
 }
@@ -677,6 +681,7 @@ a:hover{
 }
 .conte1{
 	border-bottom: 2px solid #712f90;
+	    padding-top: 8px;
 }
 .pequen{
 	font-size: 16px;
@@ -706,4 +711,70 @@ input.wpcf7-form-control.wpcf7-submit.btnmorado {
     float: left;
 
      margin-left: 15px !important;
+}
+
+.fluidMedia {
+    position: relative;
+    padding-bottom: 1030px; /* proportion value to aspect ratio 16:9 (9 / 16 = 0.5625 or 56.25%) */
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+}
+
+.fluidMedia iframe {
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 100% }
+
+    @media all and (max-width: 1024px) { 
+.fluidMedia{
+	 padding-bottom: 1030px;
+}
+
+     }
+@media all and (max-width: 768px) {
+.fluidMedia{
+	  padding-bottom: 1030px;
+}
+ }
+@media all and (max-width: 480px) {
+.fluidMedia{
+	 padding-bottom: 1030px;
+}
+ }
+ .pequen{
+ 	font-size: 12px;
+ 	font-weight: bold;
+ }
+
+.wpml-ls-legacy-list-horizontal a,.wpml-ls-legacy-list-horizontal a:hover,.wpml-ls-legacy-list-horizontal a:active{
+	color: #000000 !important;
+	padding: 5px 5px;
+}
+li#edfm-menu-item-wpml-ls-2-es{
+	display: none !important;
+}
+li#edfm-menu-item-wpml-ls-2-en{
+	display: none !important;
+}
+li.menu-item.wpml-ls-slot-2.wpml-ls-item.wpml-ls-item-en.wpml-ls-menu-item.wpml-ls-first-item.wpml-ls-last-item.menu-item-type-wpml_ls_menu_item.menu-item-object-wpml_ls_menu_item.menu-item-wpml-ls-2-en{
+	display: none !important;
+}
+li.menu-item.wpml-ls-slot-2.wpml-ls-item.wpml-ls-item-es.wpml-ls-menu-item.wpml-ls-first-item.wpml-ls-last-item.menu-item-type-wpml_ls_menu_item.menu-item-object-wpml_ls_menu_item.menu-item-wpml-ls-2-es{
+	display: none !important;
+}
+.formulariocontacto .wpcf7-acceptance label{
+	background-color: transparent !important;
+	border: 0px !important;
+
+}
+.formulariocontacto .wpcf7-acceptance input{
+	width: auto !important;
+	min-height: 0px !important;
+}
+input[disabled]{
+	    color: #712f9085 !important;
+    border: 2px solid #712f9085 !important;
 }

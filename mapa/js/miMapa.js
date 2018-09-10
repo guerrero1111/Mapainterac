@@ -8,7 +8,7 @@ jQuery(document).ready(function($) {
             var mapData ;
             var  miMapa;
             jQuery.ajax({ //guardar en la cookie el conteo
-                            url : '/overseas/mapa/recopilar_datos',
+                            url : '/mapa/recopilar_datos',
                             data : { 
                                   id_estatus: jQuery('#id_estatus').val(),
                                       id_pais: jQuery('#pais').val(),
@@ -198,7 +198,7 @@ function puntos() {
 
 
       jQuery.ajax({ //guardar en la cookie el conteo
-                            url : '/overseas/mapa/recopilar_datos',
+                            url : '/mapa/recopilar_datos',
                             data : { 
                                   id_estatus: jQuery('#id_estatus').val(),
                                       id_pais: jQuery('#pais').val(),
@@ -368,7 +368,7 @@ function puntos() {
       
 
       jQuery.ajax({
-              url : '/overseas/mapa/cargar_dependencia',
+              url : '/mapa/cargar_dependencia',
               data:{
                 dependencia: dependencia,
                 campo:campo,

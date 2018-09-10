@@ -45,6 +45,8 @@ $route['404_override'] 		 = '';
 
 
 $route['default_controller']   = 'main/dashboard_principal'; 
+
+
 $route['404_override'] 		   = '';
 
 
@@ -64,6 +66,7 @@ $route['login']							= 'admin/login';
 $route['usuarios']						= 'admin/listado_usuarios'; 
 $route['procesando_usuarios']			= 'admin/procesando_usuarios';
 
+$route['en']   = 'main/dashboard_principalen';
 
 	/* necesita server de correo, para que notifique quien se da de alta*/
 $route['nuevo_usuario']                 = 'admin/nuevo_usuario';
