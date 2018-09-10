@@ -68,14 +68,14 @@
 								<div class="col-md-3 servicios">	
 								</div>
 								<div class="col-md-6 servicios">			
-									<label>Servicios</label>
+									<label>Services</label>
 									<select name="id_estatus" id="id_estatus"  class="form-control" dependencia="pais">				
-											<option value="1" selected="selected">Importación</option>
-											<option value="2">Exportación</option>
+											<option value="1" selected="selected">Import</option>
+											<option value="2">Export</option>
 									</select>					                
 
 									
-									<label>País de <span class="etiq1">Origen</span></label>
+									<label>Country of <span class="etiq1">Origin</span></label>
 									<select name="pais" id="pais" class="form-control" dependencia="inicio">				
 										<?php foreach ( (json_decode(json_encode($paises))) as $pais ){ ?>
 										
@@ -84,7 +84,7 @@
 									</select>
 
 									
-									<label>Puerto de <span class="etiq1">Origen</span></label>
+									<label>Port of <span class="etiq1">Origin</span></label>
 									<select name="inicio" id="inicio" class="form-control" dependencia="fin">				
 										<?php foreach ( (json_decode(json_encode($origen))) as $importa ){ ?>
 										
@@ -93,7 +93,7 @@
 									</select>
 
 									
-									<label>Puerto de <span class="etiq2">Destino</span></label>
+									<label>Port of <span class="etiq2">Destination</span></label>
 									<select name="fin" id="fin" class="form-control" dependencia="">				
 										<?php foreach ( (json_decode(json_encode($destino))) as $importa ){ ?>
 										
@@ -109,9 +109,9 @@
 									 <div id="mapdiv" style="width: 100%; background-color:#d5eff7; height: 500px;"></div>
 
 									 <div class="Elemento" style="overflow: hidden; position: absolute; text-align: left; left: 50px;top: 15px;">
-									 		 <p>País: <span class="etiq_pais"> <?php echo $paises[0]->nombre; ?></span></p>
-									 		 <p>Puerto: <span class="etiq_puerto"> <?php echo $origen[0]->nombre; ?></span></p>
-									 		 <p>Destino: <span class="etiq_destino"> <?php echo $destino[0]->nombre.' , México'; ?></span></p>
+									 		 <p>Country: <span class="etiq_pais"> <?php echo $paises[0]->nombre; ?></span></p>
+									 		 <p>Port: <span class="etiq_puerto"> <?php echo $origen[0]->nombre; ?></span></p>
+									 		 <p>Destination: <span class="etiq_destino"> <?php echo $destino[0]->nombre.' , México'; ?></span></p>
 									 		 <p>Via: <span class="etiq_via"> <?php echo $destino[0]->via; ?></span></p>
 									 		 <p>TT: <span class="etiq_tt"> <?php echo $origen[0]->tt; ?></span>, México </p>
 									 		<p style="font-size:10px">No incluye tiempos de transbordo</p>

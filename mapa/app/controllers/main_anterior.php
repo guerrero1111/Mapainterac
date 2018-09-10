@@ -8,11 +8,13 @@ class Main extends CI_Controller {
 
 	}
 
-	public function dashboard_principal(){
+	public function dashboard_principal_old(){
 		
 		$data['id_estatus']=1; //la primera vez son importaciones
 		$data['paises']  = $this->modelo->pais(  $data );
+		
 		$data['id_pais']=$data['paises'][0]->id; //la primera vez es el primer pais
+
 		//print_r( $data['paises'][0]->id ); die;
 		$data['origen'] = $this->modelo->origen($data);
 		//print_r( $data['origen'][0]->id ); die;
@@ -23,11 +25,14 @@ class Main extends CI_Controller {
 		$this->load->view( 'dashboard_principal', $data );
 	}
 
-	public function dashboard_principalen(){
+
+	public function dashboard_principal(){
 		
 		$data['id_estatus']=1; //la primera vez son importaciones
 		$data['paises']  = $this->modelo->pais(  $data );
-		$data['id_pais']=$data['paises'][0]->id; //la primera vez es el primer pais
+		
+		$data['id_pais']=$data['paises'][0]->nombre; //la primera vez es el primer pais
+
 		//print_r( $data['paises'][0]->id ); die;
 		$data['origen'] = $this->modelo->origen($data);
 		//print_r( $data['origen'][0]->id ); die;
@@ -35,7 +40,7 @@ class Main extends CI_Controller {
 
 		$data['destino'] = $this->modelo->destino($data);
 
-		$this->load->view( 'dashboard_principalen', $data );
+		$this->load->view( 'dashboard_principal', $data );
 	}
 
 

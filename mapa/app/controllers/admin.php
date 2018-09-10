@@ -4,6 +4,7 @@ class Admin extends CI_Controller {
 		parent::__construct();
 
 		$this->load->model('admin/modelo_admin', 'modelo_admin'); 
+		$this->load->model('modelo', 'modelo'); 
 		$this->load->library(array('email')); 
 	}
 
@@ -523,11 +524,240 @@ class Admin extends CI_Controller {
 		redirect('admin');
 	}	
 
+/////////////////Buscador/////////////////////////////////////////	
 
 
 
+public function listado_buscador(){
+
+ 
+
+		$data['id_estatus']=1; //la primera vez son importaciones
+		$data['paises']  = $this->modelo->pais(  $data );
+		$data['id_pais']=$data['paises'][0]->id; //la primera vez es el primer pais
+		//print_r( $data['paises'][0]->id ); die;
+		$data['origen'] = $this->modelo->origen($data);
+		//print_r( $data['origen'][0]->id ); die;
+		$data['inicio']=$data['origen'][0]->id; 
+
+		$data['destino'] = $this->modelo->destino($data);
+
+		//$this->load->view( 'dashboard_principal', $data );
+
+		$this->load->view( 'admin/catalogos/buscador');
+
+        
+    
+  }
 
 
+/////////////////Listado de catalogos/////////////////////////////////////////	
+
+
+  
+  public function listado_catalogos(){
+
+  
+   $id_session = $this->session->userdata('id');
+   if ( $this->session->userdata('session') !== TRUE ) {
+
+        redirect('login');
+    } else {
+        $id_perfil=$this->session->userdata('id_perfil');
+
+
+		$data['id_estatus']=1; //la primera vez son importaciones
+		$data['paises']  = $this->modelo->pais(  $data );
+		$data['id_pais']=$data['paises'][0]->id; //la primera vez es el primer pais
+		//print_r( $data['paises'][0]->id ); die;
+		$data['origen'] = $this->modelo->origen($data);
+		//print_r( $data['origen'][0]->id ); die;
+		$data['inicio']=$data['origen'][0]->id; 
+
+		$data['destino'] = $this->modelo->destino($data);
+
+		//$this->load->view( 'dashboard_principal', $data );
+
+
+
+        $coleccion_id_operaciones= json_decode($this->session->userdata('coleccion_id_operaciones')); 
+        if ( (count($coleccion_id_operaciones)==0) || (!($coleccion_id_operaciones)) ) {
+              $coleccion_id_operaciones = array();
+         }   
+         //print_r($id_perfil); die;
+
+      //$html = $this->load->view( 'catalogos/colores',$data ,true);   
+      switch ($id_perfil) {    
+        case 1:
+            $this->load->view( 'admin/catalogos/catalogos');
+          break;
+        case 2:
+        case 3:
+        case 4:
+             if  ( (in_array(8, $coleccion_id_operaciones))  || (in_array(13, $coleccion_id_operaciones))  )   { 
+                $this->load->view( 'admin/catalogos/catalogos');
+              }  else  {
+                redirect('');
+              } 
+          break;
+
+
+        default:  
+          redirect('');
+          break;
+      }
+
+    }    
+    
+  }
+
+
+  public function procesando_catalogos(){
+
+    $data=$_POST;
+    //$data['id_estatus'] = 1;
+    $busqueda = $this->modelo_admin->buscador_catalogos($data);
+    echo $busqueda;
+  } 
+
+
+function nuevo_catalogo(){
+	if($this->session->userdata('session') === TRUE ){
+		  $id_perfil=$this->session->userdata('id_perfil');
+		  
+		  $data['perfiles']   = $this->modelo_admin->coger_catalogo_perfiles();
+		  
+
+		  switch ($id_perfil) {    
+			case 1:
+				  $this->load->view( 'admin/usuarios/nuevo_catalogo', $data );   
+					
+			  break;
+			case 2:
+			case 3:
+					$this->load->view( 'admin/usuarios/nuevo_catalogo', $data );   
+			  break;
+
+
+			default:  
+			  redirect('');
+			  break;
+		  }
+		}
+		else{ 
+		  redirect('index');
+		}    
+
+	}
+
+//edicion del especialista o el perfil del especialista o administrador activo
+
+
+	//edicion del especialista o el perfil del especialista o administrador activo
+	function editar_catalogo( $uid ,$id_estatus ){
+
+	    $id=$this->session->userdata('id');
+  		$data['id'] = base64_decode($uid);
+  			  $uid  = $data['id'];
+		$id_perfil=$this->session->userdata('id_perfil');
+		
+		$data['id_estatus']= base64_decode($id_estatus); //la primera vez son importaciones
+		$data['paises']  = $this->modelo_admin->paises(  $data );
+
+
+		$data['catalogo'] = $this->modelo_admin->get_catalogo( $data );
+		//print_r($data['catalogo']); die;
+
+		 switch ($id_perfil) {    
+			case 1:
+				  $this->load->view('admin/catalogos/editar_catalogo',$data);  
+					
+			  break;
+			case 2:
+			case 3:
+					$this->load->view('admin/catalogos/editar_catalogo',$data);  
+			  break;
+
+
+			default:  
+			  redirect('');
+			  break;
+		  }
+
+
+	}
+
+
+	
+	function validacion_edicion_catalogo(){
+		
+		if ( $this->session->userdata('session') !== TRUE ) {
+			redirect('');
+		} else {
+			
+/*
+id_puerto
+id_puertoescala
+id_puertoescala2
+id_destino
+tarifa
+salidas
+minimo
+tt
+precio
+
+callback_nombre_valido|
+*/
+
+			$this->form_validation->set_rules( 'tarifa', 'tarifa', 'trim|required|min_length[3]|max_lenght[180]|xss_clean'); 
+			$this->form_validation->set_rules( 'salidas', 'salidas', 'trim|required|min_length[3]|max_lenght[180]|xss_clean'); 
+			$this->form_validation->set_rules( 'minimo', 'minimo', 'trim|required|min_length[3]|max_lenght[180]|xss_clean'); 
+			$this->form_validation->set_rules( 'tt', 'tt', 'trim|required|min_length[3]|max_lenght[180]|xss_clean'); 
+			$this->form_validation->set_rules( 'precio', 'precio', 'trim|required|min_length[3]|max_lenght[180]|xss_clean'); 
+
+	  //si el usuario no es un administrador entonces q sea obligatorio asociarlo a operaciones 
+	  //Esto YA NO HACE FALTA
+
+
+			if ( $this->form_validation->run() === TRUE ){
+				
+					$data['id']				=	$this->input->post('id');
+					$data['id_estatus']				=	$this->input->post('id_estatus');
+					$data['id_puerto']		=	$this->input->post('id_puerto');
+					$data['id_puertoescala']		=	$this->input->post('id_puertoescala');
+					$data['id_puertoescala2']		=	$this->input->post('id_puertoescala2');
+					$data['id_destino']		=	$this->input->post('id_destino');
+
+					$data['tarifa']		=	$this->input->post('tarifa');
+					$data['salidas']		=	$this->input->post('salidas');
+					$data['minimo']		=	$this->input->post('minimo');
+					$data['tt']		=	$this->input->post('tt');
+					$data['precio']		=	$this->input->post('precio');
+
+
+					$data 				= 	$this->security->xss_clean($data);  
+					//$login_check = $this->modelo_admin->check_usuario_existente($data);
+					//if ( $login_check === TRUE ){
+					if ( TRUE ){
+
+						
+						$data 										= $this->security->xss_clean( $data );
+						$guardar 									= $this->modelo_admin->edicion_catalogo( $data );
+						if ( $guardar !== FALSE ){
+							echo TRUE;
+						} else {
+							echo '<span class="error"><b>E02</b> - La información  no puedo ser actualizada no hubo cambios</span>';
+						}
+					} else {
+						echo '<span class="error">Ya a se encuentra asignado.</span>';
+					}
+				
+			} else {			
+				echo validation_errors('<span class="error">','</span>');
+			}
+		}
+	}	
+	
 /////////////////validaciones/////////////////////////////////////////	
 
 

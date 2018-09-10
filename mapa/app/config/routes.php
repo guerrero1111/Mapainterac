@@ -45,6 +45,8 @@ $route['404_override'] 		 = '';
 
 
 $route['default_controller']   = 'main/dashboard_principal'; 
+
+
 $route['404_override'] 		   = '';
 
 
@@ -64,17 +66,18 @@ $route['login']							= 'admin/login';
 $route['usuarios']						= 'admin/listado_usuarios'; 
 $route['procesando_usuarios']			= 'admin/procesando_usuarios';
 
+$route['en']   = 'main/dashboard_principalen';
 
 	/* necesita server de correo, para que notifique quien se da de alta*/
 $route['nuevo_usuario']                 = 'admin/nuevo_usuario';
 $route['validar_nuevo_usuario']         = 'admin/validar_nuevo_usuario';
 
-$route['actualizar_perfil']		         = 'admin/actualizar_perfil';
+$route['actualizar_perfil']		        = 'admin/actualizar_perfil';
 $route['editar_usuario/(:any)']			= 'admin/actualizar_perfil/$1';
 $route['validacion_edicion_usuario']    = 'admin/validacion_edicion_usuario';
 
 $route['eliminar_usuario/(:any)']		= 'admin/eliminar_usuario/$1';
-$route['validar_eliminar_usuario']    = 'admin/validar_eliminar_usuario';
+$route['validar_eliminar_usuario']   	= 'admin/validar_eliminar_usuario';
 
 
 $route['salir']							= 'admin/logout';
@@ -87,8 +90,26 @@ $route['recuperar_contrasena']			= 'admin/recuperar_contrasena';
 $route['validar_recuperar_password']	= 'admin/validar_recuperar_password';
 
 //historicos de accesos
-$route['historico_accesos']                 = 'admin/historico_accesos';
-$route['procesando_historico_accesos']      = 'admin/procesando_historico_accesos';
+$route['historico_accesos']             = 'admin/historico_accesos';
+$route['procesando_historico_accesos']  = 'admin/procesando_historico_accesos';
+
+///////////////////////////Catalogos//////////////////////////////////////////////////
+$route['catalogos']     			 	= 'admin/listado_catalogos';
+$route['procesando_catalogos']       	= 'admin/procesando_catalogos';
+$route['nuevo_catalogo']      		 	= 'admin/nuevo_catalogo';
+
+$route['nuevo_catalogo']                = 'admin/nuevo_catalogo';
+$route['validar_nuevo_catalogo']        = 'admin/validar_nuevo_catalogo';
+
+$route['editar_catalogo/(:any)/(:any)']		= 'admin/editar_catalogo/$1/$2';
+$route['validacion_edicion_catalogo']   = 'admin/validacion_edicion_catalogo';
+
+$route['eliminar_catalogo/(:any)']		= 'admin/eliminar_catalogo/$1';
+$route['validar_eliminar_catalogo']    	= 'admin/validar_eliminar_catalogo';
+
+
+///////////////////////////Catalogos//////////////////////////////////////////////////
+$route['buscador']     			 	= 'admin/listado_buscador';
 
 
 /* End of file routes.php */
