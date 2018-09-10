@@ -204,6 +204,8 @@ function puntos() {
                                       id_pais: jQuery('#pais').val(),
                                       inicio: jQuery('#inicio').val(),
                                       fin: jQuery('#fin').val(),
+                                      id_puertoescala: jQuery('#fin option:selected').attr('id_puertoescala'),
+                                      id_puertoescala2: jQuery('#fin option:selected').attr('id_puertoescala2'),                      
                             },
                             type : 'POST',
                             dataType : 'json',
@@ -384,7 +386,11 @@ function puntos() {
                       if (data != "[]") {
                               jQuery.each(data, function (i, valor) {
                                     if (valor.nombre !== null) {
-                                         jQuery("#"+dependencia).append('<option value="' + valor.identificador + '"  >' + valor.nombre + '</option>');     
+                                        if (campo="fin") {
+                                         jQuery("#"+dependencia).append('<option value="' + valor.identificador + '" id_puertoescala="' + valor.id_puertoescala + '" id_puertoescala2="' + valor.id_puertoescala2 + '"  >' + valor.nombre + '</option>');     
+                                        } else {
+                                          jQuery("#"+dependencia).append('<option value="' + valor.identificador + '"  >' + valor.nombre + '</option>');     
+                                        }
                                     }
                               });
                       }   

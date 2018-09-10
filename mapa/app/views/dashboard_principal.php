@@ -97,7 +97,10 @@
 									<select name="fin" id="fin" class="form-control" dependencia="">				
 										<?php foreach ( (json_decode(json_encode($destino))) as $importa ){ ?>
 										
-													<option value="<?php echo $importa->id; ?>" ><?php echo $importa->nombre; ?></option>
+													<option 
+													id_puertoescala="<?php echo $importa->id_puertoescala; ?>"
+													id_puertoescala2="<?php echo $importa->id_puertoescala2; ?>"
+													value="<?php echo $importa->id; ?>" ><?php echo $importa->nombre; ?></option>
 										<?php } ?>									
 									</select>
 								</div>

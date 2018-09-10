@@ -30,6 +30,9 @@ class Main extends CI_Controller {
 			  $data['inicio'] =  (int) $this->input->post('inicio');
 			     $data['fin'] =  (int) $this->input->post('fin');
 
+			     $data['id_puertoescala'] =  (int) $this->input->post('id_puertoescala');
+			     $data['id_puertoescala2'] =  (int) $this->input->post('id_puertoescala2');
+
 		$data['origen'] = $this->modelo->origen_pto($data);
 
 		//print_r( $data['origen']  ); die;
@@ -122,8 +125,11 @@ class Main extends CI_Controller {
 	    $variables = array();
 	    if ($elementos != false)  {     
 	         foreach( (json_decode(json_encode($elementos))) as $clave =>$valor ) {
-	            
-	              array_push($variables,array('identificador' => $valor->id, 'nombre' => $valor->nombre ));  
+	            if ($data['dependencia']=="fin"){
+	              array_push($variables,array('identificador' => $valor->id, 'nombre' => $valor->nombre, 'id_puertoescala' => $valor->id_puertoescala, 'id_puertoescala2' => $valor->id_puertoescala2 ));  
+	            } else {
+	            	array_push($variables,array('identificador' => $valor->id, 'nombre' => $valor->nombre ));  
+	            }
 	            
 	         }
 	    }  
