@@ -40,7 +40,7 @@
             }
 
             $this->db->group_by('e.id_pais');
-            
+            $this->db->order_by("pais", "asc");
 
               $result = $this->db->get();
               if ($result->num_rows() > 0){
@@ -87,9 +87,9 @@
 public function destino($data){
             
           
-            $this->db->select('e.id_destino id, e.pto_destino nombre2, e.tt, e.via');
+            $this->db->select('e.id_destino id, e.pto_destino nombre2, e.tt, e.via, e.id_puertoescala,e.id_puertoescala2 ');
 
-            $this->db->select('CONCAT(e.pto_destino," (",e.via,")") nombre', false);
+            $this->db->select('CONCAT(e.pto_destino," (Via:",e.via,")") nombre', false);
             
 
             if  ($data['id_estatus']==1) {
@@ -129,21 +129,30 @@ public function destino($data){
             $this->db->select('"#eea638" as color', false);
             $this->db->select('"ppp" as valor', false);
 
-            $this->db->select('e.id_puerto id, e.puerto title, e.pais, e.tt, m.city,  m.lat latitude, m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via');
+            $this->db->select('e.id_puerto id, e.puerto title, e.pais, e.tt, m.city,  m.lat latitude, m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via,e.id_puertoescala,e.id_puertoescala2');
 
             if  ($data['id_estatus']==1) {
                 $this->db->from($this->catalogo_importacion.' e');  
+                $adicional= ' ';
             } else { //caso de 2
                 $this->db->from($this->catalogo_exportacion.' e');
+                $adicional= ' and 
+                        ( e.id_puertoescala = '.$data['id_puertoescala'].' )  and 
+                        ( e.id_puertoescala2 = '.$data['id_puertoescala'].' )  ';
             }
 
+            /*
+and 
+                        ( e.id_puertoescala = '.$data['id_puertoescala'].' )  and 
+                        ( e.id_puertoescala2 = '.$data['id_puertoescala'].' )  
+
+            */
             $this->db->join($this->catalogo_puerto.' m', 'e.id_puerto=m.id');
              $where = '(
                       (
                            ( e.id_pais = '.$data['id_pais'].' )  and 
                          ( e.id_puerto = '.$data['inicio'].' ) and 
-                        ( e.id_destino = '.$data['fin'].' ) 
-
+                        ( e.id_destino = '.$data['fin'].' ) '.$adicional.'  
                       )
             ) ' ; 
             $this->db->where($where); 
@@ -178,7 +187,7 @@ public function destino($data){
             $this->db->select('"#eea638" as color', false);
             $this->db->select('"ppp" as valor', false);
 
-            $this->db->select('e.'.$data["c1"].' id, e.'.$data["c2"].' title, e.pais, e.tt, m.city,  m.lat latitude, m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via');
+            $this->db->select('e.'.$data["c1"].' id, e.'.$data["c2"].' title, e.pais, e.tt, m.city,  m.lat latitude, m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via,e.id_puertoescala,e.id_puertoescala2');
 
             if  ($data['id_estatus']==1) {
                 $this->db->from($this->catalogo_importacion.' e');  
@@ -186,12 +195,17 @@ public function destino($data){
                 $this->db->from($this->catalogo_exportacion.' e');
             }
 
+            /*
+and 
+                        ( e.id_puertoescala = '.$data['id_puertoescala'].' )  and 
+                        ( e.id_puertoescala2 = '.$data['id_puertoescala'].' )
+            */
             $this->db->join($this->catalogo_puerto.' m', 'e.'.$data["c1"].'=m.id');
              $where = '(
                       (
                            ( e.id_pais = '.$data['id_pais'].' )  and 
                          ( e.id_puerto = '.$data['inicio'].' ) and 
-                        ( e.id_destino = '.$data['fin'].' ) 
+                        ( e.id_destino = '.$data['fin'].' )   
 
                       )
             ) ' ; 
@@ -225,20 +239,34 @@ public function destino_pto($data){
             $this->db->select('"ppp" as valor', false);
 
             
-            $this->db->select('e.id_destino id, e.pto_destino title, e.pais, e.tt, m.city,  m.lat latitude, m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via');
+            $this->db->select('e.id_destino id, e.pto_destino title, e.pais, e.tt, m.city,  m.lat latitude, m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via,e.id_puertoescala,e.id_puertoescala2');
 
             if  ($data['id_estatus']==1) {
                 $this->db->from($this->catalogo_importacion.' e');  
+                $adicional= ' and 
+                        ( e.id_puertoescala = '.$data['id_puertoescala'].' )  and 
+                        ( e.id_puertoescala2 = '.$data['id_puertoescala'].' )  '; 
             } else { //caso de 2
                 $this->db->from($this->catalogo_exportacion.' e');
+
+                $adicional= ' ';                                 
             }
+
+
+
+
+            /*
+              and 
+                        ( e.id_puertoescala = '.$data['id_puertoescala'].' )  and 
+                        ( e.id_puertoescala2 = '.$data['id_puertoescala'].' )  
+            */
 
              $this->db->join($this->catalogo_puerto.' m', 'e.id_destino=m.id');
              $where = '(
                       (
                            ( e.id_pais = '.$data['id_pais'].' )  and 
                          ( e.id_puerto = '.$data['inicio'].' ) and 
-                        ( e.id_destino = '.$data['fin'].' ) 
+                        ( e.id_destino = '.$data['fin'].' )  
 
                       )
             ) ' ; 
@@ -276,7 +304,7 @@ public function destino_intermedio($data){
             
             //$this->db->select('e.id_destino id, e.pto_destino title, e.pais, e.tt, m.city,  m.lat latitude, m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province');
 
-            $this->db->select('e.'.$data["c1"].' id, e.'.$data["c2"].' title, e.pais, e.tt, m.city,  m.lat latitude, m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via');
+            $this->db->select('e.'.$data["c1"].' id, e.'.$data["c2"].' title, e.pais, e.tt, m.city,  m.lat latitude, m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via,e.id_puertoescala,e.id_puertoescala2');
 
             if  ($data['id_estatus']==1) {
                 $this->db->from($this->catalogo_importacion.' e');  
@@ -284,6 +312,11 @@ public function destino_intermedio($data){
                 $this->db->from($this->catalogo_exportacion.' e');
             }
 
+            /*
+and 
+                        ( e.id_puertoescala = '.$data['id_puertoescala'].' )  and 
+                        ( e.id_puertoescala2 = '.$data['id_puertoescala'].' )  
+            */
              //$this->db->join($this->catalogo_puerto.' m', 'e.id_destino=m.id');
              $this->db->join($this->catalogo_puerto.' m', 'e.'.$data["c1"].'=m.id');
              $where = '(

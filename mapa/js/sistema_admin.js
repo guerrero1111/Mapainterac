@@ -23,7 +23,7 @@ jQuery(document).ready(function($) {
 						spinner.stop();
 						jQuery('#foo').css('display','none');
 
-						window.location.href = '/overseas/mapa/admin';
+						window.location.href = '/mapa/admin';
 				}
 			}
 		});
@@ -59,7 +59,7 @@ jQuery(document).ready(function($) {
 						$catalogo = e.target.name;
 						spinner.stop();
 						jQuery('#foo').css('display','none');
-						window.location.href = '/overseas/mapa/'+$catalogo;				
+						window.location.href = '/mapa/'+$catalogo;				
 				}
 			} 
 		});
@@ -80,7 +80,7 @@ jQuery('#tabla_usuarios').dataTable( {
 		"processing": true,
 		"serverSide": true,
 		"ajax": {
-	            	"url" : "/overseas/mapa/procesando_usuarios",
+	            	"url" : "/mapa/procesando_usuarios",
 	         		"type": "POST",
 	         		
 	     },   
@@ -139,7 +139,7 @@ jQuery('#tabla_usuarios').dataTable( {
 		                "render": function ( data, type, row ) {
 
 						texto='<td>';
-							texto+='<a href="/overseas/mapa/editar_usuario/'+jQuery.base64.encode(row[0])+'" type="button"'; 
+							texto+='<a href="/mapa/editar_usuario/'+jQuery.base64.encode(row[0])+'" type="button"'; 
 							texto+=' class="btn btn-warning btn-sm btn-block" >';
 								texto+=' <span class="glyphicon glyphicon-edit"></span>';
 							texto+=' </a>';
@@ -158,7 +158,7 @@ jQuery('#tabla_usuarios').dataTable( {
 
 		                	if (true) {  //row[4]==0
 	   							texto='	<td>';								
-									texto+=' <a href="/overseas/mapa/eliminar_usuario/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode(row[2]+' '+row[3])+ '"'; 
+									texto+=' <a href="/mapa/eliminar_usuario/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode(row[2]+' '+row[3])+ '"'; 
 									texto+=' class="btn btn-danger btn-sm btn-block" data-toggle="modal" data-target="#modalMessage">';
 									texto+=' <span class="glyphicon glyphicon-remove"></span>';
 									texto+=' </a>';
@@ -200,7 +200,7 @@ jQuery('#tabla_acceso_usuario').dataTable( {
 		"processing": true,
 		"serverSide": true,
 		"ajax": {
-	            	"url" : "/overseas/mapa/procesando_historico_accesos",
+	            	"url" : "/mapa/procesando_historico_accesos",
 	         		"type": "POST",
 	         		
 	     },   
@@ -305,7 +305,7 @@ jQuery('#tabla_listado_completo').dataTable( {
 		"processing": true,
 		"serverSide": true,
 		"ajax": {
-	            	"url" : "/overseas/mapa/procesando_participantes_unico",
+	            	"url" : "/mapa/procesando_participantes_unico",
 	         		"type": "POST",
 	         		
 	     },   
@@ -449,7 +449,7 @@ jQuery('#tabla_listado_completo').dataTable( {
 		                "render": function ( data, type, row ) {
 
 						texto='<td>';
-							texto+='<a href="/overseas/mapa/detalle_participante/'+jQuery.base64.encode(row[0])+'" type="button"'; 
+							texto+='<a href="/mapa/detalle_participante/'+jQuery.base64.encode(row[0])+'" type="button"'; 
 							texto+=' class="btn btn-info btn-sm btn-block" >';
 								texto+=' <span class="glyphicon glyphicon-edit"></span>';
 							texto+=' </a>';
@@ -482,7 +482,7 @@ jQuery('#tabla_participantes_unicos').dataTable( {
 		"processing": true,
 		"serverSide": true,
 		"ajax": {
-	            	"url" : "/overseas/mapa/procesando_participantes_unico",
+	            	"url" : "/mapa/procesando_participantes_unico",
 	         		"type": "POST",
 	         		
 	     },   
@@ -620,7 +620,7 @@ jQuery('#tabla_participantes_unicos').dataTable( {
 		                "render": function ( data, type, row ) {
 
 						texto='<td>';
-							texto+='<a href="/overseas/mapa/detalle_participante/'+jQuery.base64.encode(row[0])+'" type="button"'; 
+							texto+='<a href="/mapa/detalle_participante/'+jQuery.base64.encode(row[0])+'" type="button"'; 
 							texto+=' class="btn btn-info btn-sm btn-block" >';
 								texto+=' <span class="glyphicon glyphicon-edit"></span>';
 							texto+=' </a>';
@@ -659,7 +659,7 @@ jQuery('#tabla_participantes').dataTable( {
 		"processing": true,
 		"serverSide": true,
 		"ajax": {
-	            	"url" : "/overseas/mapa/procesando_participantes",
+	            	"url" : "/mapa/procesando_participantes",
 	         		"type": "POST",
 	     },   
 		"language": {  //tratamiento de lenguaje
@@ -844,7 +844,7 @@ jQuery('#tabla_participantes').dataTable( {
 		                "render": function ( data, type, row ) {
 
 						texto='<td>';
-							texto+='<a href="/overseas/mapa/detalle_participante/'+jQuery.base64.encode(row[0])+'" type="button"'; 
+							texto+='<a href="/mapa/detalle_participante/'+jQuery.base64.encode(row[0])+'" type="button"'; 
 							texto+=' class="btn btn-info btn-sm btn-block" >';
 								texto+=' <span class="glyphicon glyphicon-edit"></span>';
 							texto+=' </a>';
@@ -878,7 +878,7 @@ jQuery('#tabla_detalle_participantes').dataTable( {
 		"processing": true,
 		"serverSide": true,
 		"ajax": {
-	            	"url" : "/overseas/mapa/procesando_detalle_participantes",
+	            	"url" : "/mapa/procesando_detalle_participantes",
 	         		"type": "POST",
 	         		"data": function ( d ) {
 	         		 	d.id = jQuery('#id').val();  
@@ -1003,7 +1003,7 @@ jQuery('#tabla_participantes_cupones').dataTable( {
 		"processing": true,
 		"serverSide": true,
 		"ajax": {
-	            	"url" : "/overseas/mapa/procesando_participante_cupones",
+	            	"url" : "/mapa/procesando_participante_cupones",
 	         		"type": "POST",
 	     },   
 		"language": {  //tratamiento de lenguaje
@@ -1084,7 +1084,7 @@ jQuery('#tabla_bitacora_participante').dataTable( {
 		"processing": true,
 		"serverSide": true,
 		"ajax": {
-	            	"url" : "/overseas/mapa/procesando_historico_participantes",
+	            	"url" : "/mapa/procesando_historico_participantes",
 	         		"type": "POST",
 	         		
 	     },   
@@ -1180,7 +1180,7 @@ jQuery('#tabla_cat_premios').dataTable( {
     "processing": true,
     "serverSide": true,
     "ajax": {
-                "url" : "/overseas/mapa/procesando_cat_premios",
+                "url" : "/mapa/procesando_cat_premios",
               "type": "POST",
               
        },   
@@ -1236,7 +1236,7 @@ jQuery('#tabla_cat_premios').dataTable( {
                 {
                     "render": function ( data, type, row ) {
 				            texto='<td>';
-				              texto+='<a href="/overseas/mapa/editar_premio/'+jQuery.base64.encode(row[0])+'" type="button"'; 
+				              texto+='<a href="/mapa/editar_premio/'+jQuery.base64.encode(row[0])+'" type="button"'; 
 				              texto+=' class="btn btn-warning btn-sm btn-block" >';
 				                texto+=' <span class="glyphicon glyphicon-edit"></span>';
 				              texto+=' </a>';
@@ -1250,7 +1250,7 @@ jQuery('#tabla_cat_premios').dataTable( {
                     "render": function ( data, type, row ) {
 		                      if (row[4]==0) {
 					                  texto=' <td>';                
-					                  texto+=' <a href="/overseas/mapa/eliminar_premio/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode(row[1])+ '"'; 
+					                  texto+=' <a href="/mapa/eliminar_premio/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode(row[1])+ '"'; 
 					                  texto+=' class="btn btn-danger btn-sm btn-block" data-toggle="modal" data-target="#modalMessage">';
 					                  texto+=' <span class="glyphicon glyphicon-remove"></span>';
 					                  texto+=' </a>';
@@ -1282,7 +1282,7 @@ jQuery('#tabla_cat_imagenes').dataTable( {
     "processing": true,
     "serverSide": true,
     "ajax": {
-                "url" : "/overseas/mapa/procesando_cat_imagenes",
+                "url" : "/mapa/procesando_cat_imagenes",
               "type": "POST",
               
        },   
@@ -1338,7 +1338,7 @@ jQuery('#tabla_cat_imagenes').dataTable( {
                 {
                     "render": function ( data, type, row ) {
 				            texto='<td>';
-				              texto+='<a href="/overseas/mapa/editar_imagen/'+(row[0])+'" type="button"'; 
+				              texto+='<a href="/mapa/editar_imagen/'+(row[0])+'" type="button"'; 
 				              texto+=' class="btn btn-warning btn-sm btn-block" >';
 				                texto+=' <span class="glyphicon glyphicon-edit"></span>';
 				              texto+=' </a>';
@@ -1352,7 +1352,7 @@ jQuery('#tabla_cat_imagenes').dataTable( {
                     "render": function ( data, type, row ) {
 		                      if (row[4]==0) {
 					                  texto=' <td>';                
-					                  texto+=' <a href="/overseas/mapa/eliminar_imagen/'+(row[0])+'/'+jQuery.base64.encode(row[1])+ '"'; 
+					                  texto+=' <a href="/mapa/eliminar_imagen/'+(row[0])+'/'+jQuery.base64.encode(row[1])+ '"'; 
 					                  texto+=' class="btn btn-danger btn-sm btn-block" data-toggle="modal" data-target="#modalMessage">';
 					                  texto+=' <span class="glyphicon glyphicon-remove"></span>';
 					                  texto+=' </a>';
@@ -1384,7 +1384,7 @@ jQuery('#tabla_cat_litrajes').dataTable( {
     "processing": true,
     "serverSide": true,
     "ajax": {
-                "url" : "/overseas/mapa/procesando_cat_litrajes",
+                "url" : "/mapa/procesando_cat_litrajes",
               "type": "POST",
               
        },   
@@ -1429,7 +1429,7 @@ jQuery('#tabla_cat_litrajes').dataTable( {
                     "render": function ( data, type, row ) {
 
             texto='<td>';
-              texto+='<a href="/overseas/mapa/editar_litraje/'+(row[0])+'" type="button"'; 
+              texto+='<a href="/mapa/editar_litraje/'+(row[0])+'" type="button"'; 
               texto+=' class="btn btn-warning btn-sm btn-block" >';
                 texto+=' <span class="glyphicon glyphicon-edit"></span>';
               texto+=' </a>';
@@ -1447,7 +1447,7 @@ jQuery('#tabla_cat_litrajes').dataTable( {
 
                       if (row[2]==0) {
                   texto=' <td>';                
-                  texto+=' <a href="/overseas/mapa/eliminar_litraje/'+(row[0])+'/'+jQuery.base64.encode(row[1])+ '"'; 
+                  texto+=' <a href="/mapa/eliminar_litraje/'+(row[0])+'/'+jQuery.base64.encode(row[1])+ '"'; 
                   texto+=' class="btn btn-danger btn-sm btn-block" data-toggle="modal" data-target="#modalMessage">';
                   texto+=' <span class="glyphicon glyphicon-remove"></span>';
                   texto+=' </a>';
@@ -1485,7 +1485,7 @@ jQuery('#tabla_cat_litrajes').dataTable( {
     "processing": true,
     "serverSide": true,
     "ajax": {
-                "url" : "/overseas/mapa/procesando_cat_estados",
+                "url" : "/mapa/procesando_cat_estados",
               "type": "POST",
               
        },   
@@ -1530,7 +1530,7 @@ jQuery('#tabla_cat_litrajes').dataTable( {
                     "render": function ( data, type, row ) {
 
             texto='<td>';
-              texto+='<a href="/overseas/mapa/editar_estado/'+(row[0])+'" type="button"'; 
+              texto+='<a href="/mapa/editar_estado/'+(row[0])+'" type="button"'; 
               texto+=' class="btn btn-warning btn-sm btn-block" >';
                 texto+=' <span class="glyphicon glyphicon-edit"></span>';
               texto+=' </a>';
@@ -1548,7 +1548,7 @@ jQuery('#tabla_cat_litrajes').dataTable( {
 
                       if (row[2]==0) {
                   texto=' <td>';                
-                  texto+=' <a href="/overseas/mapa/eliminar_estado/'+(row[0])+'/'+jQuery.base64.encode(row[1])+ '"'; 
+                  texto+=' <a href="/mapa/eliminar_estado/'+(row[0])+'/'+jQuery.base64.encode(row[1])+ '"'; 
                   texto+=' class="btn btn-danger btn-sm btn-block" data-toggle="modal" data-target="#modalMessage">';
                   texto+=' <span class="glyphicon glyphicon-remove"></span>';
                   texto+=' </a>';
@@ -1598,7 +1598,7 @@ jQuery('#tabla_cat_litrajes').dataTable( {
 						$catalogo = e.target.name;
 						spinner.stop();
 						jQuery('#foo').css('display','none');
-						window.location.href = '/overseas/mapa/'+$catalogo;				
+						window.location.href = '/mapa/'+$catalogo;				
 				}
 			} 
 		});

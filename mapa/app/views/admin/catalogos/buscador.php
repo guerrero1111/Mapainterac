@@ -92,7 +92,7 @@
 									<th class="text-center cursora" width="70%">Origen</th>
 									<th class="text-center cursora" width="20%">Destino </th>
 									<th class="text-center cursora" width="20%">Via </th>
-									<th class="text-center cursora" width="20%">Tarifa </th>
+									<th class="text-center cursora" width="20%">Precio </th>
 									<th class="text-center " width="10%"><strong>Editar</strong></th>
 									<th class="text-center " width="10%"><strong>Eliminar</strong></th>
 								</tr>

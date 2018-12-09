@@ -60,7 +60,7 @@ $edfm_side_menu_blur_effect = isset($edfm_fly_menu_settings[0]['edfm_side_menu_b
 
 								if (isset($edfm_fly_menu_settings[0]['edfm_custom_header_image']) && !empty($edfm_fly_menu_settings[0]['edfm_custom_header_image'])):
 									?>
-									<img src="<?php esc_attr_e($edfm_fly_menu_settings[0]['edfm_custom_header_image']);?>"/>
+									<a href="<?php echo site_url(); ?>"><img src="<?php esc_attr_e($edfm_fly_menu_settings[0]['edfm_custom_header_image']);?>"/></a>
 									<?php
 								endif;
 								break;

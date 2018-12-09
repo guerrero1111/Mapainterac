@@ -23,22 +23,6 @@ class Main extends CI_Controller {
 		$this->load->view( 'dashboard_principal', $data );
 	}
 
-	public function dashboard_principalen(){
-		
-		$data['id_estatus']=1; //la primera vez son importaciones
-		$data['paises']  = $this->modelo->pais(  $data );
-		$data['id_pais']=$data['paises'][0]->id; //la primera vez es el primer pais
-		//print_r( $data['paises'][0]->id ); die;
-		$data['origen'] = $this->modelo->origen($data);
-		//print_r( $data['origen'][0]->id ); die;
-		$data['inicio']=$data['origen'][0]->id; 
-
-		$data['destino'] = $this->modelo->destino($data);
-
-		$this->load->view( 'dashboard_principalen', $data );
-	}
-
-
 
 	public function recopilar_datos(){
 		   $data['id_estatus']= (int)$this->input->post('id_estatus');
@@ -46,10 +30,14 @@ class Main extends CI_Controller {
 			  $data['inicio'] =  (int) $this->input->post('inicio');
 			     $data['fin'] =  (int) $this->input->post('fin');
 
+			     $data['id_puertoescala'] =  (int) $this->input->post('id_puertoescala');
+			     $data['id_puertoescala2'] =  (int) $this->input->post('id_puertoescala2');
+
 		$data['origen'] = $this->modelo->origen_pto($data);
 
-		//print_r( $data['origen']  ); die;
+		//var_dump( $data['origen']  ); die;
 		$data['destino'] = $this->modelo->destino_pto($data);
+		//var_dump( $data['destino']  ); die;
 		
 		$arreglo=array();
 		if ($data['id_estatus']==1) {  //cambiar el orden
@@ -138,8 +126,11 @@ class Main extends CI_Controller {
 	    $variables = array();
 	    if ($elementos != false)  {     
 	         foreach( (json_decode(json_encode($elementos))) as $clave =>$valor ) {
-	            
-	              array_push($variables,array('identificador' => $valor->id, 'nombre' => $valor->nombre ));  
+	            if ($data['dependencia']=="fin"){
+	              array_push($variables,array('identificador' => $valor->id, 'nombre' => $valor->nombre, 'id_puertoescala' => $valor->id_puertoescala, 'id_puertoescala2' => $valor->id_puertoescala2 ));  
+	            } else {
+	            	array_push($variables,array('identificador' => $valor->id, 'nombre' => $valor->nombre ));  
+	            }
 	            
 	         }
 	    }  

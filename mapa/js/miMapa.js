@@ -8,7 +8,7 @@ jQuery(document).ready(function($) {
             var mapData ;
             var  miMapa;
             jQuery.ajax({ //guardar en la cookie el conteo
-                            url : '/overseas/mapa/recopilar_datos',
+                            url : '/mapa/recopilar_datos',
                             data : { 
                                   id_estatus: jQuery('#id_estatus').val(),
                                       id_pais: jQuery('#pais').val(),
@@ -198,12 +198,14 @@ function puntos() {
 
 
       jQuery.ajax({ //guardar en la cookie el conteo
-                            url : '/overseas/mapa/recopilar_datos',
+                            url : '/mapa/recopilar_datos',
                             data : { 
                                   id_estatus: jQuery('#id_estatus').val(),
                                       id_pais: jQuery('#pais').val(),
                                       inicio: jQuery('#inicio').val(),
                                       fin: jQuery('#fin').val(),
+                                      id_puertoescala: jQuery('#fin option:selected').attr('id_puertoescala'),
+                                      id_puertoescala2: jQuery('#fin option:selected').attr('id_puertoescala2'),                      
                             },
                             type : 'POST',
                             dataType : 'json',
@@ -221,7 +223,7 @@ function puntos() {
 
             jQuery('.etiq_pais').text( (jQuery('#id_estatus').val() ==1) ?  mapData[0].pais : 'México' ); 
             jQuery('.etiq_puerto').text( (jQuery('#id_estatus').val() ==1) ?  mapData[0].title : mapData[0].title ); 
-            jQuery('.etiq_destino').text( (jQuery('#id_estatus').val() ==1) ?  (mapData[1].title+', México') : (mapData[1].title+' ,'+mapData[0].pais) ); 
+            jQuery('.etiq_destino').text( (jQuery('#id_estatus').val() ==1) ?  (mapData[mapData.length-1].title+', México') : (mapData[1].title+' ,'+mapData[0].pais) ); 
              jQuery('.etiq_via').text( (jQuery('#id_estatus').val() ==1) ?  mapData[0].via : mapData[0].via ); 
             jQuery('.etiq_tt').text( (jQuery('#id_estatus').val() ==1) ?  mapData[0].tt : mapData[0].tt ); 
 
@@ -366,7 +368,7 @@ function puntos() {
       
 
       jQuery.ajax({
-              url : '/overseas/mapa/cargar_dependencia',
+              url : '/mapa/cargar_dependencia',
               data:{
                 dependencia: dependencia,
                 campo:campo,
@@ -384,7 +386,11 @@ function puntos() {
                       if (data != "[]") {
                               jQuery.each(data, function (i, valor) {
                                     if (valor.nombre !== null) {
-                                         jQuery("#"+dependencia).append('<option value="' + valor.identificador + '"  >' + valor.nombre + '</option>');     
+                                        if (campo="fin") {
+                                         jQuery("#"+dependencia).append('<option value="' + valor.identificador + '" id_puertoescala="' + valor.id_puertoescala + '" id_puertoescala2="' + valor.id_puertoescala2 + '"  >' + valor.nombre + '</option>');     
+                                        } else {
+                                          jQuery("#"+dependencia).append('<option value="' + valor.identificador + '"  >' + valor.nombre + '</option>');     
+                                        }
                                     }
                               });
                       }   

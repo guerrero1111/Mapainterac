@@ -18,13 +18,13 @@
 /** El nombre de tu base de datos de WordPress */
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('DB_NAME', 'overseas2');
+define('DB_NAME', 'overmx_site');
 
 /** MySQL database username */
-define('DB_USER', 'root');
+define('DB_USER', 'overmx_usersite');
 
 /** MySQL database password */
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', '$dq-I}1)aDER');
 
 /** MySQL hostname */
 define('DB_HOST', 'localhost');
@@ -73,12 +73,10 @@ $table_prefix  = 'wp_';
  */
 define('WP_DEBUG', false);
 define('FS_METHOD', 'direct');
-/* ¡Eso es todo, deja de editar! Feliz blogging */
 
-/** WordPress absolute path to the Wordpress directory. */
+/** WordPress absolute path to the Woress directory. */
 if ( !defined('ABSPATH') )
 	define('ABSPATH', dirname(__FILE__) . '/');
 
 /** Sets up WordPress vars and included files. */
 require_once(ABSPATH . 'wp-settings.php');
-

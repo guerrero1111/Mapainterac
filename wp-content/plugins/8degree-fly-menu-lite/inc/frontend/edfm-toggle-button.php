@@ -17,7 +17,13 @@ if($edfm_toggle_custom_element && $edfm_button_behavior == "edfm_button_hide" &&
 
 ?>
 <div class="edfm-toggle-wrapper <?php esc_attr_e($edfm_button_behavior);?>">
-	<div class="idioma">ES</div>
+	
+
+<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('header-sidebar') ) : 
+ 
+endif; ?>
+	
+	<!-- <div class="idioma">ES</div> -->
 	<div class="edfm-toggle <?php esc_attr_e($hide_open_toggle)?>">
 		<?php 
 		switch($edfm_toggle_icon_type){
