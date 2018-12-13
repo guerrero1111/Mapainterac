@@ -40,7 +40,7 @@
             }
 
             $this->db->group_by('e.id_pais');
-            
+            $this->db->order_by("pais", "asc");
 
               $result = $this->db->get();
               if ($result->num_rows() > 0){
@@ -89,7 +89,7 @@ public function destino($data){
           
             $this->db->select('e.id_destino id, e.pto_destino nombre2, e.tt, e.via, e.id_puertoescala,e.id_puertoescala2 ');
 
-            $this->db->select('CONCAT(e.pto_destino," (",e.via,")") nombre', false);
+            $this->db->select('CONCAT(e.pto_destino," (Via:",e.via,")") nombre', false);
             
 
             if  ($data['id_estatus']==1) {

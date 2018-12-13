@@ -45,7 +45,7 @@ jQuery(document).ready(function($) {
 
     function cargarDependencia_existente(campo,dependencia,val_estatus,val_pais, val_inicio,val_fin) {
       jQuery.ajax({
-              url : '/overseas/mapa/cargar_dependencia',
+              url : '/mapa/cargar_dependencia',
               data:{
                 dependencia: dependencia,
                 campo:campo,
@@ -97,7 +97,7 @@ jQuery('#tabla_catalogos').dataTable( {
     "processing": true,
     "serverSide": true,
     "ajax": {
-                "url" : "/overseas/mapa/procesando_catalogos",
+                "url" : "/mapa/procesando_catalogos",
               "type": "POST",
                                "data": function ( d ) {
                             d.id_estatus= jQuery('#id_estatus').val();
@@ -153,39 +153,39 @@ m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via
 */
 
     "columnDefs": [
-               {   //Puerto y pais ("origen"  o destino) 
+               { 
                     "render": function ( data, type, row ) {
-                        if (row[7]==1) {
-                          return  row[1]+'('+row[2]+')'; //puerto_origen(pais_origen)
+                        if (row[14]==1) {
+                          return  row[1]+'('+row[2]+')'; //puerto(pais)
                         }  else {
-                           return  row[3]+'('+row[4]+')'; //puerto_destino(pais_destino)
+                           return row[5]+'(México)'; //destino  
                         }
+                        
+
                     },
                     "targets": [0] 
                 },
-
-               {   //Puerto y pais ("origen"  o destino) 
-                    "render": function ( data, type, row ) {
-                        if (row[7]==1) {
-                            return  row[3]+'('+row[4]+')'; //puerto_destino(pais_destino)
-                        }  else {
-                           return  row[1]+'('+row[2]+')'; //puerto_origen(pais_origen)
-                        }
-                    },
-                    "targets": [1] 
-                },
-
                 { 
                     "render": function ( data, type, row ) {
-                        return row[5]; //destino
+                        if (row[14]==1) {
+                            return row[5]+'(México)'; //destino  
+                        }  else {
+                           return  row[1]+'('+row[2]+')'; //puerto(pais)
+                        }
+                    },
+                    "targets": [1] //
+                },
+                { 
+                    "render": function ( data, type, row ) {
+                        return row[13]; //destino
                     },
                     "targets": [2] //,via
                 },
                 { 
                     "render": function ( data, type, row ) {
-                        return row[6]; //precio
+                        return row[15]; //destino
                     },
-                    "targets": [3] //precio
+                    "targets": [3] //,via
                 },
 
                 {
@@ -221,7 +221,7 @@ m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via
 
                       if  ( (hash_url!="/overseas/mapa/buscador") )   {  
                         texto=' <td>';                
-                        texto+=' <a href="/overseas/mapa/eliminar_catalogo/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode(row[1]+' '+row[2])+ '"'; 
+                        texto+=' <a href="/mapa/eliminar_catalogo/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode(row[2]+' '+row[3])+ '"'; 
                         texto+=' class="btn btn-danger btn-sm btn-block" data-toggle="modal" data-target="#modalMessage">';
                         texto+=' <span class="glyphicon glyphicon-remove"></span>';
                         texto+=' </a>';

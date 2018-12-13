@@ -6,7 +6,7 @@
 	padding-right: 0px !important;
 }
 .Elemento{
-	    background-color: #71b943b8;
+	    background-color: #71b943;
     padding: 15px;
     color: #ffffff;
     font-size: 18px;

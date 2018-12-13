@@ -44,10 +44,6 @@
           $this->catalogo_importacion     = $this->db->dbprefix('catalogo_importacion_pana');
 
 
-          $this->catalogo_pais     = $this->db->dbprefix('catalogo_pais');
-          
-
-
         $this->fecha_unixtime_inicio    = strtotime('07/15/2018');  
         $this->fecha_unixtime_hoy    = now(); //strtotime("now");
 
@@ -2268,26 +2264,17 @@ public function buscador_catalogos($data){
 
                                       
 
-
-
-
           //$id_session = $this->db->escape($this->session->userdata('id'));
            $id_session = $this->session->userdata('id');
 
           $this->db->select("SQL_CALC_FOUND_ROWS *", FALSE); //
-
-        
-           $this->db->select('e.id, e.id_puerto,  e.id_destino, e.id_puertoescala,e.id_puertoescala2,e.tarifa, e.salidas, e.minimo, e.tt, e.precio');
-
-           $this->db->select('m.lat lat_origen,  m.lng long_origen,  m.puerto puerto_origen,  m.country pais_origen');
-           $this->db->select('d.lat lat_destino, d.lng long_destino, d.puerto puerto_destino, d.country pais_destino');
-
-            
-
-            $this->db->select("( CASE WHEN esc1.puerto is null THEN '' ELSE  esc1.puerto END ) AS escala1", FALSE);             
-            $this->db->select("( CASE WHEN esc2.puerto is null THEN '' ELSE  esc2.puerto END ) AS escala2", FALSE);             
           
           
+          $this->db->select('e.id_puerto, e.id,  e.tt, m.city,  m.lat latitude, m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via, pto_destino');
+          
+          $this->db->select('e.id_puerto, e.id, m.puerto title, m.country pais');
+
+          $this->db->select('precio');
 
           
             if  ($data['id_estatus']==1) {
@@ -2300,9 +2287,31 @@ public function buscador_catalogos($data){
           $this->db->join($this->catalogo_puerto.' m', 'e.id_puerto=m.id');
           $this->db->join($this->catalogo_puerto.' d', 'e.id_destino=d.id');
 
-          $this->db->join($this->catalogo_puerto.' esc1', 'e.id_puertoescala=esc1.id','LEFT');
-          $this->db->join($this->catalogo_puerto.' esc2', 'e.id_puertoescala2=esc2.id','LEFT');
+          
+          
+          //filtro de busqueda
+       
+        /*
+          $where = '(
 
+                      (
+                        ( u.nombre LIKE  "%'.$cadena.'%" ) OR (u.apellidos LIKE  "%'.$cadena.'%") OR (p.perfil LIKE  "%'.$cadena.'%") 
+                        OR (  AES_DECRYPT( u.email,"{$this->key_hash}")  LIKE  "%'.$cadena.'%") 
+                        
+                       )
+            )';  
+
+
+            $where = '(
+                      (
+                           ( e.id_pais = '.$data['id_pais'].' )  and 
+                         ( e.id_puerto = '.$data['inicio'].' ) and 
+                        ( e.id_destino = '.$data['fin'].' ) 
+
+                      )
+            ) ' ; 
+
+            */ 
 
 
              $filtro="";        
@@ -2343,18 +2352,26 @@ public function buscador_catalogos($data){
 
                   $retorno= " ";  
                   foreach ($result->result() as $row) {
-                       $escala = ( ($row->escala1 =='')  AND ($row->escala2 =='') ) ? 'directo' : ($row->escala1.' <br/> '.$row->escala2);
-
                                $dato[]= array(
                                       0=>$row->id,
-                                      1=>$row->puerto_origen,
-                                      2=>$row->pais_origen,
-                                      3=>$row->puerto_destino,
-                                      4=>$row->pais_destino,
-                                      5=>$escala,
-                                      6=>$row->precio,
-                                      7=>$data['id_estatus'],
+                                      1=>$row->title,
+                                      2=>$row->pais,
+                                      3=>$row->tt,
+                                      4=>$row->city,
+                                      5=>$row->pto_destino,
+                                      6=>$row->latitude,
+                                      7=>$row->longitude,
+                                      8=>$row->pop,
+                                      9=>$row->country,
+                                      10=>$row->iso2,
+                                      11=>$row->iso3,
+                                      12=>$row->province,
+                                      13=>$row->via,
+                                      14=>$data['id_estatus'],
+                                      15=>$row->tarifa,
 
+
+                                      
                                       
                                     );
                       }
@@ -2483,11 +2500,26 @@ public function buscador_catalogos($data){
             $timestamp = time();
 
             $id_session = $this->session->userdata('id');
-                 
-            $this->db->set( 'id_puerto', $data['id_puerto'] );
-            $this->db->set( 'id_destino', $data['id_destino'] );
+                  /*
+                  if  ($data['id_estatus']==1) {
+                        $this->db->set( 'id_puerto', $data['id_puerto'] );
+                        $this->db->set( 'id_destino', $data['id_destino'] );
+                  } else { //caso de 2
+                        $this->db->set( 'id_puerto', $data['id_destino'] );
+                        $this->db->set( 'id_destino', $data['id_puerto'] );
+                  }
+                  */
+            
+                  $this->db->set( 'id_puerto', $data['id_puerto'] );
+                  $this->db->set( 'id_destino', $data['id_destino'] );
+
+
+
             $this->db->set( 'id_puertoescala', $data['id_puertoescala'] );
             $this->db->set( 'id_puertoescala2', $data['id_puertoescala2'] );
+            
+
+
 
             $this->db->set( 'tarifa', $data['tarifa'] );
             $this->db->set( 'salidas', $data['salidas'] );
@@ -2497,6 +2529,7 @@ public function buscador_catalogos($data){
             $this->db->where('id', $data['id'] );
 
             if  ($data['id_estatus']==1) {
+
               $this->db->insert($this->catalogo_importacion );
             } else { //caso de 2
                 $this->db->insert($this->catalogo_exportacion );
@@ -2594,62 +2627,6 @@ public function buscador_catalogos($data){
 
             
             if ($this->db->affected_rows() > 0) {
-               if  ($data['id_estatus']==1) {
-                       $consulta=  "UPDATE ".$this->catalogo_importacion." as e  
-                       JOIN ".$this->catalogo_puerto." as m  ON e.id_puerto=m.id
-                       JOIN ".$this->catalogo_puerto." as d  ON e.id_destino=d.id
-
-                        LEFT JOIN ".$this->catalogo_puerto." as esc1  ON e.id_puertoescala=esc1.id
-                        LEFT JOIN ".$this->catalogo_puerto." as esc2  ON e.id_puertoescala2=esc2.id
-
-                         SET e.pais = m.country,
-                              e.puerto = m.puerto,
-                              e.pto_destino = d.puerto,
-                              e.via= CONCAT( (CASE WHEN esc1.puerto is null THEN '' ELSE  esc1.puerto end),' / ', (CASE WHEN esc2.puerto is null THEN '' ELSE  esc2.puerto end) )
-
-                          where e.id =".$data['id'];
-
-                          $this->db->query($consulta);
-
-
-                      $consulta2=  "UPDATE ".$this->catalogo_importacion." as e  
-                       JOIN ".$this->catalogo_pais." as m  ON e.pais=m.pais
-                       
-                         SET e.id_pais = m.id
-                          where e.id =".$data['id'];
-
-                          $this->db->query($consulta2);
-                 } else {
-
-                       $consulta=  "UPDATE ".$this->catalogo_exportacion." as e  
-                       JOIN ".$this->catalogo_puerto." as m  ON e.id_puerto=m.id
-                       JOIN ".$this->catalogo_puerto." as d  ON e.id_destino=d.id
-
-                        LEFT JOIN ".$this->catalogo_puerto." as esc1  ON e.id_puertoescala=esc1.id
-                        LEFT JOIN ".$this->catalogo_puerto." as esc2  ON e.id_puertoescala2=esc2.id
-
-                         SET e.pais = m.country,
-                              e.puerto = m.puerto,
-                              e.pto_destino = d.puerto,
-                              e.via= CONCAT( (CASE WHEN esc1.puerto is null THEN '' ELSE  esc1.puerto end),' / ', (CASE WHEN esc2.puerto is null THEN '' ELSE  esc2.puerto end) )
-
-                          where e.id =".$data['id'];
-
-                          $this->db->query($consulta);
-
-
-                      $consulta2=  "UPDATE ".$this->catalogo_exportacion." as e  
-                       JOIN ".$this->catalogo_pais." as m  ON e.pais=m.pais
-                       
-                         SET e.id_pais = m.id
-                          where e.id =".$data['id'];
-
-                          $this->db->query($consulta2);
-
-                  
-                 }         
-
-
         return TRUE;
       }  else
          return FALSE;
@@ -2888,5 +2865,3 @@ public function buscador_puertos($data){
  
 	} 
 ?>
-
-
