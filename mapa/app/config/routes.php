@@ -98,7 +98,7 @@ $route['catalogos']     			 	= 'admin/listado_catalogos';
 $route['procesando_catalogos']       	= 'admin/procesando_catalogos';
 $route['nuevo_catalogo']      		 	= 'admin/nuevo_catalogo';
 
-$route['nuevo_catalogo']                = 'admin/nuevo_catalogo';
+$route['nuevo_catalogo/(:any)']                = 'admin/nuevo_catalogo/$1';
 $route['validar_nuevo_catalogo']        = 'admin/validar_nuevo_catalogo';
 
 $route['editar_catalogo/(:any)/(:any)']		= 'admin/editar_catalogo/$1/$2';
@@ -106,6 +106,22 @@ $route['validacion_edicion_catalogo']   = 'admin/validacion_edicion_catalogo';
 
 $route['eliminar_catalogo/(:any)']		= 'admin/eliminar_catalogo/$1';
 $route['validar_eliminar_catalogo']    	= 'admin/validar_eliminar_catalogo';
+
+
+///////////////////////////Puerto//////////////////////////////////////////////////
+$route['puertos']   	  			 	= 'admin/listado_puertos';
+$route['procesando_puertos']	       	= 'admin/procesando_puertos';
+$route['nuevo_puerto']      		 	= 'admin/nuevo_puerto';
+
+
+$route['nuevo_puerto']                	= 'admin/nuevo_puerto';
+$route['validar_nuevo_puerto']        	= 'admin/validar_nuevo_puerto';
+
+$route['editar_puerto/(:any)']			= 'admin/editar_puerto/$1';
+$route['validacion_edicion_puerto']   	= 'admin/validacion_edicion_puerto';
+
+$route['eliminar_puerto/(:any)']		= 'admin/eliminar_puerto/$1';
+$route['validar_eliminar_puerto']    	= 'admin/validar_eliminar_puerto';
 
 
 ///////////////////////////Catalogos//////////////////////////////////////////////////

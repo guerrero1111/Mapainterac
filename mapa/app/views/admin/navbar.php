@@ -36,12 +36,11 @@
 									
 								</li>
 
-							<!--
+							
 								<li>
-									<a href="<?php echo base_url(); ?>participantes" class="color-blanco">Participantes</a> 
-									
+									<a href="<?php echo base_url(); ?>puertos" class="color-blanco">Puertos</a> 
 								</li>
-
+							<!--	
 								<li>
 									<a href="<?php echo base_url(); ?>participante_cupones" class="color-blanco">Cupones</a> 
 									

@@ -1,35 +1,39 @@
 jQuery(document).ready(function($) {
 
+      
 
 //Inicio y fin
     jQuery('body').on('change','#id_estatus, #pais, #inicio, #fin', function (e) {    
        //puntos(); 
 
-    var campo = jQuery(this).attr("name");   
+          var campo = jQuery(this).attr("name");   
 
-    if (campo=='id_estatus') {
-        jQuery('.etiq1').text( (jQuery('#id_estatus').val() ==1) ?  'Origen' : 'Destino' ); ;
-        jQuery('.etiq2').text( (jQuery('#id_estatus').val() ==1) ?  'Destino' : 'Origen' ); ;
+          jQuery('#nuevo_catalogo').attr("href",'/overseas/mapa/nuevo_catalogo/'+jQuery.base64.encode( jQuery('#id_estatus').val() ) );   
+          
 
-    } 
+          if (campo=='id_estatus') {
+              jQuery('.etiq1').text( (jQuery('#id_estatus').val() ==1) ?  'Origen' : 'Destino' ); ;
+              jQuery('.etiq2').text( (jQuery('#id_estatus').val() ==1) ?  'Destino' : 'Origen' ); ;
+
+          } 
 
 
 
-     var val_estatus  = jQuery('#id_estatus').val();           //option:selected').text();     
-     var val_pais = jQuery('#pais').val();        
-     var val_inicio = jQuery('#inicio').val();        
-     var val_fin  = jQuery('#fin').val();   
-      
-      dependencia = jQuery('#'+campo).attr("dependencia");         
-        
-      if (dependencia !="")  {     
-          jQuery("#"+dependencia).html('');  //limpiar la dependencia
-          cargarDependencia_existente(campo,dependencia,val_estatus,val_pais, val_inicio,val_fin);
-       } else {
-          //puntos(); 
-          var oTable =jQuery('#tabla_catalogos').dataTable();
-          oTable._fnAjaxUpdate();
-       }
+           var val_estatus  = jQuery('#id_estatus').val();           //option:selected').text();     
+           var val_pais = jQuery('#pais').val();        
+           var val_inicio = jQuery('#inicio').val();        
+           var val_fin  = jQuery('#fin').val();   
+            
+            dependencia = jQuery('#'+campo).attr("dependencia");         
+              
+            if (dependencia !="")  {     
+                jQuery("#"+dependencia).html('');  //limpiar la dependencia
+                cargarDependencia_existente(campo,dependencia,val_estatus,val_pais, val_inicio,val_fin);
+             } else {
+                //puntos(); 
+                var oTable =jQuery('#tabla_catalogos').dataTable();
+                oTable._fnAjaxUpdate();
+             }
 
 
        
@@ -186,10 +190,10 @@ m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via
 
                 {
                     "render": function ( data, type, row ) {
-                      if  ( (hash_url!="/mapa/buscador") )   {  
+                      if  ( (hash_url!="/overseas/mapa/buscador") )   {  
 
                           texto='<td>';
-                            texto+='<a href="/mapa/editar_catalogo/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode( jQuery('#id_estatus').val()  )+'" type="button"'; 
+                            texto+='<a href="/overseas/mapa/editar_catalogo/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode( jQuery('#id_estatus').val()  )+'" type="button"'; 
                             texto+=' class="btn btn-warning btn-sm btn-block" >';
                               texto+=' <span class="glyphicon glyphicon-edit"></span>';
                             texto+=' </a>';
@@ -215,7 +219,7 @@ m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via
                 {
                     "render": function ( data, type, row ) {
 
-                      if  ( (hash_url!="/mapa/buscador") )   {  
+                      if  ( (hash_url!="/overseas/mapa/buscador") )   {  
                         texto=' <td>';                
                         texto+=' <a href="/overseas/mapa/eliminar_catalogo/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode(row[1]+' '+row[2])+ '"'; 
                         texto+=' class="btn btn-danger btn-sm btn-block" data-toggle="modal" data-target="#modalMessage">';
@@ -251,7 +255,7 @@ m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via
          
          
 
-        if  ( (hash_url=="/mapa/buscador") )   {  
+        if  ( (hash_url=="/overseas/mapa/buscador") )   {  
                 
              api.column(4).visible(false); 
              api.column(5).visible(false); 
@@ -265,10 +269,121 @@ m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via
   }); 
 
 
+///////////////////////////////////////puerto//////////////////////////////////////////////////
+
+jQuery('#tabla_puertos').dataTable( {
+  
+    "pagingType": "full_numbers",
+    
+    "processing": true,
+    "serverSide": true,
+    "ajax": {
+                "url" : "/overseas/mapa/procesando_puertos",
+              "type": "POST",
+                               "data": function ( d ) {
+                                         d.prueba= '';
+                             }  
+              
+       },   
+
+    "language": {  //tratamiento de lenguaje
+      "lengthMenu": "Mostrar _MENU_ registros por página",
+      "zeroRecords": "No hay registros",
+      "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+      "infoEmpty": "No hay registros disponibles",
+      "infoFiltered": "(Mostrando _TOTAL_ de _MAX_ registros totales)",  
+      "emptyTable":     "No hay registros",
+      "infoPostFix":    "",
+      "thousands":      ",",
+      "loadingRecords": "Leyendo...",
+      "processing":     "Procesando...",
+      "search":         "Buscar:",
+      "paginate": {
+        "first":      "Primero",
+        "last":       "Último",
+        "next":       "Siguiente",
+        "previous":   "Anterior"
+      },
+      "aria": {
+        "sortAscending":  ": Activando para ordenar columnas ascendentes",
+        "sortDescending": ": Activando para ordenar columnas descendentes"
+      },
+    },
+
+    "columnDefs": [
+              
+              { //color, medida, ancho
+                  "render": function ( data, type, row ) {
+            return data;  
+                  },
+                  "targets": [0,1,2,3,4,5]
+              },
+          
+
+                {
+                    "render": function ( data, type, row ) {
+                      if  ( (hash_url!="/overseas/mapa/buscador") )   {  
+
+                          texto='<td>';
+                            texto+='<a href="/overseas/mapa/editar_puerto/'+jQuery.base64.encode(row[0])+'" type="button"'; 
+                            texto+=' class="btn btn-warning btn-sm btn-block" >';
+                              texto+=' <span class="glyphicon glyphicon-edit"></span>';
+                            texto+=' </a>';
+                          texto+='</td>';
+                       } else {
+                        texto=' <fieldset disabled> <td>';                
+                          texto+=' <a href="#"'; 
+                          texto+=' class="btn btn-warning btn-sm btn-block">';
+                            texto+=' <span class="glyphicon glyphicon-edit"></span>';
+                          texto+=' </a>';
+                        texto+=' </td></fieldset>'; 
+                      
+                      }  
+
+
+
+                      return texto; 
+                    },
+                    "targets": 6
+                },
+
+                
+                {
+                    "render": function ( data, type, row ) {
+
+                      /*if  ( (hash_url!="/overseas/mapa/buscador") )   {  
+                        texto=' <td>';                
+                        texto+=' <a href="/overseas/mapa/eliminar_catalogo/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode(row[1]+' '+row[2])+ '"'; 
+                        texto+=' class="btn btn-danger btn-sm btn-block" data-toggle="modal" data-target="#modalMessage">';
+                        texto+=' <span class="glyphicon glyphicon-remove"></span>';
+                        texto+=' </a>';
+                      texto+=' </td>';  
+                            } else*/ {
+                        texto=' <fieldset disabled> <td>';                
+                        texto+=' <a href="#"'; 
+                        texto+=' class="btn btn-danger btn-sm btn-block">';
+                        texto+=' <span class="glyphicon glyphicon-remove"></span>';
+                        texto+=' </a>';
+                      texto+=' </td></fieldset>'; 
+                      
+                      }
+                  
+
+
+              return texto; 
+                    },
+                    "targets": 7
+                },
+               
+                
+            ],
+
+
+
+
+  }); 
+
 /////////////////////////////////////////////////////////////////////////////////////////
-
-
-
 
 
 var opts = {

@@ -3,104 +3,206 @@
 <?php $this->load->view( 'admin/header' ); ?>
 <?php $this->load->view( 'admin/navbar' ); ?>
 <?php 
-
 	if (!isset($retorno)) {
-      	$retorno ="usuarios";
+      	$retorno ="catalogos";
     }
+  $hidden = array('id_p'=>2222);
+  $attr = array('class' => 'form-horizontal', 'id'=>'form_catalogos','name'=>$retorno,'method'=>'POST','autocomplete'=>'off','role'=>'form');
+  echo form_open('validar_nuevo_catalogo', $attr,$hidden);
+?>
 
- $attr = array('class' => 'form-horizontal', 'id'=>'form_usuarios','name'=>$retorno,'method'=>'POST','autocomplete'=>'off','role'=>'form');
- echo form_open('validar_nuevo_usuario', $attr);
-?>		
-<div class="container">	
+<!--
+ <input value="<?php echo  $id; ?>"   name="id" type="hidden">
+
+-->
+<input value="<?php echo  $id_estatus; ?>"  name="id_estatus" type="hidden">
+
+<div class="container">
 	<div class="row">
-		<div class="col-sm-8 col-md-8"><h4>Registro de nuevo Usuario</h4></div>
+		<div class="col-sm-8 col-md-8"><h4>Edición de catalogo</h4></div>
 	</div>
 	<br>
 	<div class="container row">
 		<div class="panel panel-primary">
-			<div class="panel-heading">Datos del Usuario</div>
+			<div class="panel-heading">Datos del catalogo</div>
 			<div class="panel-body">
-				<div class="col-sm-6 col-md-6">
-					<div class="form-group">
-						<label for="nombre" class="col-sm-3 col-md-2 control-label">Nombre</label>
-						<div class="col-sm-9 col-md-10">
-							<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="apellidos" class="col-sm-3 col-md-2 control-label">Apellido(s)</label>
-						<div class="col-sm-9 col-md-10">
-							<input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Apellido (s)">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="email" class="col-sm-3 col-md-2 control-label">Email</label>
-						<div class="col-sm-9 col-md-10">
-							<input type="email" class="form-control" id="email" name="email" placeholder="Email">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="telefono" class="col-sm-3 col-md-2 control-label">Número Teléfono </label>
-						<div class="col-sm-9 col-md-10">
-							<input type="text" class="form-control" id="telefono" name="telefono" placeholder="Número Teléfono">
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-6">
-					<div class="form-group">
-						<label for="pass_1" class="col-sm-3 col-md-2 control-label">Contraseña</label>
-						<div class="col-sm-9 col-md-10">
-							<input type="password" class="form-control" id="pass_1" name="pass_1" placeholder="Contraseña">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="pass_2" class="col-sm-3 col-md-2 control-label">Confirmar Contraseña</label>
-						<div class="col-sm-9 col-md-10">
-							<input type="password" class="form-control" id="pass_2" name="pass_2" placeholder="Confirmar Contraseña">
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label for="id_perfil" class="col-sm-3 col-md-2 control-label">Rol de usuario</label>
-						<div class="col-sm-9 col-md-10">
-							<?php  if ( $this->session->userdata( 'id_perfil' ) == 2 ){ ?>											
-								<fieldset disabled>
-									<select name="id_perfil" id="id_perfil" class="form-control">
-										<!--<option value="0">Selecciona una opción</option>-->
-											<?php foreach ( $perfiles as $perfil ){ ?>
-												<?php if ( $this->session->userdata( 'id_perfil' ) == $perfil->id_perfil ){ ?>
-													<option value="<?php echo $perfil->id_perfil; ?>"><?php echo $perfil->perfil; ?></option>
-												<?php } ?>	
-											<?php } ?>
-											<!--rol de usuario -->
-									</select>
-								</fieldset>		
-						    <?php } elseif ( $this->session->userdata( 'id_perfil' ) == 1 ){ ?>											
-									<select name="id_perfil" id="id_perfil" class="form-control">
-										<!--<option value="0">Selecciona una opción</option>-->
-											<?php foreach ( $perfiles as $perfil ){ ?>
-													<option value="<?php echo $perfil->id_perfil; ?>"><?php echo $perfil->perfil; ?></option>
-											<?php } ?>
-											<!--rol de usuario -->
-									</select>
-						    <?php } ?>									    
-						</div>
-					</div>
-
 				
+
+				<div class="col-sm-6 col-md-6">
+
+					<!--<div class="form-group">
+
+					<label for="id_estatus" class="col-sm-3 col-md-2 control-label">Tipo</label>
+						<div class="col-sm-9 col-md-10">
+							<select name="id_estatus" id="id_estatus" class="form-control" dependencia="id_estatus">	
+								<option value="1" selected="selected">Importación</option>
+								<option value="2">Exportación</option>
+							</select>
+						</div>	
+					</div> -->
+					
+
+					<div class="form-group">
+						<label for="id_perfil" class="col-sm-3 col-md-2 control-label">Puerto <?php echo ($id_estatus==1) ? 'origen' : 'destino'; ?></label>
+						<div class="col-sm-9 col-md-10">
+
+								<select name="id_puerto" id="id_puerto" class="form-control">
+										<?php foreach ( $paises as $pais ){ ?>
+												<?php 
+												   if  ($pais->id==$catalogo->id_puerto)
+													 {$seleccionado='selected';} else {$seleccionado='';}
+												?>
+												<option value="<?php echo $pais->id; ?>"  <?php echo $seleccionado; ?>><?php echo $pais->nombre.' ('. $pais->country.')'; ?></option>
+										<?php } ?>
+								</select>
+														    
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<label for="id_perfil" class="col-sm-3 col-md-2 control-label">Puerto Escala</label>
+						<div class="col-sm-9 col-md-10">
+
+								<select name="id_puertoescala" id="id_puertoescala" class="form-control">
+								<option value="0"  >Directo</option>
+										<?php foreach ( $paises as $pais ){ ?>
+												<?php 
+												   if  ($pais->id==$catalogo->id_puertoescala)
+													 {$seleccionado='selected';} else {$seleccionado='';}
+												?>
+												<option value="<?php echo $pais->id; ?>"  <?php echo $seleccionado; ?>><?php echo $pais->nombre; ?></option>
+										<?php } ?>
+								</select>
+														    
+						</div>
+					</div>
+
+
+
+					<div class="form-group">
+						<label for="id_perfil" class="col-sm-3 col-md-2 control-label">Puerto Escala2</label>
+						<div class="col-sm-9 col-md-10">
+
+								<select name="id_puertoescala2" id="id_puertoescala2" class="form-control">
+										<option value="0"  >Directo</option>
+										<?php foreach ( $paises as $pais ){ ?>
+												<?php 
+												   if  ($pais->id==$catalogo->id_puertoescala2)
+													 {$seleccionado='selected';} else {$seleccionado='';}
+												?>
+												<option value="<?php echo $pais->id; ?>"  <?php echo $seleccionado; ?>><?php echo $pais->nombre; ?></option>
+										<?php } ?>
+								</select>
+														    
+						</div>
+					</div>
+
+
+
+
+
+					<div class="form-group">
+						<label for="id_perfil" class="col-sm-3 col-md-2 control-label"><?php echo ($id_estatus==1) ? 'Destino' : 'Origen'; ?></label>
+						<div class="col-sm-9 col-md-10">
+
+								<select name="id_destino" id="id_destino" class="form-control">
+										<?php foreach ( $paises as $pais ){ ?>
+												<?php 
+												   if  ($pais->id==$catalogo->id_destino)
+													 {$seleccionado='selected';} else {$seleccionado='';}
+												?>
+											<option value="<?php echo $pais->id; ?>"  <?php echo $seleccionado; ?>><?php echo $pais->nombre.' ('.$pais->country.')'; ?></option>
+										<?php } ?>
+								</select>
+														    
+						</div>
+					</div>
+
+
+
+
+
+						
 				</div>
-			
-
-		
 
 
+				<div class="col-sm-6 col-md-6">
+					
+					<div class="form-group">
+						<label for="tarifa" class="col-sm-3 col-md-2 control-label">Tarifa</label>
+						<div class="col-sm-9 col-md-10">
+							<?php 
+								$nomb_nom='';
+								if (isset($catalogo->tarifa)) 
+								 {	$nomb_nom = $catalogo->tarifa;}
+								//print_r($catalogo->tarifa); die;
+							?>
+							<input value="<?php echo  set_value('tarifa',$nomb_nom); ?>"  class="form-control" name="tarifa" placeholder="tarifa">
+						</div>
+					</div>
 
-		<br/>
-	
+					<div class="form-group">
+						<label for="salidas" class="col-sm-3 col-md-2 control-label">Salidas</label>
+						<div class="col-sm-9 col-md-10">
+							<?php 
+								$nomb_nom='';
+								if (isset($catalogo->salidas)) 
+								 {	$nomb_nom = $catalogo->salidas;}
+							?>
+							<input value="<?php echo  set_value('salidas',$nomb_nom); ?>"  class="form-control" name="salidas" placeholder="salidas">
+						</div>
+					</div>
+						
+
+					<div class="form-group">
+						<label for="minimo" class="col-sm-3 col-md-2 control-label">Minimo</label>
+						<div class="col-sm-9 col-md-10">
+							<?php 
+								$nomb_nom='';
+								if (isset($catalogo->minimo)) 
+								 {	$nomb_nom = $catalogo->minimo;}
+							?>
+							<input value="<?php echo  set_value('minimo',$nomb_nom); ?>"  class="form-control" name="minimo" placeholder="minimo">
+						</div>
+					</div>
+						
+					<div class="form-group">
+						<label for="tt" class="col-sm-3 col-md-2 control-label">TT</label>
+						<div class="col-sm-9 col-md-10">
+							<?php 
+								$nomb_nom='';
+								if (isset($catalogo->tt)) 
+								 {	$nomb_nom = $catalogo->tt;}
+							?>
+							<input value="<?php echo  set_value('tt',$nomb_nom); ?>"  class="form-control" name="tt" placeholder="tt">
+						</div>
+					</div>
+											
+
+					<div class="form-group">
+						<label for="precio" class="col-sm-3 col-md-2 control-label">Precio</label>
+						<div class="col-sm-9 col-md-10">
+							<?php 
+								$nomb_nom='';
+								if (isset($catalogo->precio)) 
+								 {	$nomb_nom = $catalogo->precio;}
+							?>
+							<input value="<?php echo  set_value('precio',$nomb_nom); ?>"  class="form-control" name="precio" placeholder="0.00">
+						</div>
+					</div>
+
+
+
+				</div>
+			</div>
 		</div>
-		</div>
-		
-		<div class="col-sm-12 col-md-12">	
+
+
+
+		<br>
+
+		<div class="row">
 			<div class="col-sm-4 col-md-4"></div>
 			<div class="col-sm-4 col-md-4">
 				<a href="<?php echo base_url(); ?><?php echo $retorno; ?>" type="button" class="btn btn-danger btn-block">Cancelar</a>
@@ -110,9 +212,7 @@
 			</div>
 		</div>
 		
-		</div>
-		<br>
 	</div>
 </div>
-<?php echo form_close(); ?>
+  <?php echo form_close(); ?>
 <?php $this->load->view('admin/footer'); ?>

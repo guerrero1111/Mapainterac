@@ -621,21 +621,22 @@ public function listado_buscador(){
   } 
 
 
-function nuevo_catalogo(){
+function nuevo_catalogo($id_estatus){
 	if($this->session->userdata('session') === TRUE ){
-		  $id_perfil=$this->session->userdata('id_perfil');
-		  
-		  $data['perfiles']   = $this->modelo_admin->coger_catalogo_perfiles();
-		  
+
+			$id_perfil=$this->session->userdata('id_perfil');
+			$data['perfiles']   = $this->modelo_admin->coger_catalogo_perfiles();
+			$data['id_estatus']= base64_decode($id_estatus); //la primera vez son importaciones
+			$data['paises']  = $this->modelo_admin->paises(  $data );
 
 		  switch ($id_perfil) {    
 			case 1:
-				  $this->load->view( 'admin/usuarios/nuevo_catalogo', $data );   
+				  $this->load->view( 'admin/catalogos/nuevo_catalogo', $data );   
 					
 			  break;
 			case 2:
 			case 3:
-					$this->load->view( 'admin/usuarios/nuevo_catalogo', $data );   
+					$this->load->view( 'admin/catalogos/nuevo_catalogo', $data );   
 			  break;
 
 
@@ -649,6 +650,60 @@ function nuevo_catalogo(){
 		}    
 
 	}
+
+	function validar_nuevo_catalogo(){
+		
+		if ( $this->session->userdata('session') !== TRUE ) {
+			redirect('');
+		} else {
+			
+			$this->form_validation->set_rules( 'tarifa', 'tarifa', 'trim|required|min_length[3]|max_lenght[180]|xss_clean'); 
+			$this->form_validation->set_rules( 'salidas', 'salidas', 'trim|required|min_length[3]|max_lenght[180]|xss_clean'); 
+			$this->form_validation->set_rules( 'minimo', 'minimo', 'trim|required|min_length[3]|max_lenght[180]|xss_clean'); 
+			$this->form_validation->set_rules( 'tt', 'tt', 'trim|required|min_length[3]|max_lenght[180]|xss_clean'); 
+			$this->form_validation->set_rules( 'precio', 'precio', 'trim|required|min_length[3]|max_lenght[180]|xss_clean'); 
+
+	  //si el usuario no es un administrador entonces q sea obligatorio asociarlo a operaciones 
+	  //Esto YA NO HACE FALTA
+
+
+			if ( $this->form_validation->run() === TRUE ){
+				
+					$data['id']				=	$this->input->post('id');
+					$data['id_estatus']				=	$this->input->post('id_estatus');
+					$data['id_puerto']		=	$this->input->post('id_puerto');
+					$data['id_puertoescala']		=	$this->input->post('id_puertoescala');
+					$data['id_puertoescala2']		=	$this->input->post('id_puertoescala2');
+					$data['id_destino']		=	$this->input->post('id_destino');
+
+					$data['tarifa']		=	$this->input->post('tarifa');
+					$data['salidas']		=	$this->input->post('salidas');
+					$data['minimo']		=	$this->input->post('minimo');
+					$data['tt']		=	$this->input->post('tt');
+					$data['precio']		=	$this->input->post('precio');
+
+
+					$data 				= 	$this->security->xss_clean($data);  
+					
+					$validar_catalogo = $this->modelo_admin->validar_catalogo($data);
+					if ( $validar_catalogo){
+						
+						$data 										= $this->security->xss_clean( $data );
+						$guardar 									= $this->modelo_admin->nuevo_catalogo( $data );
+						if ( $guardar !== FALSE ){
+							echo TRUE;
+						} else {
+							echo '<span class="error"><b>E02</b> - La información  no puedo ser actualizada no hubo cambios</span>';
+						}
+					} else {
+						echo '<span class="error">Ya a se encuentra asignado.</span>';
+					}
+				
+			} else {			
+				echo validation_errors('<span class="error">','</span>');
+			}
+		}
+	}		
 
 //edicion del especialista o el perfil del especialista o administrador activo
 
@@ -695,20 +750,6 @@ function nuevo_catalogo(){
 			redirect('');
 		} else {
 			
-/*
-id_puerto
-id_puertoescala
-id_puertoescala2
-id_destino
-tarifa
-salidas
-minimo
-tt
-precio
-
-callback_nombre_valido|
-*/
-
 			$this->form_validation->set_rules( 'tarifa', 'tarifa', 'trim|required|min_length[3]|max_lenght[180]|xss_clean'); 
 			$this->form_validation->set_rules( 'salidas', 'salidas', 'trim|required|min_length[3]|max_lenght[180]|xss_clean'); 
 			$this->form_validation->set_rules( 'minimo', 'minimo', 'trim|required|min_length[3]|max_lenght[180]|xss_clean'); 
@@ -757,6 +798,234 @@ callback_nombre_valido|
 			}
 		}
 	}	
+
+
+/////////////////Puerto/////////////////////////////////////////	
+
+
+  public function listado_puertos(){
+
+  
+   $id_session = $this->session->userdata('id');
+   if ( $this->session->userdata('session') !== TRUE ) {
+
+        redirect('login');
+    } else {
+        $id_perfil=$this->session->userdata('id_perfil');
+
+
+		$data['id_estatus']=1; //la primera vez son importaciones
+		$data['paises']  = $this->modelo->pais(  $data );
+		$data['id_pais']=$data['paises'][0]->id; //la primera vez es el primer pais
+		//print_r( $data['paises'][0]->id ); die;
+		$data['origen'] = $this->modelo->origen($data);
+		//print_r( $data['origen'][0]->id ); die;
+		$data['inicio']=$data['origen'][0]->id; 
+
+		$data['destino'] = $this->modelo->destino($data);
+
+		//$this->load->view( 'dashboard_principal', $data );
+
+
+
+        $coleccion_id_operaciones= json_decode($this->session->userdata('coleccion_id_operaciones')); 
+        if ( (count($coleccion_id_operaciones)==0) || (!($coleccion_id_operaciones)) ) {
+              $coleccion_id_operaciones = array();
+         }   
+         //print_r($id_perfil); die;
+
+      //$html = $this->load->view( 'puertos/colores',$data ,true);   
+      switch ($id_perfil) {    
+        case 1:
+            $this->load->view( 'admin/catalogos/puertos/puertos');
+          break;
+        case 2:
+        case 3:
+        case 4:
+             if  ( (in_array(8, $coleccion_id_operaciones))  || (in_array(13, $coleccion_id_operaciones))  )   { 
+                $this->load->view( 'admin/catalogos/puertos/puertos');
+              }  else  {
+                redirect('');
+              } 
+          break;
+
+
+        default:  
+          redirect('');
+          break;
+      }
+
+    }    
+    
+  }
+
+
+  public function procesando_puertos(){
+    $data=$_POST;
+    $busqueda = $this->modelo_admin->buscador_puertos($data);
+    echo $busqueda;
+  } 
+
+	function nuevo_puerto(){
+		if($this->session->userdata('session') === TRUE ){
+
+				$id_perfil=$this->session->userdata('id_perfil');
+				$data['aa']=2;
+			  switch ($id_perfil) {    
+				case 1:
+					  $this->load->view( 'admin/catalogos/puertos/nuevo_puerto', $data );   
+				  break;
+				case 2:
+				case 3:
+						$this->load->view( 'admin/catalogos/puertos/nuevo_puerto', $data );   
+				  break;
+				default:  
+				  redirect('');
+				  break;
+			  }
+			}
+			else{ 
+			  redirect('index');
+			}    
+
+	}
+
+			
+
+
+
+			
+					
+
+					
+
+	function validar_nuevo_puerto(){
+		
+		if ( $this->session->userdata('session') !== TRUE ) {
+			redirect('');
+		} else {
+			
+			$this->form_validation->set_rules( 'puerto', 'puerto', 'trim|required|min_length[3]|max_lenght[180]|xss_clean'); 
+			$this->form_validation->set_rules( 'city', 'ciudad', 'trim|required|min_length[3]|max_lenght[180]|xss_clean'); 
+			$this->form_validation->set_rules( 'lat', 'latitud', 'trim|required|min_length[3]|max_lenght[180]|xss_clean'); 
+			$this->form_validation->set_rules( 'lng', 'longitud', 'trim|required|min_length[3]|max_lenght[180]|xss_clean'); 
+			$this->form_validation->set_rules( 'country', 'país', 'trim|required|min_length[3]|max_lenght[180]|xss_clean'); 
+
+
+			if ( $this->form_validation->run() === TRUE ){
+				
+					$data['puerto']		=	$this->input->post('puerto');
+					$data['city']		=	$this->input->post('city');
+					$data['lat']		=	$this->input->post('lat');
+					$data['lng']		=	$this->input->post('lng');
+					$data['country']	=	$this->input->post('country');
+
+
+					
+					$data 				= 	$this->security->xss_clean($data);  
+					
+					//$validar_puerto = $this->modelo_admin->validar_puerto($data);
+					if ( true){
+						
+						$data 										= $this->security->xss_clean( $data );
+						$guardar 									= $this->modelo_admin->nuevo_puerto( $data );
+						if ( $guardar !== FALSE ){
+							echo TRUE;
+						} else {
+							echo '<span class="error"><b>E02</b> - La información  no puedo ser actualizada no hubo cambios</span>';
+						}
+					} else {
+						echo '<span class="error">Ya a se encuentra asignado.</span>';
+					}
+				
+			} else {			
+				echo validation_errors('<span class="error">','</span>');
+			}
+		}
+	}		
+
+
+
+	//edicion del especialista o el perfil del especialista o administrador activo
+	function editar_puerto( $uid  ){
+
+	    $id=$this->session->userdata('id');
+  		$data['id'] = base64_decode($uid);
+  			  //$uid  = $data['id'];
+		$id_perfil=$this->session->userdata('id_perfil');
+
+		$data['catalogo'] = $this->modelo_admin->get_puerto( $data );
+		//print_r($data['puerto']); die;
+
+		 switch ($id_perfil) {    
+			case 1:
+				  $this->load->view('admin/catalogos/puertos/editar_puerto',$data);  
+					
+			  break;
+			case 2:
+			case 3:
+					$this->load->view('admin/catalogos/puertos/editar_puerto',$data);  
+			  break;
+
+
+			default:  
+			  redirect('');
+			  break;
+		  }
+
+
+	}
+
+
+	
+	function validacion_edicion_puerto(){
+		
+		if ( $this->session->userdata('session') !== TRUE ) {
+			redirect('');
+		} else {
+			
+			$this->form_validation->set_rules( 'puerto', 'puerto', 'trim|required|min_length[3]|max_lenght[180]|xss_clean'); 
+			$this->form_validation->set_rules( 'city', 'ciudad', 'trim|required|min_length[3]|max_lenght[180]|xss_clean'); 
+			$this->form_validation->set_rules( 'lat', 'latitud', 'trim|required|min_length[3]|max_lenght[180]|xss_clean'); 
+			$this->form_validation->set_rules( 'lng', 'longitud', 'trim|required|min_length[3]|max_lenght[180]|xss_clean'); 
+			$this->form_validation->set_rules( 'country', 'país', 'trim|required|min_length[3]|max_lenght[180]|xss_clean'); 
+
+	  //si el usuario no es un administrador entonces q sea obligatorio asociarlo a operaciones 
+	  //Esto YA NO HACE FALTA
+
+
+			if ( $this->form_validation->run() === TRUE ){
+				
+					$data['id']			=	$this->input->post('id');
+					
+					$data['puerto']		=	$this->input->post('puerto');
+					$data['city']		=	$this->input->post('city');
+					$data['lat']		=	$this->input->post('lat');
+					$data['lng']		=	$this->input->post('lng');
+					$data['country']	=	$this->input->post('country');
+
+					$data 				= 	$this->security->xss_clean($data);  
+					//$login_check = $this->modelo_admin->check_usuario_existente($data);
+					//if ( $login_check === TRUE ){
+					if ( TRUE ){
+
+						
+						$data 										= $this->security->xss_clean( $data );
+						$guardar 									= $this->modelo_admin->edicion_puerto( $data );
+						if ( $guardar !== FALSE ){
+							echo TRUE;
+						} else {
+							echo '<span class="error"><b>E02</b> - La información  no puedo ser actualizada no hubo cambios</span>';
+						}
+					} else {
+						echo '<span class="error">Ya a se encuentra asignado.</span>';
+					}
+				
+			} else {			
+				echo validation_errors('<span class="error">','</span>');
+			}
+		}
+	}		
 	
 /////////////////validaciones/////////////////////////////////////////	
 

@@ -1,0 +1,5 @@
+uploads/*
+app/config/database.php
+app/config/config.php
+app/logs/*
+.htaccess

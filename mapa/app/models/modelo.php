@@ -133,8 +133,12 @@ public function destino($data){
 
             if  ($data['id_estatus']==1) {
                 $this->db->from($this->catalogo_importacion.' e');  
+                $adicional= ' ';
             } else { //caso de 2
                 $this->db->from($this->catalogo_exportacion.' e');
+                $adicional= ' and 
+                        ( e.id_puertoescala = '.$data['id_puertoescala'].' )  and 
+                        ( e.id_puertoescala2 = '.$data['id_puertoescala'].' )  ';
             }
 
             /*
@@ -148,7 +152,7 @@ and
                       (
                            ( e.id_pais = '.$data['id_pais'].' )  and 
                          ( e.id_puerto = '.$data['inicio'].' ) and 
-                        ( e.id_destino = '.$data['fin'].' )  
+                        ( e.id_destino = '.$data['fin'].' ) '.$adicional.'  
                       )
             ) ' ; 
             $this->db->where($where); 
@@ -191,14 +195,17 @@ and
                 $this->db->from($this->catalogo_exportacion.' e');
             }
 
+            /*
+and 
+                        ( e.id_puertoescala = '.$data['id_puertoescala'].' )  and 
+                        ( e.id_puertoescala2 = '.$data['id_puertoescala'].' )
+            */
             $this->db->join($this->catalogo_puerto.' m', 'e.'.$data["c1"].'=m.id');
              $where = '(
                       (
                            ( e.id_pais = '.$data['id_pais'].' )  and 
                          ( e.id_puerto = '.$data['inicio'].' ) and 
-                        ( e.id_destino = '.$data['fin'].' ) and 
-                        ( e.id_puertoescala = '.$data['id_puertoescala'].' )  and 
-                        ( e.id_puertoescala2 = '.$data['id_puertoescala'].' )  
+                        ( e.id_destino = '.$data['fin'].' )   
 
                       )
             ) ' ; 
@@ -236,9 +243,17 @@ public function destino_pto($data){
 
             if  ($data['id_estatus']==1) {
                 $this->db->from($this->catalogo_importacion.' e');  
+                $adicional= ' and 
+                        ( e.id_puertoescala = '.$data['id_puertoescala'].' )  and 
+                        ( e.id_puertoescala2 = '.$data['id_puertoescala'].' )  '; 
             } else { //caso de 2
                 $this->db->from($this->catalogo_exportacion.' e');
+
+                $adicional= ' ';                                 
             }
+
+
+
 
             /*
               and 
@@ -251,7 +266,7 @@ public function destino_pto($data){
                       (
                            ( e.id_pais = '.$data['id_pais'].' )  and 
                          ( e.id_puerto = '.$data['inicio'].' ) and 
-                        ( e.id_destino = '.$data['fin'].' ) 
+                        ( e.id_destino = '.$data['fin'].' )  
 
                       )
             ) ' ; 
@@ -297,15 +312,18 @@ public function destino_intermedio($data){
                 $this->db->from($this->catalogo_exportacion.' e');
             }
 
+            /*
+and 
+                        ( e.id_puertoescala = '.$data['id_puertoescala'].' )  and 
+                        ( e.id_puertoescala2 = '.$data['id_puertoescala'].' )  
+            */
              //$this->db->join($this->catalogo_puerto.' m', 'e.id_destino=m.id');
              $this->db->join($this->catalogo_puerto.' m', 'e.'.$data["c1"].'=m.id');
              $where = '(
                       (
                            ( e.id_pais = '.$data['id_pais'].' )  and 
                          ( e.id_puerto = '.$data['inicio'].' ) and 
-                        ( e.id_destino = '.$data['fin'].' ) and 
-                        ( e.id_puertoescala = '.$data['id_puertoescala'].' )  and 
-                        ( e.id_puertoescala2 = '.$data['id_puertoescala'].' )  
+                        ( e.id_destino = '.$data['fin'].' ) 
 
                       )
             ) ' ; 

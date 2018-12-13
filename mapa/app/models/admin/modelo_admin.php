@@ -2450,6 +2450,123 @@ public function buscador_catalogos($data){
       }  
 
 
+      public function validar_catalogo( $data ){
+            
+            if  ($data['id_estatus']==1) {
+              $this->db->from($this->catalogo_importacion.' p');  
+            } else { //caso de 2
+                $this->db->from($this->catalogo_exportacion.' p');  
+            }
+
+
+            $where = '( 
+                (p.id_puerto ='.$data['id_puerto'].') and  
+                (p.id_destino ='.$data['id_destino'].') and  
+                (p.id_puertoescala ='.$data['id_puertoescala'].') and  
+                (p.id_puertoescala2 ='.$data['id_puertoescala2'].') 
+            )';
+            $this->db->where($where);  
+            $result = $this->db->get();
+
+              if ($result->num_rows() > 0){
+                return false; //return ($result->result());
+              }
+              else {
+                return true;
+              }
+              $login->free_result();
+
+     }
+
+
+      public function nuevo_catalogo( $data ){
+            $timestamp = time();
+
+            $id_session = $this->session->userdata('id');
+                 
+            $this->db->set( 'id_puerto', $data['id_puerto'] );
+            $this->db->set( 'id_destino', $data['id_destino'] );
+            $this->db->set( 'id_puertoescala', $data['id_puertoescala'] );
+            $this->db->set( 'id_puertoescala2', $data['id_puertoescala2'] );
+
+            $this->db->set( 'tarifa', $data['tarifa'] );
+            $this->db->set( 'salidas', $data['salidas'] );
+            $this->db->set( 'minimo', $data['minimo'] );
+            $this->db->set( 'tt', $data['tt'] );
+            $this->db->set( 'precio', $data['precio'] );
+            $this->db->where('id', $data['id'] );
+
+            if  ($data['id_estatus']==1) {
+              $this->db->insert($this->catalogo_importacion );
+            } else { //caso de 2
+                $this->db->insert($this->catalogo_exportacion );
+            }
+
+            $data['id'] = $this->db->insert_id();
+
+
+             if ($this->db->affected_rows() > 0) {
+               if  ($data['id_estatus']==1) {
+                       $consulta=  "UPDATE ".$this->catalogo_importacion." as e  
+                       JOIN ".$this->catalogo_puerto." as m  ON e.id_puerto=m.id
+                       JOIN ".$this->catalogo_puerto." as d  ON e.id_destino=d.id
+
+                        LEFT JOIN ".$this->catalogo_puerto." as esc1  ON e.id_puertoescala=esc1.id
+                        LEFT JOIN ".$this->catalogo_puerto." as esc2  ON e.id_puertoescala2=esc2.id
+
+                         SET e.pais = m.country,
+                              e.puerto = m.puerto,
+                              e.pto_destino = d.puerto,
+                              e.via= CONCAT( (CASE WHEN esc1.puerto is null THEN '' ELSE  esc1.puerto end),' / ', (CASE WHEN esc2.puerto is null THEN '' ELSE  esc2.puerto end) )
+
+                          where e.id =".$data['id'];
+
+                          $this->db->query($consulta);
+
+
+                      $consulta2=  "UPDATE ".$this->catalogo_importacion." as e  
+                       JOIN ".$this->catalogo_pais." as m  ON e.pais=m.pais
+                       
+                         SET e.id_pais = m.id
+                          where e.id =".$data['id'];
+
+                          $this->db->query($consulta2);
+                 } else {
+
+                       $consulta=  "UPDATE ".$this->catalogo_exportacion." as e  
+                       JOIN ".$this->catalogo_puerto." as m  ON e.id_puerto=m.id
+                       JOIN ".$this->catalogo_puerto." as d  ON e.id_destino=d.id
+
+                        LEFT JOIN ".$this->catalogo_puerto." as esc1  ON e.id_puertoescala=esc1.id
+                        LEFT JOIN ".$this->catalogo_puerto." as esc2  ON e.id_puertoescala2=esc2.id
+
+                         SET e.pais = m.country,
+                              e.puerto = m.puerto,
+                              e.pto_destino = d.puerto,
+                              e.via= CONCAT( (CASE WHEN esc1.puerto is null THEN '' ELSE  esc1.puerto end),' / ', (CASE WHEN esc2.puerto is null THEN '' ELSE  esc2.puerto end) )
+
+                          where e.id =".$data['id'];
+
+                          $this->db->query($consulta);
+
+
+                      $consulta2=  "UPDATE ".$this->catalogo_exportacion." as e  
+                       JOIN ".$this->catalogo_pais." as m  ON e.pais=m.pais
+                       
+                         SET e.id_pais = m.id
+                          where e.id =".$data['id'];
+
+                          $this->db->query($consulta2);
+
+                  
+                 }         
+
+
+        return TRUE;
+      }  else
+         return FALSE;
+
+        }   
 
         public function edicion_catalogo( $data ){
 
@@ -2471,9 +2588,6 @@ public function buscador_catalogos($data){
 
             if  ($data['id_estatus']==1) {
               $this->db->update($this->catalogo_importacion );
-
-
-                
             } else { //caso de 2
                 $this->db->update($this->catalogo_exportacion );
             }
@@ -2541,6 +2655,234 @@ public function buscador_catalogos($data){
          return FALSE;
         }   
 
+
+
+
+
+
+
+
+public function buscador_puertos($data){
+          
+          $cadena = addslashes($data['search']['value']);
+          $inicio = $data['start'];
+          $largo = $data['length'];
+          
+
+          $columa_order = $data['order'][0]['column'];
+                 $order = $data['order'][0]['dir'];
+
+
+          switch ($columa_order) {
+                   case '0':
+                        $columna = 'id';
+                     break;
+                   case '1':
+                        $columna = 'puerto';
+                     break;
+                   case '2':
+                        $columna = 'city';
+                     break;
+                   case '3':
+                        $columna = 'lat';
+                     break;
+                   case '4':
+                        $columna = 'lng';
+                     break;                                          
+                   case '5':
+                        $columna = 'country';
+                     break;                                          
+                   
+                   default:
+                        $columna = 'id';
+                     break;
+                 }                 
+
+                                      
+
+
+
+
+          //$id_session = $this->db->escape($this->session->userdata('id'));
+           $id_session = $this->session->userdata('id');
+
+          $this->db->select("SQL_CALC_FOUND_ROWS *", FALSE); //
+
+        
+           $this->db->select('id, puerto, city, city_ascii, lat, lng, pop, country, iso2, iso3, province');
+
+          
+            
+            $this->db->from($this->catalogo_puerto.' e');  
+            
+
+          /*
+
+             $filtro="";        
+
+                if  ($data['id_pais']!=0){
+                   $filtro.= (($filtro!="") ? " and " : "") . "(e.id_pais = ".$data["id_pais"].") ";
+                }
+                if ($data['inicio'] !=0) {
+                  $filtro.= (($filtro!="") ? " and " : "") . "(e.id_puerto = ".$data["inicio"].") ";
+                } 
+                if  ($data['fin']!=0){
+                   $filtro.= (($filtro!="") ? " and " : "") . "(e.id_destino = ".$data["fin"].") ";
+                }
+
+
+            if ($filtro!="") {
+                  $this->db->where($filtro);
+             }
+             */
+
+  
+          
+    
+          //ordenacion
+          $this->db->order_by($columna, $order); 
+
+          //paginacion
+          $this->db->limit($largo,$inicio); 
+
+
+          $result = $this->db->get();
+
+              if ( $result->num_rows() > 0 ) {
+
+                    $cantidad_consulta = $this->db->query("SELECT FOUND_ROWS() as cantidad");
+                    $found_rows = $cantidad_consulta->row(); 
+                    $registros_filtrados =  ( (int) $found_rows->cantidad);
+
+                  $retorno= " ";  
+                  foreach ($result->result() as $row) {
+                       
+
+                               $dato[]= array(
+                                      0=>$row->id,
+                                      1=>$row->puerto,
+                                      2=>$row->city,
+                                      3=>$row->lat,
+                                      4=>$row->lng,
+                                      5=>$row->country,
+                                     
+                                    );
+                      }
+
+
+                       
+
+
+
+
+                      return json_encode ( array(
+                        "draw"            => intval( $data['draw'] ),
+                        "recordsTotal"    => $registros_filtrados, 
+                        "recordsFiltered" =>   $registros_filtrados, 
+                        "data"            =>  $dato 
+                      ));
+                    
+              }   
+              else {
+                  //cuando este vacio la tabla que envie este
+                //http://www.datatables.net/forums/discussion/21311/empty-ajax-response-wont-render-in-datatables-1-10
+                  $output = array(
+                  "draw" =>  intval( $data['draw'] ),
+                  "recordsTotal" => 0,
+                  "recordsFiltered" =>0,
+                  "aaData" => array()
+                  );
+                  $array[]="";
+                  return json_encode($output);
+                  
+
+              }
+
+              $result->free_result();           
+
+      }  
+
+
+
+
+       //editar 
+        public function get_puerto( $data ){
+
+                     
+           $this->db->select('id, puerto, city, city_ascii, lat, lng, pop, country, iso2, iso3, province');
+            $this->db->from($this->catalogo_puerto.' e');  
+            
+
+            
+             $where = '(
+                      (
+                        ( e.id = '.$data['id'].' ) 
+                      )
+            ) ' ; 
+            $this->db->where($where); 
+
+            
+
+              $result = $this->db->get();
+              if ($result->num_rows() > 0){
+               return ($result->row());
+              }
+              else 
+                return FALSE;
+              $login->free_result();
+
+
+        }  
+
+
+
+    public function edicion_puerto( $data ){
+
+            $timestamp = time();
+
+            $id_session = $this->session->userdata('id');
+                 
+            $this->db->set( 'puerto', $data['puerto'] );
+            $this->db->set( 'city', $data['city'] );
+            $this->db->set( 'lat', $data['lat'] );
+            $this->db->set( 'lng', $data['lng'] );
+            $this->db->set( 'country', $data['country'] );
+            
+            $this->db->where('id', $data['id'] );
+            
+             $this->db->update($this->catalogo_puerto );
+            
+
+            
+            if ($this->db->affected_rows() > 0) {
+                return TRUE;
+            }  else
+               return FALSE;
+       }   
+
+
+
+    public function nuevo_puerto( $data ){
+
+            $timestamp = time();
+
+            $id_session = $this->session->userdata('id');
+                 
+            $this->db->set( 'puerto', $data['puerto'] );
+            $this->db->set( 'city', $data['city'] );
+            $this->db->set( 'lat', $data['lat'] );
+            $this->db->set( 'lng', $data['lng'] );
+            $this->db->set( 'country', $data['country'] );
+            
+             $this->db->insert($this->catalogo_puerto );
+            
+
+            
+            if ($this->db->affected_rows() > 0) {
+                return TRUE;
+            }  else
+               return FALSE;
+       }   
 
 
  

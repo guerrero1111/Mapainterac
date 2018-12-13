@@ -68,11 +68,11 @@
 			<div class="col-xs-12 col-sm-12 col-md-12 marginbuttom">
 				<div class="col-xs-12 col-sm-12 col-md-12"><h4>Catálogos</h4></div>
 			</div>	
-			<!--
+			
 			<div class="col-xs-12 col-sm-4 col-md-3 marginbuttom">
-				<a href="<?php echo base_url(); ?>nuevo_catalogo" type="button" class="btn btn-success btn-block">Nuevo catálogo</a>
+				<a id="nuevo_catalogo" href="<?php echo base_url(); ?>nuevo_catalogo" type="button" class="btn btn-success btn-block">Nuevo catálogo</a>
 			</div>
-			-->
+			
 			
 
 		</div>
