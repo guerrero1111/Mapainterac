@@ -231,6 +231,6 @@ class __TwigTemplate_811271373afa934d8edf3915668e609c6d74ec9d2692998f54c48b70a00
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "panel-colors.twig", "/home/codigode/public_html/overseas/wp-content/plugins/sitepress-multilingual-cms/templates/language-switcher-admin-ui/panel-colors.twig");
+        return new Twig_Source("", "panel-colors.twig", "/home/codigode/public_html/wp-content/plugins/sitepress-multilingual-cms/templates/language-switcher-admin-ui/panel-colors.twig");
     }
 }

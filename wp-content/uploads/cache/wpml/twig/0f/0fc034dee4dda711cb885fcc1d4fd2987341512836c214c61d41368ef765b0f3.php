@@ -91,6 +91,6 @@ class __TwigTemplate_2934d64a4760b70d97c2b909ade4e22603a13485d20012b164b5e444bd4
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "section-sidebars.twig", "/home/codigode/public_html/overseas/wp-content/plugins/sitepress-multilingual-cms/templates/language-switcher-admin-ui/section-sidebars.twig");
+        return new Twig_Source("", "section-sidebars.twig", "/home/codigode/public_html/wp-content/plugins/sitepress-multilingual-cms/templates/language-switcher-admin-ui/section-sidebars.twig");
     }
 }

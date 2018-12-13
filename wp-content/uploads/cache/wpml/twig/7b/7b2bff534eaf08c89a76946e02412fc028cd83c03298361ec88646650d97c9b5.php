@@ -140,6 +140,6 @@ class __TwigTemplate_19cc5732f1c194e1da4eee4473981fe18386a131a5764b429704bbd6712
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "table-slot-row.twig", "/home/codigode/public_html/overseas/wp-content/plugins/sitepress-multilingual-cms/templates/language-switcher-admin-ui/table-slot-row.twig");
+        return new Twig_Source("", "table-slot-row.twig", "/home/codigode/public_html/wp-content/plugins/sitepress-multilingual-cms/templates/language-switcher-admin-ui/table-slot-row.twig");
     }
 }

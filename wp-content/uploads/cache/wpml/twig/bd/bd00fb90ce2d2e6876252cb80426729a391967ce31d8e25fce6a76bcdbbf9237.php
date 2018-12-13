@@ -96,6 +96,6 @@ class __TwigTemplate_48b5d49771f4e7bc1fff97aad965887ed3fa359bdeb958016e774883126
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "button-add-new-ls.twig", "/home/codigode/public_html/overseas/wp-content/plugins/sitepress-multilingual-cms/templates/language-switcher-admin-ui/button-add-new-ls.twig");
+        return new Twig_Source("", "button-add-new-ls.twig", "/home/codigode/public_html/wp-content/plugins/sitepress-multilingual-cms/templates/language-switcher-admin-ui/button-add-new-ls.twig");
     }
 }

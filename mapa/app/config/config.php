@@ -15,7 +15,7 @@
   Colocamos la url o dominio
 */
 /*$config['base_url']	='http://escuela.dev.com/'; // 'http://45.55.85.45'; */
-$config['base_url']	='http://localhost/overseas/mapa/'; // 'http://45.55.85.45';
+$config['base_url']	='http://localhost/mapa/'; // 'http://45.55.85.45';
 /*
 https://gist.github.com/jll90/5e0549ca5cce5d9c3a65600b29aab9a7$route['confirmar_asistencia']    = 'alumnos/confirmar_asistencia';
 

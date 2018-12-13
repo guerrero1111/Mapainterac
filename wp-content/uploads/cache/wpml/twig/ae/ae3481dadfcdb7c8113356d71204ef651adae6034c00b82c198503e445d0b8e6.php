@@ -52,6 +52,6 @@ class __TwigTemplate_5ea8790c702c26b50940b82c2174ececeb8682acb6b3e2c73b0f9e5fc98
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "tooltip.twig", "/home/codigode/public_html/overseas/wp-content/plugins/sitepress-multilingual-cms/templates/language-switcher-admin-ui/tooltip.twig");
+        return new Twig_Source("", "tooltip.twig", "/home/codigode/public_html/wp-content/plugins/sitepress-multilingual-cms/templates/language-switcher-admin-ui/tooltip.twig");
     }
 }

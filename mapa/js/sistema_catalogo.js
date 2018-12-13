@@ -8,7 +8,7 @@ jQuery(document).ready(function($) {
 
           var campo = jQuery(this).attr("name");   
 
-          jQuery('#nuevo_catalogo').attr("href",'/overseas/mapa/nuevo_catalogo/'+jQuery.base64.encode( jQuery('#id_estatus').val() ) );   
+          jQuery('#nuevo_catalogo').attr("href",'/mapa/nuevo_catalogo/'+jQuery.base64.encode( jQuery('#id_estatus').val() ) );   
           
 
           if (campo=='id_estatus') {
@@ -190,10 +190,10 @@ m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via
 
                 {
                     "render": function ( data, type, row ) {
-                      if  ( (hash_url!="/overseas/mapa/buscador") )   {  
+                      if  ( (hash_url!="/mapa/buscador") )   {  
 
                           texto='<td>';
-                            texto+='<a href="/overseas/mapa/editar_catalogo/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode( jQuery('#id_estatus').val()  )+'" type="button"'; 
+                            texto+='<a href="/mapa/editar_catalogo/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode( jQuery('#id_estatus').val()  )+'" type="button"'; 
                             texto+=' class="btn btn-warning btn-sm btn-block" >';
                               texto+=' <span class="glyphicon glyphicon-edit"></span>';
                             texto+=' </a>';
@@ -219,7 +219,7 @@ m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via
                 {
                     "render": function ( data, type, row ) {
 
-                      if  ( (hash_url!="/overseas/mapa/buscador") )   {  
+                      if  ( (hash_url!="/mapa/buscador") )   {  
                         texto=' <td>';                
                         texto+=' <a href="/mapa/eliminar_catalogo/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode(row[2]+' '+row[3])+ '"'; 
                         texto+=' class="btn btn-danger btn-sm btn-block" data-toggle="modal" data-target="#modalMessage">';
@@ -255,7 +255,7 @@ m.lng longitude, m.pop, m.country, m.iso2, m.iso3, m.province,e.via
          
          
 
-        if  ( (hash_url=="/overseas/mapa/buscador") )   {  
+        if  ( (hash_url=="/mapa/buscador") )   {  
                 
              api.column(4).visible(false); 
              api.column(5).visible(false); 
@@ -278,7 +278,7 @@ jQuery('#tabla_puertos').dataTable( {
     "processing": true,
     "serverSide": true,
     "ajax": {
-                "url" : "/overseas/mapa/procesando_puertos",
+                "url" : "/mapa/procesando_puertos",
               "type": "POST",
                                "data": function ( d ) {
                                          d.prueba= '';
@@ -322,10 +322,10 @@ jQuery('#tabla_puertos').dataTable( {
 
                 {
                     "render": function ( data, type, row ) {
-                      if  ( (hash_url!="/overseas/mapa/buscador") )   {  
+                      if  ( (hash_url!="/mapa/buscador") )   {  
 
                           texto='<td>';
-                            texto+='<a href="/overseas/mapa/editar_puerto/'+jQuery.base64.encode(row[0])+'" type="button"'; 
+                            texto+='<a href="/mapa/editar_puerto/'+jQuery.base64.encode(row[0])+'" type="button"'; 
                             texto+=' class="btn btn-warning btn-sm btn-block" >';
                               texto+=' <span class="glyphicon glyphicon-edit"></span>';
                             texto+=' </a>';
@@ -351,9 +351,9 @@ jQuery('#tabla_puertos').dataTable( {
                 {
                     "render": function ( data, type, row ) {
 
-                      /*if  ( (hash_url!="/overseas/mapa/buscador") )   {  
+                      /*if  ( (hash_url!="/mapa/buscador") )   {  
                         texto=' <td>';                
-                        texto+=' <a href="/overseas/mapa/eliminar_catalogo/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode(row[1]+' '+row[2])+ '"'; 
+                        texto+=' <a href="/mapa/eliminar_catalogo/'+jQuery.base64.encode(row[0])+'/'+jQuery.base64.encode(row[1]+' '+row[2])+ '"'; 
                         texto+=' class="btn btn-danger btn-sm btn-block" data-toggle="modal" data-target="#modalMessage">';
                         texto+=' <span class="glyphicon glyphicon-remove"></span>';
                         texto+=' </a>';

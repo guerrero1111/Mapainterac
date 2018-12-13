@@ -87,6 +87,6 @@ class __TwigTemplate_038de4eac9aec241eafa09150c0b561a754a1032ab4219c523918b66893
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "section-post-translations.twig", "/home/codigode/public_html/overseas/wp-content/plugins/sitepress-multilingual-cms/templates/language-switcher-admin-ui/section-post-translations.twig");
+        return new Twig_Source("", "section-post-translations.twig", "/home/codigode/public_html/wp-content/plugins/sitepress-multilingual-cms/templates/language-switcher-admin-ui/section-post-translations.twig");
     }
 }

@@ -84,6 +84,6 @@ class __TwigTemplate_d5b379f17ca6d173d59305606367ee693f3df5c66bc652dacf11c4a9bbf
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "layout-reset.twig", "/home/codigode/public_html/overseas/wp-content/plugins/sitepress-multilingual-cms/templates/language-switcher-admin-ui/layout-reset.twig");
+        return new Twig_Source("", "layout-reset.twig", "/home/codigode/public_html/wp-content/plugins/sitepress-multilingual-cms/templates/language-switcher-admin-ui/layout-reset.twig");
     }
 }

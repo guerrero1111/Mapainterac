@@ -143,6 +143,6 @@ $context["slot_settings"], "slots" =>             // line 28
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "table-slots.twig", "/home/codigode/public_html/overseas/wp-content/plugins/sitepress-multilingual-cms/templates/language-switcher-admin-ui/table-slots.twig");
+        return new Twig_Source("", "table-slots.twig", "/home/codigode/public_html/wp-content/plugins/sitepress-multilingual-cms/templates/language-switcher-admin-ui/table-slots.twig");
     }
 }

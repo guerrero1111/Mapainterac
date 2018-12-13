@@ -60,6 +60,6 @@ class __TwigTemplate_dc769b4f2fe2c50fabeefd2e0b65d0050b6f4412e5537d443550721b30b
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "dialog-box.twig", "/home/codigode/public_html/overseas/wp-content/plugins/sitepress-multilingual-cms/templates/language-switcher-admin-ui/dialog-box.twig");
+        return new Twig_Source("", "dialog-box.twig", "/home/codigode/public_html/wp-content/plugins/sitepress-multilingual-cms/templates/language-switcher-admin-ui/dialog-box.twig");
     }
 }

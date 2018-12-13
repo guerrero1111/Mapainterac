@@ -62,6 +62,6 @@ class __TwigTemplate_8855f5f73f59947ab21bcb146382934cddab9db8b012781fa31c1a3dee6
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "setup-wizard-buttons.twig", "/home/codigode/public_html/overseas/wp-content/plugins/sitepress-multilingual-cms/templates/language-switcher-admin-ui/setup-wizard-buttons.twig");
+        return new Twig_Source("", "setup-wizard-buttons.twig", "/home/codigode/public_html/wp-content/plugins/sitepress-multilingual-cms/templates/language-switcher-admin-ui/setup-wizard-buttons.twig");
     }
 }

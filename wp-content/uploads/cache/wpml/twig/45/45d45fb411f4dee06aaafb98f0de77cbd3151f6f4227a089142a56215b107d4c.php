@@ -68,6 +68,6 @@ class __TwigTemplate_da6dcf72b14c4601fca279427db6308ac2f1f89bb5dca8ee5a9edd36f5f
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "slot-subform-statics-shortcode_actions.twig", "/home/codigode/public_html/overseas/wp-content/plugins/sitepress-multilingual-cms/templates/language-switcher-admin-ui/slot-subform-statics-shortcode_actions.twig");
+        return new Twig_Source("", "slot-subform-statics-shortcode_actions.twig", "/home/codigode/public_html/wp-content/plugins/sitepress-multilingual-cms/templates/language-switcher-admin-ui/slot-subform-statics-shortcode_actions.twig");
     }
 }
